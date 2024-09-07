@@ -1,0 +1,88 @@
+.calendar {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--font-color-2);
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.day-names,
+.days {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day-name,
+.day,
+.empty-day {
+    width: 14.28%;
+    padding: 10px;
+    border: 1px solid rgb(11, 211, 242);
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+    border-radius: 2.5px;
+}
+
+.day-name {
+    background-color: rgb(108, 198, 243);
+    /* color: white; */
+    font-weight: bold;
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.day {
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #ccc;
+}
+
+.empty-day {
+    border: 2px solid white;
+    background-color: #f9f9f9;
+}
+
+.today {
+    background-color: skyblue;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.selected {
+    background-color: skyblue;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
