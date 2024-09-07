@@ -59,6 +59,7 @@
 
 .Details {
   z-index: 100;
+  scrollbar-width: none;
   background-color: #5deaf7;
   border-radius: 1em;
   width: 50%;
@@ -68,6 +69,6 @@
   padding: 1.5em;
   position: absolute;
   top: 0;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 /*# sourceMappingURL=index.f0d3948b.css.map */

@@ -35015,6 +35015,7 @@ var _s = $RefreshSig$();
 const UserSignup = ()=>{
     _s();
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
+    const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
     const [userName, setUserName] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const handleSubmit = async (e)=>{
@@ -35037,20 +35038,21 @@ const UserSignup = ()=>{
                 if (response.ok) {
                     error.innerText = "";
                     if (result.status === "SUCCESS") {
-                        setPaasWord("");
-                        setUserName("");
-                        setPasswordCheck("");
                         success.innerText = "Successfully Created New User!";
+                        setUserData(result?.data);
                         setIsVerified(true);
                         setIsAdmin(false);
+                        setUserName("");
+                        setEmail("");
                     } else {
-                        console.log(result);
+                        console.log(result.message);
                         error.innerText = result.message;
                     }
                 } else // console.log('Error: ' + response.status);
                 error.innerText = response.status;
             } catch (e) {
-                error.innerText = "Check your connection!";
+                // error.innerText = "Check your connection!";
+                error.innerText = e;
             }
             else error.innerHTML = "Enter Email";
         } else error.innerText = "Enter Username!";
@@ -35060,7 +35062,7 @@ const UserSignup = ()=>{
         to: "/user"
     }, void 0, false, {
         fileName: "src/components/UserSignup.js",
-        lineNumber: 63,
+        lineNumber: 65,
         columnNumber: 28
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35070,7 +35072,7 @@ const UserSignup = ()=>{
                     children: "Sign Up"
                 }, void 0, false, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 66,
+                    lineNumber: 68,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -35084,7 +35086,7 @@ const UserSignup = ()=>{
                             onChange: (e)=>setUserName(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 68,
+                            lineNumber: 70,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35096,7 +35098,7 @@ const UserSignup = ()=>{
                             onChange: (e)=>setEmail(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 69,
+                            lineNumber: 71,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35105,13 +35107,13 @@ const UserSignup = ()=>{
                             onClick: handleSubmit
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 70,
+                            lineNumber: 72,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 67,
+                    lineNumber: 69,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35120,7 +35122,7 @@ const UserSignup = ()=>{
                             id: "sign_error"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 73,
+                            lineNumber: 75,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35130,14 +35132,14 @@ const UserSignup = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 74,
+                            lineNumber: 76,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Already a User !"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 75,
+                            lineNumber: 77,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35145,26 +35147,27 @@ const UserSignup = ()=>{
                             children: "Login"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 76,
+                            lineNumber: 78,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 72,
+                    lineNumber: 74,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/UserSignup.js",
-            lineNumber: 65,
+            lineNumber: 67,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
-_s(UserSignup, "vtuMQehgczLNztw9PpqTYpmszHI=", false, function() {
+_s(UserSignup, "sMPrm2vWEF9iRu2frEQF009dhOQ=", false, function() {
     return [
-        (0, _globalVariablesJs.useVerify)
+        (0, _globalVariablesJs.useVerify),
+        (0, _globalVariablesJs.useUserData)
     ];
 });
 _c = UserSignup;

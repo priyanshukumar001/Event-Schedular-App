@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useVerify } from '../../config/globalVariables.js';
 import { user } from '../constants.js';
+import { useUserData } from '../../config/globalVariables.js';
 
 
 const UserSignup = () => {
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
-
+    const [userData, setUserData] = useUserData();
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
 
@@ -30,14 +31,14 @@ const UserSignup = () => {
                     if (response.ok) {
                         error.innerText = '';
                         if (result.status === "SUCCESS") {
-                            setPaasWord('');
-                            setUserName('');
-                            setPasswordCheck('');
                             success.innerText = 'Successfully Created New User!';
+                            setUserData(result?.data)
                             setIsVerified(true);
                             setIsAdmin(false);
+                            setUserName('');
+                            setEmail('');
                         } else {
-                            console.log(result);
+                            console.log(result.message);
                             error.innerText = result.message;
                         }
 
@@ -46,7 +47,8 @@ const UserSignup = () => {
                         error.innerText = response.status;
                     }
                 } catch (e) {
-                    error.innerText = "Check your connection!";
+                    // error.innerText = "Check your connection!";
+                    error.innerText = e;
                 }
             } else {
                 error.innerHTML = 'Enter Email';
