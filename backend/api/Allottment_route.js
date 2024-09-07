@@ -3,6 +3,7 @@ import User from "../models/User.js";
 
 const AllotmentRoute = express.Router();
 
+//it allots new Scheduled Slots against the provided available slot by the user 
 AllotmentRoute.post('/sessions/newAllotment', async (req, res) => {
     let { user, scheduledSlots } = req.body;
 
@@ -56,6 +57,8 @@ AllotmentRoute.post('/sessions/newAllotment', async (req, res) => {
 
 });
 
+
+//handles deletion of a particular Scheduled slot, of which the id is send by client
 AllotmentRoute.post('/sessions/deleteAllotment', async (req, res) => {
     let { ScheduledSlotId } = req.body;
 

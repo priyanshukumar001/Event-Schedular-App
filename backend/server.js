@@ -7,10 +7,10 @@ import cors from 'cors';
 import AvailableRoute from './api/Available_route.js';
 import AllotmentRoute from './api/Allottment_route.js';
 
-
+// using express
 const app = express();
 connectDB();
-const port = 3000;
+const port = 3000; //default port
 
 // Use CORS middleware
 app.use(cors({
@@ -26,6 +26,8 @@ app.use('/user', AvailableRoute);
 app.use('/admin', AdminRouter);
 app.use('/admin', AllotmentRoute);
 
+
+// listening to client requests
 app.listen(port, () => {
     console.log(`Sever running on port ${port}`);
 })

@@ -1,99 +1,12 @@
 import { useUserData } from "../../../config/globalVariables";
 import { user } from "../../constants";
 
-// const AvailableSlots = () => {
-//     const [userData, setUserData] = useUserData();
-
-//     const handleDelete = (index) => {
-//         const updatedSlots = userData.availableSlots.filter((_, i) => i !== index);
-//         setUserData({ ...userData, availableSlots: updatedSlots });
-//     };
-
-//     // Group slots by date
-//     const groupedSlots = userData?.availableSlots?.reduce((acc, slot) => {
-//         const date = new Date(slot.start).toLocaleDateString();
-//         if (!acc[date]) {
-//             acc[date] = [];
-//         }
-//         acc[date].push(slot);
-//         return acc;
-//     }, {});
-
-//     // Sort dates
-//     const sortedDates = Object.keys(groupedSlots).sort((a, b) => new Date(a) - new Date(b));
-
-//     return (
-//         <div className="availableSlots">
-//             {sortedDates.map((date) => (
-//                 <div key={date}>
-//                     <h3>{date}</h3>
-//                     {groupedSlots[date].map((slot, index) => {
-//                         const startDate = new Date(slot.start);
-//                         const endDate = new Date(slot.end);
-//                         return (
-//                             <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-//                                 <span>{startDate.toLocaleTimeString()}</span>
-//                                 <span style={{ marginLeft: '10px' }}>{endDate.toLocaleTimeString()}</span>
-//                                 <button style={{ marginLeft: '10px' }} onClick={() => handleDelete(index)}>Delete</button>
-//                             </div>
-//                         );
-//                     })}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
-
-
-// const AvailableSlots = () => {
-//     const [userData, setUserData] = useUserData();
-
-//     const handleDelete = async (index) => {
-//         const updatedSlots = userData.availableSlots.filter((_, i) => i !== index);
-//         // console.log("before\n", userData);
-//         setUserData({ ...userData, availableSlots: updatedSlots });
-//         console.log(userData);
-//         // console.log("after\n", userData);
-//     };
-
-//     // Group slots by date
-//     const groupedSlots = (userData?.availableSlots || []).reduce((acc, slot) => {
-//         const date = new Date(slot.start).toLocaleDateString();
-//         if (!acc[date]) {
-//             acc[date] = [];
-//         }
-//         acc[date].push(slot);
-//         return acc;
-//     }, {});
-
-//     // Sort dates
-//     const sortedDates = Object.keys(groupedSlots).sort((a, b) => new Date(a) - new Date(b));
-
-//     return (
-//         <div className="availableSlots">
-//             {sortedDates.map((date) => (
-//                 <div key={date}>
-//                     <h3>{date}</h3>
-//                     {groupedSlots[date].map((slot, index) => {
-//                         const startDate = new Date(slot.start);
-//                         const endDate = new Date(slot.end);
-//                         return (
-//                             <div key={`${date}-${index}`} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-//                                 <span>{startDate.toLocaleTimeString()}</span>
-//                                 <span style={{ marginLeft: '10px' }}>{endDate.toLocaleTimeString()}</span>
-//                                 <button style={{ marginLeft: '10px' }} onClick={() => handleDelete(index)}>Delete</button>
-//                             </div>
-//                         );
-//                     })}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
+//this component renders and manage the available slots of the user
 
 const AvailableSlots = () => {
     const [userData, setUserData] = useUserData();
 
+    // function to delete and manage available slots by user
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`${user}/sessions/delete`, {

@@ -8,6 +8,7 @@ const TimeScheduler = ({ date }) => {
     const [startTime, setStartTime] = useState('00:00');
     const [userData, setUserData] = useUserData();
 
+    //checks for any change in duration
     const handleDurationChange = (e) => {
         const value = e.target.value;
         if (value === 'custom') {
@@ -17,11 +18,13 @@ const TimeScheduler = ({ date }) => {
         }
     };
 
+    //handles custom duration entered by user
     const handleCustomDurationChange = (e) => {
         const { name, value } = e.target;
         setCustomDuration((prev) => ({ ...prev, [name]: parseInt(value) }));
     };
 
+    //this function calculate the end time form provide duration and start time
     const calculateEndTime = () => {
         const [startHours, startMinutes] = startTime.split(':').map(Number);
         let totalMinutes = startHours * 60 + startMinutes + (duration === 'custom' ? customDuration.hours * 60 + customDuration.minutes : duration);
@@ -30,6 +33,7 @@ const TimeScheduler = ({ date }) => {
         return `${String(endHours).padStart(2, '0')}:${String(endMinutes).padStart(2, '0')}`;
     };
 
+    //this handles addition of new slots
     const handleAdd = async () => {
         const endTime = calculateEndTime();
         const startDate = new Date(date);
@@ -71,7 +75,7 @@ const TimeScheduler = ({ date }) => {
         }
 
     };
-
+    //rendering component for selecting user duration and time slots
     return (
         <div className="timeSchedular">
             <h2>Select Duration:</h2>

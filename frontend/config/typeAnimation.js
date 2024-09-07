@@ -1,4 +1,4 @@
-//type animation
+//typing animation
 const typeAnimation = (str, time, element) => {
     // const element = document.getElementById(`${id}`);
     let i = 0;

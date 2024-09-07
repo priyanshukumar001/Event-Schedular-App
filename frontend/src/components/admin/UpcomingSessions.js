@@ -2,10 +2,11 @@ import React from 'react';
 import { useUserData } from '../../../config/globalVariables';
 import { admin } from '../../constants';
 
-
+// for rendering upcoming sessions on admin dashboard 
 const UpcomingSessions = () => {
     const [userData, setUserData] = useUserData();
 
+    //handles deletion of any predefined schedules also from database using specific id of that slot
     const handleDelete = async (slotId) => {
         try {
             const response = await fetch(`${admin}/sessions/deleteAllotment`, {

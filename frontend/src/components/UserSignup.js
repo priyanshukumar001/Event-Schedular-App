@@ -59,6 +59,7 @@ const UserSignup = () => {
 
 
     }
+    //if user already verified navigate to the user dashboard
     return ((isVerified) ? <Navigate to='/user' /> :
         (<>
             <div className="container">

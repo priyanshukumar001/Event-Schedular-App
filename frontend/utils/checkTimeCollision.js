@@ -1,4 +1,4 @@
-
+// function to check collision of schedules
 const checkTimeCollision = (startDateTime, endDateTime, users) => {
     for (const user of users) {
         for (const slot of user.scheduledSlots) {
@@ -20,4 +20,3 @@ const checkTimeCollision = (startDateTime, endDateTime, users) => {
 
 export default checkTimeCollision;
 
-//   console.log(checkDateTimeCollision(startDateTime, endDateTime, users)); 

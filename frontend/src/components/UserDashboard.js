@@ -7,7 +7,7 @@ import ScheduledSlots from "./user/ScheduledSlots.js";
 import TimeScheduler from "./user/TimeScheduler.js";
 import Calendar from "./user/Calendar.js";
 
-
+//this is main User Dashboard component rendering all necessary informations
 const UserDashboard = () => {
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
     const [selDate, setSelDate] = useSelectedDate();

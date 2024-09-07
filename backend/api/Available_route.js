@@ -3,6 +3,7 @@ import User from "../models/User.js";
 
 const AvailableRoute = express.Router();
 
+//for updating new slots of availability as provided by user
 AvailableRoute.post('/sessions/new', async (req, res) => {
     let { user, newSlots } = req.body;
 
@@ -55,9 +56,11 @@ AvailableRoute.post('/sessions/new', async (req, res) => {
 
 });
 
+//for handling deleted availble slots by the user, 
+// using the specific id of that slot to identify the user and deleting that slot
+
 AvailableRoute.post('/sessions/delete', async (req, res) => {
     let { user, slotId } = req.body;
-
     user = user.trim();
 
     if (user === "") {

@@ -1,5 +1,6 @@
 import { useUserData } from "../../../config/globalVariables";
 
+//for rendering user name and related informations as required
 const UserProfile = () => {
     const [userData, setUserData] = useUserData();
 

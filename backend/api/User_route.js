@@ -1,10 +1,9 @@
 import express from 'express';
 import User from '../models/User.js'; //mongodb user model
-// import argon2 from 'argon2';
 
 const UserRouter = express.Router();
 
-//signup
+//user signup
 UserRouter.post('/signup', async (req, res) => {
     let { name, user } = req.body;
     name = name.trim(); //this is the name variable that we have already declared with previous object
@@ -41,6 +40,7 @@ UserRouter.post('/signup', async (req, res) => {
                 //password handling
                 try {
                     // const hash = await argon2.hash(email);
+
                     //try creating a new user
                     try {
                         const newUser = new User({
@@ -83,7 +83,7 @@ UserRouter.post('/signup', async (req, res) => {
     }
 });
 
-//login
+//user login
 UserRouter.post('/login', async (req, res) => {
     // console.log(req.body);
     let { user } = req.body;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import UserDetail from './UserDetail';
 import { useUserData } from '../../../config/globalVariables';
 
+
+//this contains all users list that are registered 
 const UserList = () => {
     const [userData, setUserData] = useUserData();
     const [selectedUser, setSelectedUser] = useState(null);
@@ -10,6 +12,7 @@ const UserList = () => {
         setSelectedUser(user);
     };
 
+    //rendering users name which on click displays there available time slots where new slots can be assigned
     return (
         <div className='userList'>
             {selectedUser ? (

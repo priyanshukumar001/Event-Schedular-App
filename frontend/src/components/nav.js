@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import Profile from './profile';
 import { useVerify } from '../../config/globalVariables.js';
 
-
+//Nav bar for profile photo and login/logout features
 const Nav = () => {
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
-
-
 
     return (
 

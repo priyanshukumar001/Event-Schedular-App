@@ -3,6 +3,7 @@ import checkTimeCollision from '../../../utils/checkTimeCollision';
 import { useUserData } from '../../../config/globalVariables';
 import { admin } from '../../constants'
 
+//this component act as an pop-up to allot a schedule for the particular user
 const UserDetail = ({ selectedUser, onClose, users }) => {
     const [userData, setUserData] = useUserData();
     const [attendeeName, setAttendeeName] = useState('');
@@ -11,6 +12,7 @@ const UserDetail = ({ selectedUser, onClose, users }) => {
     const [endDateTime, setEndDateTime] = useState('');
     const [error, setError] = useState('');
 
+    //this function checks for any collision in time schedule and inform before adding
     const handleSubmit = async () => {
         const start = new Date(startDateTime);
         const end = new Date(endDateTime);
@@ -20,12 +22,14 @@ const UserDetail = ({ selectedUser, onClose, users }) => {
             return;
         }
 
+        //creating defined structure of new slot being assigned to user
         const newSlot = {
             start: start.toISOString(),
             end: end.toISOString(),
             attendees: [{ name: attendeeName, email: attendeeEmail }]
         };
 
+        //sending newSlot to server to save on database
         try {
             const response = await fetch(`${admin}/sessions/newAllotment`, {
                 method: 'POST',
@@ -52,7 +56,7 @@ const UserDetail = ({ selectedUser, onClose, users }) => {
         }
 
         // Send newSlot to the server
-        console.log('New Slot:', newSlot);
+        // console.log('New Slot:', newSlot);
         setError('');
     };
 

@@ -1,5 +1,6 @@
 import { useAdminData } from "../../../config/globalVariables";
 
+//for rendering admin related information
 const AdminProfile = () => {
     const [adminData, setAdminData] = useAdminData();
 

@@ -1,6 +1,7 @@
-export const admin = "http://localhost:3000/admin";
-export const user = "http://localhost:3000/user";
+export const admin = "http://localhost:3000/admin"; //for admin's route to backend
+export const user = "http://localhost:3000/user"; // for user's route to backend
 
+//sample data
 export const sampleData = {
 
     user: "user_A@gmail.com",

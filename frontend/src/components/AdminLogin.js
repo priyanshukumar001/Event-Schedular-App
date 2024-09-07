@@ -11,6 +11,7 @@ const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [passWord, setPassWord] = useState('');
 
+    // function to handle login informations of admin
     const handleSubmit = async (e) => {
         e.preventDefault();
         const error = document.getElementById('login_error')
@@ -26,7 +27,7 @@ const AdminLogin = () => {
                         body: JSON.stringify({ email: email, password: passWord })
                     })
 
-                    console.log(response);
+                    // console.log(response);
                     const result = await response.json();
                     //removing error message if any
 
@@ -38,10 +39,10 @@ const AdminLogin = () => {
                         setPassWord('');
                         if (result.status === "SUCCESS") {
                             setEmail('');
-                            setIsVerified(true);
-                            setUserData(result?.userData);
-                            setAdminData(result?.adminData);
-                            setIsAdmin(true);
+                            setIsVerified(true); //ensuring the user is verified now unless reloads the page
+                            setUserData(result?.userData); // udpating list of users informations
+                            setAdminData(result?.adminData); //updating admin informations
+                            setIsAdmin(true); //checking if loggined by user
                         }
                         else { error.innerText = result.message }
                         // console.log('response recieved', response.status, result);
@@ -64,12 +65,12 @@ const AdminLogin = () => {
 
     }
 
+    //ensuring that if user is verified navigate to the admin dashboard
     return ((isVerified) ? <Navigate to='/admin' /> :
         (<>
             <div className="container">
                 <h2>Login</h2>
                 <form >
-
                     <input type="email" placeholder="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <input type="password" placeholder="Password" name="password" value={passWord} onChange={(e) => setPassWord(e.target.value)} required />
                     <input type="submit" value="Login" onClick={handleSubmit} />

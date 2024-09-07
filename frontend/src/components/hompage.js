@@ -5,9 +5,10 @@ import { typeAnimation } from "../../config/typeAnimation";
 
 
 const Homepage = () => {
+    //for navigation
     const navigate = useNavigate();
 
-
+    //for rendering typing effect
     useEffect(() => {
         const heading = document.getElementById('welcome');
         const apiBox = document.getElementById('UserType');
@@ -37,7 +38,6 @@ const Homepage = () => {
             </div>
             <div className="animated2" ></div>
             <div className="animated2 " style={{ animationDuration: "20s", translate: "transformY(50%)" }}></div>
-            {/* </div> */}
         </>
     )
 }

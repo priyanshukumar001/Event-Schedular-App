@@ -13,10 +13,11 @@ import AdminDashboard from "./components/AdminDashboard.js";
 import UserDashboard from "./components/UserDashboard.js";
 
 
-
+// main page
 const Page = () => {
     return (
         <>
+            {/* for accessing global variables used react createContexts and useContext defined in globalVaribles.js */}
             <Authorization>
                 <SelectedDate>
                     <UserData>
@@ -34,6 +35,8 @@ const Page = () => {
     );
 }
 
+
+// used createBrowserRouter for routing to different components
 const appRouter = createBrowserRouter([
     {
         path: '/',
@@ -71,10 +74,7 @@ const appRouter = createBrowserRouter([
                     },
                 ]
             },
-            // {
-            //     path: '/dashboard',
-            //     element: <Dashboard />
-            // }
+
         ],
         errorElement: <Error />,
     }

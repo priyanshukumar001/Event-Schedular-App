@@ -4,7 +4,7 @@ import img2 from '../../public/static/img/2.jpg';
 import DropMenu from './dropmenu';
 
 
-
+//Profile page containing user photo and logout 
 const Profile = (props) => {
 
     const navigate = useNavigate();

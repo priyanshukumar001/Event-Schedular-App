@@ -2960,7 +2960,7 @@ var _app = require("../src/App");
 var _appDefault = parcelHelpers.interopDefault(_app);
 var _reactRouterDom = require("react-router-dom");
 const root = (0, _client.createRoot)(document.getElementById("root"));
-console.log("all set!");
+// console.log("all set!");
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.RouterProvider), {
     router: (0, _appDefault.default)
 }, void 0, false, {
@@ -27251,6 +27251,7 @@ var _adminDashboardJs = require("./components/AdminDashboard.js");
 var _adminDashboardJsDefault = parcelHelpers.interopDefault(_adminDashboardJs);
 var _userDashboardJs = require("./components/UserDashboard.js");
 var _userDashboardJsDefault = parcelHelpers.interopDefault(_userDashboardJs);
+// main page
 const Page = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _globalVariables.Authorization), {
@@ -27262,49 +27263,50 @@ const Page = ()=>{
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 25,
+                                    lineNumber: 26,
                                     columnNumber: 33
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 26,
+                                    lineNumber: 27,
                                     columnNumber: 33
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/App.js",
-                            lineNumber: 24,
+                            lineNumber: 25,
                             columnNumber: 29
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 23,
+                        lineNumber: 24,
                         columnNumber: 25
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 22,
+                    lineNumber: 23,
                     columnNumber: 21
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 21,
+                lineNumber: 22,
                 columnNumber: 17
             }, undefined)
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 20,
+            lineNumber: 21,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
 _c = Page;
+// used createBrowserRouter for routing to different components
 const appRouter = (0, _reactRouterDom.createBrowserRouter)([
     {
         path: "/",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Page, {}, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 40,
+            lineNumber: 43,
             columnNumber: 18
         }, undefined),
         children: [
@@ -27312,7 +27314,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _hompageDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 44,
+                    lineNumber: 47,
                     columnNumber: 26
                 }, undefined)
             },
@@ -27320,7 +27322,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "admin",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _adminDashboardJsDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 48,
+                    lineNumber: 51,
                     columnNumber: 26
                 }, undefined),
                 children: [
@@ -27328,7 +27330,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                         path: "login",
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _adminLoginJsDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 52,
+                            lineNumber: 55,
                             columnNumber: 34
                         }, undefined)
                     },
@@ -27336,7 +27338,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                         path: "signup",
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _adminSignupJsDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 56,
+                            lineNumber: 59,
                             columnNumber: 34
                         }, undefined)
                     }
@@ -27346,7 +27348,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "user",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDashboardJsDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 62,
+                    lineNumber: 65,
                     columnNumber: 26
                 }, undefined),
                 children: [
@@ -27354,7 +27356,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                         path: "login",
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userLoginJsDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 66,
+                            lineNumber: 69,
                             columnNumber: 34
                         }, undefined)
                     },
@@ -27362,7 +27364,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                         path: "signup",
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userSignupJsDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 70,
+                            lineNumber: 73,
                             columnNumber: 34
                         }, undefined)
                     }
@@ -34554,7 +34556,6 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-// import { isVerified } from '../../config/globalVariables';
 var _globalVariablesJs = require("../../config/globalVariables.js");
 var _constantsJs = require("../constants.js");
 var _s = $RefreshSig$();
@@ -34563,6 +34564,7 @@ const UserLogin = ()=>{
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
     const [email, setEmail] = (0, _react.useState)("");
     const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
+    //submit function for login authentication
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const error = document.getElementById("login_error");
@@ -34598,7 +34600,7 @@ const UserLogin = ()=>{
         to: "/dashboard"
     }, void 0, false, {
         fileName: "src/components/UserLogin.js",
-        lineNumber: 55,
+        lineNumber: 56,
         columnNumber: 28
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34608,7 +34610,7 @@ const UserLogin = ()=>{
                     children: "Login"
                 }, void 0, false, {
                     fileName: "src/components/UserLogin.js",
-                    lineNumber: 58,
+                    lineNumber: 59,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -34622,7 +34624,7 @@ const UserLogin = ()=>{
                             required: true
                         }, void 0, false, {
                             fileName: "src/components/UserLogin.js",
-                            lineNumber: 61,
+                            lineNumber: 62,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34631,13 +34633,13 @@ const UserLogin = ()=>{
                             onClick: handleSubmit
                         }, void 0, false, {
                             fileName: "src/components/UserLogin.js",
-                            lineNumber: 62,
+                            lineNumber: 63,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserLogin.js",
-                    lineNumber: 59,
+                    lineNumber: 60,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34646,14 +34648,14 @@ const UserLogin = ()=>{
                             id: "login_error"
                         }, void 0, false, {
                             fileName: "src/components/UserLogin.js",
-                            lineNumber: 65,
+                            lineNumber: 66,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Have you Sign-Up!"
                         }, void 0, false, {
                             fileName: "src/components/UserLogin.js",
-                            lineNumber: 66,
+                            lineNumber: 67,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -34661,19 +34663,19 @@ const UserLogin = ()=>{
                             children: "Signup"
                         }, void 0, false, {
                             fileName: "src/components/UserLogin.js",
-                            lineNumber: 67,
+                            lineNumber: 68,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserLogin.js",
-                    lineNumber: 64,
+                    lineNumber: 65,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/UserLogin.js",
-            lineNumber: 57,
+            lineNumber: 58,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
@@ -34968,8 +34970,8 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "admin", ()=>admin);
 parcelHelpers.export(exports, "user", ()=>user);
 parcelHelpers.export(exports, "sampleData", ()=>sampleData);
-const admin = "http://localhost:3000/admin";
-const user = "http://localhost:3000/user";
+const admin = "http://localhost:3000/admin"; //for admin's route to backend
+const user = "http://localhost:3000/user"; // for user's route to backend
 const sampleData = {
     user: "user_A@gmail.com",
     name: "user A",
@@ -35053,11 +35055,12 @@ const UserSignup = ()=>{
             else error.innerHTML = "Enter Email";
         } else error.innerText = "Enter Username!";
     };
+    //if user already verified navigate to the user dashboard
     return isVerified ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
         to: "/user"
     }, void 0, false, {
         fileName: "src/components/UserSignup.js",
-        lineNumber: 62,
+        lineNumber: 63,
         columnNumber: 28
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35067,7 +35070,7 @@ const UserSignup = ()=>{
                     children: "Sign Up"
                 }, void 0, false, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 65,
+                    lineNumber: 66,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -35081,7 +35084,7 @@ const UserSignup = ()=>{
                             onChange: (e)=>setUserName(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 67,
+                            lineNumber: 68,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35093,7 +35096,7 @@ const UserSignup = ()=>{
                             onChange: (e)=>setEmail(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 68,
+                            lineNumber: 69,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35102,13 +35105,13 @@ const UserSignup = ()=>{
                             onClick: handleSubmit
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 69,
+                            lineNumber: 70,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 66,
+                    lineNumber: 67,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35117,7 +35120,7 @@ const UserSignup = ()=>{
                             id: "sign_error"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 72,
+                            lineNumber: 73,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35127,14 +35130,14 @@ const UserSignup = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 73,
+                            lineNumber: 74,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Already a User !"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 74,
+                            lineNumber: 75,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35142,19 +35145,19 @@ const UserSignup = ()=>{
                             children: "Login"
                         }, void 0, false, {
                             fileName: "src/components/UserSignup.js",
-                            lineNumber: 75,
+                            lineNumber: 76,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserSignup.js",
-                    lineNumber: 71,
+                    lineNumber: 72,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/UserSignup.js",
-            lineNumber: 64,
+            lineNumber: 65,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
@@ -35197,6 +35200,7 @@ const AdminLogin = ()=>{
     const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
     const [email, setEmail] = (0, _react.useState)("");
     const [passWord, setPassWord] = (0, _react.useState)("");
+    // function to handle login informations of admin
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const error = document.getElementById("login_error");
@@ -35212,7 +35216,7 @@ const AdminLogin = ()=>{
                         password: passWord
                     })
                 });
-                console.log(response);
+                // console.log(response);
                 const result = await response.json();
                 //removing error message if any
                 error.innerText = "";
@@ -35221,10 +35225,10 @@ const AdminLogin = ()=>{
                     setPassWord("");
                     if (result.status === "SUCCESS") {
                         setEmail("");
-                        setIsVerified(true);
-                        setUserData(result?.userData);
-                        setAdminData(result?.adminData);
-                        setIsAdmin(true);
+                        setIsVerified(true); //ensuring the user is verified now unless reloads the page
+                        setUserData(result?.userData); // udpating list of users informations
+                        setAdminData(result?.adminData); //updating admin informations
+                        setIsAdmin(true); //checking if loggined by user
                     } else error.innerText = result.message;
                 // console.log('response recieved', response.status, result);
                 } else // console.log("Error: ", response.status);
@@ -35235,11 +35239,12 @@ const AdminLogin = ()=>{
             else error.innerText = "Enter password!";
         } else error.innerText = "Enter username!";
     };
+    //ensuring that if user is verified navigate to the admin dashboard
     return isVerified ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
         to: "/admin"
     }, void 0, false, {
         fileName: "src/components/AdminLogin.js",
-        lineNumber: 67,
+        lineNumber: 69,
         columnNumber: 28
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35249,7 +35254,7 @@ const AdminLogin = ()=>{
                     children: "Login"
                 }, void 0, false, {
                     fileName: "src/components/AdminLogin.js",
-                    lineNumber: 70,
+                    lineNumber: 72,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -35263,7 +35268,7 @@ const AdminLogin = ()=>{
                             required: true
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 73,
+                            lineNumber: 74,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35275,7 +35280,7 @@ const AdminLogin = ()=>{
                             required: true
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 74,
+                            lineNumber: 75,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35284,13 +35289,13 @@ const AdminLogin = ()=>{
                             onClick: handleSubmit
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 75,
+                            lineNumber: 76,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/AdminLogin.js",
-                    lineNumber: 71,
+                    lineNumber: 73,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35299,14 +35304,14 @@ const AdminLogin = ()=>{
                             id: "login_error"
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 78,
+                            lineNumber: 79,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Have you Sign-Up!"
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 79,
+                            lineNumber: 80,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35314,19 +35319,19 @@ const AdminLogin = ()=>{
                             children: "Signup"
                         }, void 0, false, {
                             fileName: "src/components/AdminLogin.js",
-                            lineNumber: 80,
+                            lineNumber: 81,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/AdminLogin.js",
-                    lineNumber: 77,
+                    lineNumber: 78,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/AdminLogin.js",
-            lineNumber: 69,
+            lineNumber: 71,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
@@ -35367,12 +35372,15 @@ var _s = $RefreshSig$();
 const AdminSignup = ()=>{
     _s();
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
+    //global context values for accessing user and admin informations
     const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
     const [adminData, setAdminData] = (0, _globalVariablesJs.useAdminData)();
+    //state variables for changing values
     const [userName, setUserName] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const [passWord, setPaasWord] = (0, _react.useState)("");
     const [passwordCheck, setPasswordCheck] = (0, _react.useState)("");
+    //function to handle signup informations
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const error = document.getElementById("sign_error");
@@ -35415,11 +35423,12 @@ const AdminSignup = ()=>{
             } else error.innerText = "Enter Password!";
         } else error.innerText = "Enter Username!";
     };
+    //if user is verified navigate to dashboard
     return isVerified ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
         to: "/admin"
     }, void 0, false, {
         fileName: "src/components/AdminSignup.js",
-        lineNumber: 74,
+        lineNumber: 78,
         columnNumber: 28
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35429,7 +35438,7 @@ const AdminSignup = ()=>{
                     children: "Sign Up"
                 }, void 0, false, {
                     fileName: "src/components/AdminSignup.js",
-                    lineNumber: 77,
+                    lineNumber: 81,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -35443,7 +35452,7 @@ const AdminSignup = ()=>{
                             onChange: (e)=>setUserName(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 79,
+                            lineNumber: 83,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35455,7 +35464,7 @@ const AdminSignup = ()=>{
                             onChange: (e)=>setEmail(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 80,
+                            lineNumber: 84,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35467,7 +35476,7 @@ const AdminSignup = ()=>{
                             onChange: (e)=>setPaasWord(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 82,
+                            lineNumber: 86,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35479,7 +35488,7 @@ const AdminSignup = ()=>{
                             onChange: (e)=>setPasswordCheck(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 83,
+                            lineNumber: 87,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -35488,13 +35497,13 @@ const AdminSignup = ()=>{
                             onClick: handleSubmit
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 84,
+                            lineNumber: 88,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/AdminSignup.js",
-                    lineNumber: 78,
+                    lineNumber: 82,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35503,7 +35512,7 @@ const AdminSignup = ()=>{
                             id: "sign_error"
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 87,
+                            lineNumber: 91,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35513,14 +35522,14 @@ const AdminSignup = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 88,
+                            lineNumber: 92,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Already a User !"
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 89,
+                            lineNumber: 93,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35528,19 +35537,19 @@ const AdminSignup = ()=>{
                             children: "Login"
                         }, void 0, false, {
                             fileName: "src/components/AdminSignup.js",
-                            lineNumber: 90,
+                            lineNumber: 94,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/AdminSignup.js",
-                    lineNumber: 86,
+                    lineNumber: 90,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/AdminSignup.js",
-            lineNumber: 76,
+            lineNumber: 80,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
@@ -35581,6 +35590,7 @@ var _profile = require("./profile");
 var _profileDefault = parcelHelpers.interopDefault(_profile);
 var _globalVariablesJs = require("../../config/globalVariables.js");
 var _s = $RefreshSig$();
+//Nav bar for profile photo and login/logout features
 const Nav = ()=>{
     _s();
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
@@ -35597,24 +35607,24 @@ const Nav = ()=>{
                             src: (0, _eventsPngDefault.default)
                         }, void 0, false, {
                             fileName: "src/components/nav.js",
-                            lineNumber: 17,
+                            lineNumber: 15,
                             columnNumber: 32
                         }, undefined),
                         "Events"
                     ]
                 }, void 0, true, {
                     fileName: "src/components/nav.js",
-                    lineNumber: 17,
+                    lineNumber: 15,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/nav.js",
-                lineNumber: 16,
+                lineNumber: 14,
                 columnNumber: 13
             }, undefined),
             isVerified ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileDefault.default), {}, void 0, false, {
                 fileName: "src/components/nav.js",
-                lineNumber: 19,
+                lineNumber: 17,
                 columnNumber: 30
             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "register",
@@ -35626,12 +35636,12 @@ const Nav = ()=>{
                             children: "User"
                         }, void 0, false, {
                             fileName: "src/components/nav.js",
-                            lineNumber: 21,
+                            lineNumber: 19,
                             columnNumber: 44
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/nav.js",
-                        lineNumber: 21,
+                        lineNumber: 19,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -35641,24 +35651,24 @@ const Nav = ()=>{
                             children: "Admin"
                         }, void 0, false, {
                             fileName: "src/components/nav.js",
-                            lineNumber: 22,
+                            lineNumber: 20,
                             columnNumber: 45
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/nav.js",
-                        lineNumber: 22,
+                        lineNumber: 20,
                         columnNumber: 21
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/nav.js",
-                lineNumber: 20,
+                lineNumber: 18,
                 columnNumber: 17
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/nav.js",
-        lineNumber: 15,
+        lineNumber: 13,
         columnNumber: 9
     }, undefined);
 };
@@ -35732,6 +35742,7 @@ var _2JpgDefault = parcelHelpers.interopDefault(_2Jpg);
 var _dropmenu = require("./dropmenu");
 var _dropmenuDefault = parcelHelpers.interopDefault(_dropmenu);
 var _s = $RefreshSig$();
+//Profile page containing user photo and logout 
 const Profile = (props)=>{
     _s();
     const navigate = (0, _reactRouterDom.useNavigate)();
@@ -35800,8 +35811,10 @@ var _s = $RefreshSig$();
 const DropMenu = ()=>{
     _s();
     const navigate = (0, _reactRouterDom.useNavigate)();
+    //accessing global values
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
     const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
+    //state variable to check for click event
     const [isClicked, setIsClicked] = (0, _react.useState)(false);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -35822,7 +35835,7 @@ const DropMenu = ()=>{
                 children: "\u2B9B"
             }, void 0, false, {
                 fileName: "src/components/dropmenu.js",
-                lineNumber: 16,
+                lineNumber: 18,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35836,7 +35849,7 @@ const DropMenu = ()=>{
                             children: "Dashboard"
                         }, void 0, false, {
                             fileName: "src/components/dropmenu.js",
-                            lineNumber: 37,
+                            lineNumber: 41,
                             columnNumber: 39
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             onClick: (e)=>navigate("/user"),
@@ -35844,7 +35857,7 @@ const DropMenu = ()=>{
                             children: "Dashboard"
                         }, void 0, false, {
                             fileName: "src/components/dropmenu.js",
-                            lineNumber: 37,
+                            lineNumber: 41,
                             columnNumber: 125
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35858,14 +35871,14 @@ const DropMenu = ()=>{
                             children: "Logout"
                         }, void 0, false, {
                             fileName: "src/components/dropmenu.js",
-                            lineNumber: 38,
+                            lineNumber: 42,
                             columnNumber: 25
                         }, undefined)
                     ]
                 }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false)
             }, void 0, false, {
                 fileName: "src/components/dropmenu.js",
-                lineNumber: 34,
+                lineNumber: 38,
                 columnNumber: 13
             }, undefined)
         ]
@@ -35952,7 +35965,9 @@ var _typeAnimation = require("../../config/typeAnimation");
 var _s = $RefreshSig$();
 const Homepage = ()=>{
     _s();
+    //for navigation
     const navigate = (0, _reactRouterDom.useNavigate)();
+    //for rendering typing effect
     (0, _react.useEffect)(()=>{
         const heading = document.getElementById("welcome");
         const apiBox = document.getElementById("UserType");
@@ -35966,7 +35981,7 @@ const Homepage = ()=>{
                 className: "main_heading"
             }, void 0, false, {
                 fileName: "src/components/hompage.js",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35981,7 +35996,7 @@ const Homepage = ()=>{
                         children: "Login as Admin"
                     }, void 0, false, {
                         fileName: "src/components/hompage.js",
-                        lineNumber: 26,
+                        lineNumber: 27,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -35992,20 +36007,20 @@ const Homepage = ()=>{
                         children: "Login as User"
                     }, void 0, false, {
                         fileName: "src/components/hompage.js",
-                        lineNumber: 32,
+                        lineNumber: 33,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/hompage.js",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "animated2"
             }, void 0, false, {
                 fileName: "src/components/hompage.js",
-                lineNumber: 38,
+                lineNumber: 39,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36016,7 +36031,7 @@ const Homepage = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/hompage.js",
-                lineNumber: 39,
+                lineNumber: 40,
                 columnNumber: 13
             }, undefined)
         ]
@@ -36038,7 +36053,7 @@ $RefreshReg$(_c, "Homepage");
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../config/typeAnimation":"7Y3fY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7Y3fY":[function(require,module,exports) {
-//type animation
+//typing animation
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "typeAnimation", ()=>typeAnimation);
@@ -36064,12 +36079,10 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _globalVariablesJs = require("../../config/globalVariables.js");
 var _s = $RefreshSig$();
-// import { Navigate } from "react-router-dom";
 const Dashboard = ()=>{
     _s();
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
     const [userData, setUserData] = (0, _globalVariablesJs.useUserData)();
-    // return (!isVerified) ? ((isAdmin) ? (<Navigate to="/admin/login" />) : (<Navigate to="/user/login" />)) :
     return !isVerified ? isAdmin ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
         className: "main_heading",
         children: [
@@ -36079,7 +36092,7 @@ const Dashboard = ()=>{
         ]
     }, void 0, true, {
         fileName: "src/components/dashboard.js",
-        lineNumber: 13,
+        lineNumber: 11,
         columnNumber: 13
     }, undefined);
 };
@@ -36131,7 +36144,7 @@ const AdminDashboard = ()=>{
     ]);
     return !isVerified ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {}, void 0, false, {
         fileName: "src/components/AdminDashboard.js",
-        lineNumber: 18,
+        lineNumber: 19,
         columnNumber: 29
     }, undefined) : !isAdmin ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "unauthorized",
@@ -36139,12 +36152,12 @@ const AdminDashboard = ()=>{
             children: "You are not Authorized to access this page."
         }, void 0, false, {
             fileName: "src/components/AdminDashboard.js",
-            lineNumber: 18,
+            lineNumber: 19,
             columnNumber: 87
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/AdminDashboard.js",
-        lineNumber: 18,
+        lineNumber: 19,
         columnNumber: 57
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "adminPanel",
@@ -36156,28 +36169,28 @@ const AdminDashboard = ()=>{
                 children: "Admin"
             }, void 0, false, {
                 fileName: "src/components/AdminDashboard.js",
-                lineNumber: 21,
+                lineNumber: 22,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _adminProfileJsDefault.default), {}, void 0, false, {
                 fileName: "src/components/AdminDashboard.js",
-                lineNumber: 22,
+                lineNumber: 23,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _upcomingSessionsJsDefault.default), {}, void 0, false, {
                 fileName: "src/components/AdminDashboard.js",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userListJsDefault.default), {}, void 0, false, {
                 fileName: "src/components/AdminDashboard.js",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/AdminDashboard.js",
-        lineNumber: 19,
+        lineNumber: 20,
         columnNumber: 10
     }, undefined);
 };
@@ -36209,6 +36222,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _globalVariables = require("../../../config/globalVariables");
 var _s = $RefreshSig$();
+//for rendering admin related information
 const AdminProfile = ()=>{
     _s();
     const [adminData, setAdminData] = (0, _globalVariables.useAdminData)();
@@ -36225,12 +36239,12 @@ const AdminProfile = ()=>{
             ]
         }, void 0, true, {
             fileName: "src/components/admin/AdminProfile.js",
-            lineNumber: 8,
+            lineNumber: 9,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/admin/AdminProfile.js",
-        lineNumber: 7,
+        lineNumber: 8,
         columnNumber: 9
     }, undefined);
 };
@@ -36265,6 +36279,7 @@ var _userDetail = require("./UserDetail");
 var _userDetailDefault = parcelHelpers.interopDefault(_userDetail);
 var _globalVariables = require("../../../config/globalVariables");
 var _s = $RefreshSig$();
+//this contains all users list that are registered 
 const UserList = ()=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
@@ -36272,6 +36287,7 @@ const UserList = ()=>{
     const handleUserClick = (user)=>{
         setSelectedUser(user);
     };
+    //rendering users name which on click displays there available time slots where new slots can be assigned
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "userList",
         children: selectedUser ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDetailDefault.default), {
@@ -36280,7 +36296,7 @@ const UserList = ()=>{
             users: userData
         }, void 0, false, {
             fileName: "src/components/admin/UserList.js",
-            lineNumber: 16,
+            lineNumber: 19,
             columnNumber: 17
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             children: [
@@ -36288,7 +36304,7 @@ const UserList = ()=>{
                     children: "User List"
                 }, void 0, false, {
                     fileName: "src/components/admin/UserList.js",
-                    lineNumber: 19,
+                    lineNumber: 22,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -36299,23 +36315,23 @@ const UserList = ()=>{
                             children: user.name
                         }, user._id, false, {
                             fileName: "src/components/admin/UserList.js",
-                            lineNumber: 22,
+                            lineNumber: 25,
                             columnNumber: 29
                         }, undefined))
                 }, void 0, false, {
                     fileName: "src/components/admin/UserList.js",
-                    lineNumber: 20,
+                    lineNumber: 23,
                     columnNumber: 21
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/admin/UserList.js",
-            lineNumber: 18,
+            lineNumber: 21,
             columnNumber: 17
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/admin/UserList.js",
-        lineNumber: 14,
+        lineNumber: 17,
         columnNumber: 9
     }, undefined);
 };
@@ -36351,6 +36367,7 @@ var _checkTimeCollisionDefault = parcelHelpers.interopDefault(_checkTimeCollisio
 var _globalVariables = require("../../../config/globalVariables");
 var _constants = require("../../constants");
 var _s = $RefreshSig$();
+//this component act as an pop-up to allot a schedule for the particular user
 const UserDetail = ({ selectedUser, onClose, users })=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
@@ -36359,6 +36376,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
     const [startDateTime, setStartDateTime] = (0, _react.useState)("");
     const [endDateTime, setEndDateTime] = (0, _react.useState)("");
     const [error, setError] = (0, _react.useState)("");
+    //this function checks for any collision in time schedule and inform before adding
     const handleSubmit = async ()=>{
         const start = new Date(startDateTime);
         const end = new Date(endDateTime);
@@ -36366,6 +36384,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
             setError("The selected time slot collides with an existing slot.");
             return;
         }
+        //creating defined structure of new slot being assigned to user
         const newSlot = {
             start: start.toISOString(),
             end: end.toISOString(),
@@ -36376,6 +36395,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                 }
             ]
         };
+        //sending newSlot to server to save on database
         try {
             const response = await fetch(`${(0, _constants.admin)}/sessions/newAllotment`, {
                 method: "POST",
@@ -36402,7 +36422,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
             window.alert(err);
         }
         // Send newSlot to the server
-        console.log("New Slot:", newSlot);
+        // console.log('New Slot:', newSlot);
         setError("");
     };
     // Group slots by date
@@ -36430,21 +36450,21 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                 children: "Close"
             }, void 0, false, {
                 fileName: "src/components/admin/UserDetail.js",
-                lineNumber: 74,
+                lineNumber: 78,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: selectedUser.name
             }, void 0, false, {
                 fileName: "src/components/admin/UserDetail.js",
-                lineNumber: 75,
+                lineNumber: 79,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                 children: "Available Slots"
             }, void 0, false, {
                 fileName: "src/components/admin/UserDetail.js",
-                lineNumber: 76,
+                lineNumber: 80,
                 columnNumber: 13
             }, undefined),
             sortedDates.map((date)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36453,7 +36473,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                             children: date
                         }, void 0, false, {
                             fileName: "src/components/admin/UserDetail.js",
-                            lineNumber: 79,
+                            lineNumber: 83,
                             columnNumber: 21
                         }, undefined),
                         groupedSlots[date].map((slot)=>{
@@ -36471,7 +36491,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                                         children: startDate.toLocaleTimeString()
                                     }, void 0, false, {
                                         fileName: "src/components/admin/UserDetail.js",
-                                        lineNumber: 85,
+                                        lineNumber: 89,
                                         columnNumber: 33
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -36481,27 +36501,27 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                                         children: endDate.toLocaleTimeString()
                                     }, void 0, false, {
                                         fileName: "src/components/admin/UserDetail.js",
-                                        lineNumber: 86,
+                                        lineNumber: 90,
                                         columnNumber: 33
                                     }, undefined)
                                 ]
                             }, slot._id, true, {
                                 fileName: "src/components/admin/UserDetail.js",
-                                lineNumber: 84,
+                                lineNumber: 88,
                                 columnNumber: 29
                             }, undefined);
                         })
                     ]
                 }, date, true, {
                     fileName: "src/components/admin/UserDetail.js",
-                    lineNumber: 78,
+                    lineNumber: 82,
                     columnNumber: 17
                 }, undefined)),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                 children: "Add New Slot"
             }, void 0, false, {
                 fileName: "src/components/admin/UserDetail.js",
-                lineNumber: 94,
+                lineNumber: 98,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36513,7 +36533,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         onChange: (e)=>setAttendeeName(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 96,
+                        lineNumber: 100,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36523,7 +36543,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         onChange: (e)=>setAttendeeEmail(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 102,
+                        lineNumber: 106,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36533,7 +36553,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         onChange: (e)=>setStartDateTime(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 108,
+                        lineNumber: 112,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36543,7 +36563,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         onChange: (e)=>setEndDateTime(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 114,
+                        lineNumber: 118,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -36555,7 +36575,7 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 120,
+                        lineNumber: 124,
                         columnNumber: 17
                     }, undefined),
                     error && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -36565,19 +36585,19 @@ const UserDetail = ({ selectedUser, onClose, users })=>{
                         children: error
                     }, void 0, false, {
                         fileName: "src/components/admin/UserDetail.js",
-                        lineNumber: 121,
+                        lineNumber: 125,
                         columnNumber: 27
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/admin/UserDetail.js",
-                lineNumber: 95,
+                lineNumber: 99,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/admin/UserDetail.js",
-        lineNumber: 73,
+        lineNumber: 77,
         columnNumber: 9
     }, undefined);
 };
@@ -36597,6 +36617,7 @@ $RefreshReg$(_c, "UserDetail");
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../utils/checkTimeCollision":"lAJW6","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../constants":"3huJa"}],"lAJW6":[function(require,module,exports) {
+// function to check collision of schedules
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const checkTimeCollision = (startDateTime, endDateTime, users)=>{
@@ -36611,7 +36632,7 @@ const checkTimeCollision = (startDateTime, endDateTime, users)=>{
     }
     return false;
 };
-exports.default = checkTimeCollision; //   console.log(checkDateTimeCollision(startDateTime, endDateTime, users)); 
+exports.default = checkTimeCollision;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lEblu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$325d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -36628,9 +36649,11 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _globalVariables = require("../../../config/globalVariables");
 var _constants = require("../../constants");
 var _s = $RefreshSig$();
+// for rendering upcoming sessions on admin dashboard 
 const UpcomingSessions = ()=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
+    //handles deletion of any predefined schedules also from database using specific id of that slot
     const handleDelete = async (slotId)=>{
         try {
             const response = await fetch(`${(0, _constants.admin)}/sessions/deleteAllotment`, {
@@ -36678,7 +36701,7 @@ const UpcomingSessions = ()=>{
                 children: "Upcoming Sessions:"
             }, void 0, false, {
                 fileName: "src/components/admin/UpcomingSessions.js",
-                lineNumber: 58,
+                lineNumber: 59,
                 columnNumber: 13
             }, undefined),
             sortedDates.map((date)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36688,7 +36711,7 @@ const UpcomingSessions = ()=>{
                             children: date
                         }, void 0, false, {
                             fileName: "src/components/admin/UpcomingSessions.js",
-                            lineNumber: 61,
+                            lineNumber: 62,
                             columnNumber: 21
                         }, undefined),
                         groupedSlots[date].map((slot)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36706,7 +36729,7 @@ const UpcomingSessions = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 64,
+                                        lineNumber: 65,
                                         columnNumber: 29
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36719,7 +36742,7 @@ const UpcomingSessions = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 67,
+                                        lineNumber: 68,
                                         columnNumber: 29
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36732,7 +36755,7 @@ const UpcomingSessions = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 70,
+                                        lineNumber: 71,
                                         columnNumber: 29
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -36741,25 +36764,25 @@ const UpcomingSessions = ()=>{
                                         children: "Delete"
                                     }, void 0, false, {
                                         fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 73,
+                                        lineNumber: 74,
                                         columnNumber: 29
                                     }, undefined)
                                 ]
                             }, slot._id, true, {
                                 fileName: "src/components/admin/UpcomingSessions.js",
-                                lineNumber: 63,
+                                lineNumber: 64,
                                 columnNumber: 25
                             }, undefined))
                     ]
                 }, date, true, {
                     fileName: "src/components/admin/UpcomingSessions.js",
-                    lineNumber: 60,
+                    lineNumber: 61,
                     columnNumber: 17
                 }, undefined))
         ]
     }, void 0, true, {
         fileName: "src/components/admin/UpcomingSessions.js",
-        lineNumber: 57,
+        lineNumber: 58,
         columnNumber: 9
     }, undefined);
 };
@@ -36802,6 +36825,7 @@ var _timeSchedulerJsDefault = parcelHelpers.interopDefault(_timeSchedulerJs);
 var _calendarJs = require("./user/Calendar.js");
 var _calendarJsDefault = parcelHelpers.interopDefault(_calendarJs);
 var _s = $RefreshSig$();
+//this is main User Dashboard component rendering all necessary informations
 const UserDashboard = ()=>{
     _s();
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = (0, _globalVariablesJs.useVerify)();
@@ -36900,6 +36924,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _globalVariables = require("../../../config/globalVariables");
 var _s = $RefreshSig$();
+//for rendering user name and related informations as required
 const UserProfile = ()=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
@@ -36913,7 +36938,7 @@ const UserProfile = ()=>{
                 children: "User"
             }, void 0, false, {
                 fileName: "src/components/user/UserProfile.js",
-                lineNumber: 8,
+                lineNumber: 9,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
@@ -36923,13 +36948,13 @@ const UserProfile = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/user/UserProfile.js",
-                lineNumber: 10,
+                lineNumber: 11,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/user/UserProfile.js",
-        lineNumber: 7,
+        lineNumber: 8,
         columnNumber: 9
     }, undefined);
 };
@@ -36961,88 +36986,11 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _globalVariables = require("../../../config/globalVariables");
 var _constants = require("../../constants");
 var _s = $RefreshSig$();
-// const AvailableSlots = () => {
-//     const [userData, setUserData] = useUserData();
-//     const handleDelete = (index) => {
-//         const updatedSlots = userData.availableSlots.filter((_, i) => i !== index);
-//         setUserData({ ...userData, availableSlots: updatedSlots });
-//     };
-//     // Group slots by date
-//     const groupedSlots = userData?.availableSlots?.reduce((acc, slot) => {
-//         const date = new Date(slot.start).toLocaleDateString();
-//         if (!acc[date]) {
-//             acc[date] = [];
-//         }
-//         acc[date].push(slot);
-//         return acc;
-//     }, {});
-//     // Sort dates
-//     const sortedDates = Object.keys(groupedSlots).sort((a, b) => new Date(a) - new Date(b));
-//     return (
-//         <div className="availableSlots">
-//             {sortedDates.map((date) => (
-//                 <div key={date}>
-//                     <h3>{date}</h3>
-//                     {groupedSlots[date].map((slot, index) => {
-//                         const startDate = new Date(slot.start);
-//                         const endDate = new Date(slot.end);
-//                         return (
-//                             <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-//                                 <span>{startDate.toLocaleTimeString()}</span>
-//                                 <span style={{ marginLeft: '10px' }}>{endDate.toLocaleTimeString()}</span>
-//                                 <button style={{ marginLeft: '10px' }} onClick={() => handleDelete(index)}>Delete</button>
-//                             </div>
-//                         );
-//                     })}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
-// const AvailableSlots = () => {
-//     const [userData, setUserData] = useUserData();
-//     const handleDelete = async (index) => {
-//         const updatedSlots = userData.availableSlots.filter((_, i) => i !== index);
-//         // console.log("before\n", userData);
-//         setUserData({ ...userData, availableSlots: updatedSlots });
-//         console.log(userData);
-//         // console.log("after\n", userData);
-//     };
-//     // Group slots by date
-//     const groupedSlots = (userData?.availableSlots || []).reduce((acc, slot) => {
-//         const date = new Date(slot.start).toLocaleDateString();
-//         if (!acc[date]) {
-//             acc[date] = [];
-//         }
-//         acc[date].push(slot);
-//         return acc;
-//     }, {});
-//     // Sort dates
-//     const sortedDates = Object.keys(groupedSlots).sort((a, b) => new Date(a) - new Date(b));
-//     return (
-//         <div className="availableSlots">
-//             {sortedDates.map((date) => (
-//                 <div key={date}>
-//                     <h3>{date}</h3>
-//                     {groupedSlots[date].map((slot, index) => {
-//                         const startDate = new Date(slot.start);
-//                         const endDate = new Date(slot.end);
-//                         return (
-//                             <div key={`${date}-${index}`} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-//                                 <span>{startDate.toLocaleTimeString()}</span>
-//                                 <span style={{ marginLeft: '10px' }}>{endDate.toLocaleTimeString()}</span>
-//                                 <button style={{ marginLeft: '10px' }} onClick={() => handleDelete(index)}>Delete</button>
-//                             </div>
-//                         );
-//                     })}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
+//this component renders and manage the available slots of the user
 const AvailableSlots = ()=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
+    // function to delete and manage available slots by user
     const handleDelete = async (id)=>{
         try {
             const response = await fetch(`${(0, _constants.user)}/sessions/delete`, {
@@ -37093,7 +37041,7 @@ const AvailableSlots = ()=>{
                 children: "Available Slots:"
             }, void 0, false, {
                 fileName: "src/components/user/AvailableSlots.js",
-                lineNumber: 142,
+                lineNumber: 55,
                 columnNumber: 13
             }, undefined),
             sortedDates.map((date)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37102,7 +37050,7 @@ const AvailableSlots = ()=>{
                             children: date
                         }, void 0, false, {
                             fileName: "src/components/user/AvailableSlots.js",
-                            lineNumber: 145,
+                            lineNumber: 58,
                             columnNumber: 21
                         }, undefined),
                         groupedSlots[date].map((slot)=>{
@@ -37121,7 +37069,7 @@ const AvailableSlots = ()=>{
                                         children: startDate.toLocaleTimeString()
                                     }, void 0, false, {
                                         fileName: "src/components/user/AvailableSlots.js",
-                                        lineNumber: 151,
+                                        lineNumber: 64,
                                         columnNumber: 33
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -37131,7 +37079,7 @@ const AvailableSlots = ()=>{
                                         children: endDate.toLocaleTimeString()
                                     }, void 0, false, {
                                         fileName: "src/components/user/AvailableSlots.js",
-                                        lineNumber: 152,
+                                        lineNumber: 65,
                                         columnNumber: 33
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -37143,26 +37091,26 @@ const AvailableSlots = ()=>{
                                         children: "Delete"
                                     }, void 0, false, {
                                         fileName: "src/components/user/AvailableSlots.js",
-                                        lineNumber: 153,
+                                        lineNumber: 66,
                                         columnNumber: 33
                                     }, undefined)
                                 ]
                             }, slot._id, true, {
                                 fileName: "src/components/user/AvailableSlots.js",
-                                lineNumber: 150,
+                                lineNumber: 63,
                                 columnNumber: 29
                             }, undefined);
                         })
                     ]
                 }, date, true, {
                     fileName: "src/components/user/AvailableSlots.js",
-                    lineNumber: 144,
+                    lineNumber: 57,
                     columnNumber: 17
                 }, undefined))
         ]
     }, void 0, true, {
         fileName: "src/components/user/AvailableSlots.js",
-        lineNumber: 141,
+        lineNumber: 54,
         columnNumber: 9
     }, undefined);
 };
@@ -37193,6 +37141,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _globalVariables = require("../../../config/globalVariables");
 var _s = $RefreshSig$();
+// this component displays user the Scheduled slots assigned by admint
 const ScheduledSlots = ()=>{
     _s();
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
@@ -37322,11 +37271,13 @@ const TimeScheduler = ({ date })=>{
     });
     const [startTime, setStartTime] = (0, _react.useState)("00:00");
     const [userData, setUserData] = (0, _globalVariables.useUserData)();
+    //checks for any change in duration
     const handleDurationChange = (e)=>{
         const value = e.target.value;
         if (value === "custom") setDuration("custom");
         else setDuration(parseInt(value));
     };
+    //handles custom duration entered by user
     const handleCustomDurationChange = (e)=>{
         const { name, value } = e.target;
         setCustomDuration((prev)=>({
@@ -37334,6 +37285,7 @@ const TimeScheduler = ({ date })=>{
                 [name]: parseInt(value)
             }));
     };
+    //this function calculate the end time form provide duration and start time
     const calculateEndTime = ()=>{
         const [startHours, startMinutes] = startTime.split(":").map(Number);
         let totalMinutes = startHours * 60 + startMinutes + (duration === "custom" ? customDuration.hours * 60 + customDuration.minutes : duration);
@@ -37341,6 +37293,7 @@ const TimeScheduler = ({ date })=>{
         const endMinutes = totalMinutes % 60;
         return `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
     };
+    //this handles addition of new slots
     const handleAdd = async ()=>{
         const endTime = calculateEndTime();
         const startDate = new Date(date);
@@ -37381,6 +37334,7 @@ const TimeScheduler = ({ date })=>{
             window.alert(err);
         }
     };
+    //rendering component for selecting user duration and time slots
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "timeSchedular",
         children: [
@@ -37388,7 +37342,7 @@ const TimeScheduler = ({ date })=>{
                 children: "Select Duration:"
             }, void 0, false, {
                 fileName: "src/components/user/TimeScheduler.js",
-                lineNumber: 77,
+                lineNumber: 81,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37398,7 +37352,7 @@ const TimeScheduler = ({ date })=>{
                         children: "Duration:"
                     }, void 0, false, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 79,
+                        lineNumber: 83,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("select", {
@@ -37411,7 +37365,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "30 min"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 81,
+                                lineNumber: 85,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37419,7 +37373,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "1 hour"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 82,
+                                lineNumber: 86,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37427,7 +37381,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "1 hour 30 min"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 83,
+                                lineNumber: 87,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37435,7 +37389,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "2 hours"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 84,
+                                lineNumber: 88,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37443,7 +37397,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "2 hours 30 min"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 85,
+                                lineNumber: 89,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37451,7 +37405,7 @@ const TimeScheduler = ({ date })=>{
                                 children: "3 hours"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 86,
+                                lineNumber: 90,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -37459,13 +37413,13 @@ const TimeScheduler = ({ date })=>{
                                 children: "Please specify"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 87,
+                                lineNumber: 91,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 80,
+                        lineNumber: 84,
                         columnNumber: 17
                     }, undefined),
                     duration === "custom" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37479,7 +37433,7 @@ const TimeScheduler = ({ date })=>{
                                 placeholder: "hours"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 91,
+                                lineNumber: 95,
                                 columnNumber: 25
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -37490,19 +37444,19 @@ const TimeScheduler = ({ date })=>{
                                 placeholder: "minutes"
                             }, void 0, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 98,
+                                lineNumber: 102,
                                 columnNumber: 25
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 90,
+                        lineNumber: 94,
                         columnNumber: 21
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user/TimeScheduler.js",
-                lineNumber: 78,
+                lineNumber: 82,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37512,7 +37466,7 @@ const TimeScheduler = ({ date })=>{
                         children: "Start time:"
                     }, void 0, false, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 109,
+                        lineNumber: 113,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("select", {
@@ -37526,18 +37480,18 @@ const TimeScheduler = ({ date })=>{
                                 children: `${i % 12 === 0 ? 12 : i % 12}${i < 12 ? "AM" : "PM"}`
                             }, i, false, {
                                 fileName: "src/components/user/TimeScheduler.js",
-                                lineNumber: 112,
+                                lineNumber: 116,
                                 columnNumber: 25
                             }, undefined))
                     }, void 0, false, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 110,
+                        lineNumber: 114,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user/TimeScheduler.js",
-                lineNumber: 108,
+                lineNumber: 112,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37547,7 +37501,7 @@ const TimeScheduler = ({ date })=>{
                         children: "End time:"
                     }, void 0, false, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 119,
+                        lineNumber: 123,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -37557,13 +37511,13 @@ const TimeScheduler = ({ date })=>{
                         readOnly: true
                     }, void 0, false, {
                         fileName: "src/components/user/TimeScheduler.js",
-                        lineNumber: 120,
+                        lineNumber: 124,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user/TimeScheduler.js",
-                lineNumber: 118,
+                lineNumber: 122,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -37572,13 +37526,13 @@ const TimeScheduler = ({ date })=>{
                 children: "Add"
             }, void 0, false, {
                 fileName: "src/components/user/TimeScheduler.js",
-                lineNumber: 122,
+                lineNumber: 126,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/user/TimeScheduler.js",
-        lineNumber: 76,
+        lineNumber: 80,
         columnNumber: 9
     }, undefined);
 };

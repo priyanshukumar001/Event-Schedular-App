@@ -5,6 +5,6 @@ import { RouterProvider } from 'react-router-dom';
 
 
 const root = createRoot(document.getElementById('root'));
-console.log("all set!");
+// console.log("all set!");
 
 root.render(<RouterProvider router={App} />);

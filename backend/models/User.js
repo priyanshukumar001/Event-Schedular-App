@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+//defining user's Schema for storing all required informations
 const SlotSchema = new Schema({
     start: { type: String },
     end: { type: String },

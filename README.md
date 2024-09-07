@@ -42,6 +42,8 @@ event-scheduling-app/ ├── backend/ │ ├── api/ │ ├── config
    npm start
    ```
 
+   **Note:** make sure to replace 'origin' under cors in server.js file with your 'localhost server' link.
+
 2. **Start the Frontend Development Server**:
    ```bash
    cd ../frontend
@@ -55,6 +57,7 @@ event-scheduling-app/ ├── backend/ │ ├── api/ │ ├── config
 - Select available dates and time slots from a calendar UI.
 - Select pre-specified duration or enter custom durations.
 - End time is automatically filled.
+- Datewise grouping of schedules.
 - Submit availability to the admin.
 - Shows upcoming schedules assigned by admin.
 - Can see and delete particular Availability.

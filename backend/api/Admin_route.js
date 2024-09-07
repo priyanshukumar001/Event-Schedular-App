@@ -5,7 +5,7 @@ import argon2 from 'argon2';
 
 const AdminRouter = express.Router();
 
-//signup
+//admin signup using name, email, and password by the admin
 AdminRouter.post('/signup', async (req, res) => {
     let { name, email, password } = req.body;
     name = name.trim(); //this is the name variable that we have already declared with previous object

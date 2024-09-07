@@ -7,14 +7,17 @@ import { admin } from '../constants.js';
 const AdminSignup = () => {
     const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
 
+    //global context values for accessing user and admin informations
     const [userData, setUserData] = useUserData();
     const [adminData, setAdminData] = useAdminData();
+
+    //state variables for changing values
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [passWord, setPaasWord] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
 
-
+    //function to handle signup informations
     const handleSubmit = async (e) => {
         e.preventDefault();
         const error = document.getElementById('sign_error');
@@ -71,6 +74,7 @@ const AdminSignup = () => {
 
 
     }
+    //if user is verified navigate to dashboard
     return ((isVerified) ? <Navigate to='/admin' /> :
         (<>
             <div className="container">

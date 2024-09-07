@@ -1,6 +1,6 @@
 import { useUserData } from "../../../config/globalVariables";
 
-
+// this component displays user the Scheduled slots assigned by admint
 const ScheduledSlots = () => {
     const [userData, setUserData] = useUserData();
 

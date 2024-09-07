@@ -5,10 +5,12 @@ import { useVerify, useUserData } from "../../config/globalVariables.js";
 
 const DropMenu = () => {
     const navigate = useNavigate();
-    const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
 
+    //accessing global values
+    const { isVerified, setIsVerified, isAdmin, setIsAdmin } = useVerify();
     const [userData, setUserData] = useUserData();
 
+    //state variable to check for click event
     const [isClicked, setIsClicked] = useState(false);
 
     return (
@@ -31,6 +33,8 @@ const DropMenu = () => {
                 }}
             >&#11163;
             </div>
+
+            {/* for logout feature */}
             <div className="dropBox" id="dropBox">
                 {(isClicked) ? (
                     <>
