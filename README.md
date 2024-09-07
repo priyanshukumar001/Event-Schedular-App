@@ -9,7 +9,31 @@ This is an event scheduling app built with React for the frontend, Node.js with 
 
 ## Directory Structure
 
-event-scheduling-app/ ├── backend/ │ ├── api/ │ ├── config/ │ ├── models/ │ ├── node_modules/ │ ├── .env │ ├── package-lock.json │ ├── package.json │ └── server.js ├── frontend/ │ ├── config/ │ ├── dist/ │ ├── node_modules/ │ ├── public/ │ │ ├── static/ │ │ ├── index.html │ ├── src/ │ │ ├── components/ │ │ ├── App.js │ │ ├── constants.js │ │ ├── utils/ │ ├── .env │ ├── .gitignore │ ├── package-lock.json │ └── package.json
+event-scheduling-app/
+├── backend/
+│ ├── api/
+│ ├── config/
+│ ├── models/
+│ ├── node_modules/
+│ ├── .env
+│ ├── package-lock.json
+│ ├── package.json
+│ └── server.js
+├── frontend/
+│ ├── config/
+│ ├── dist/
+│ ├── node_modules/
+│ ├── public/
+│ │ ├── static/
+│ │ ├── index.html
+│ ├── src/
+│ │ ├── components/
+│ │ ├── App.js
+│ │ ├── constants.js
+│ │ ├── utils/
+│ ├── .gitignore
+│ ├── package-lock.json
+│ └── package.json
 
 ## Installation
 
@@ -69,10 +93,21 @@ event-scheduling-app/ ├── backend/ │ ├── api/ │ ├── config
 - Manage user profiles, upcoming schedules, and user lists.
 - Add new schedules to users with background checks to avoid conflicts.
 
+## Design Choices
+
+- **UI Design**: Intuitive calendar UI, responsive design, user-friendly navigation, consistent design language.
+- **UX Design**: Ease of use, feedback mechanisms, accessibility.
+- **Backend Design**: RESTful APIs, data validation, scalability.
+- **Database Design**: Well-structured schema, indexing, data security.
+- **Authentication and Authorization**: Secure user authentication, role-based access control.
+- **Conflict Management**: Time slot collision detection, real-time updates.
+- **Admin Dashboard**: User management, analytics and reporting, notifications.
+- **Testing and Quality Assurance**: User testing.
+
 ## Technologies Used
 
-- **Frontend**: React, React Router, Axios
-- **Backend**: Node.js, Express
+- **Frontend**: React, React Router,
+- **Backend**: Node.js, Express, Argon2
 - **Database**: MongoDB, Mongoose
 
 ## Contributing
