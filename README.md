@@ -7,9 +7,6 @@ This is an event scheduling app built with React for the frontend, Node.js with 
 1. **User Interface**: Users can select their available dates and time slots from a calendar UI. This information is sent to the backend in a proper format.
 2. **Admin Interface**: Admins can access user data, assign fixed schedules, and manage user profiles, upcoming schedules, and user lists. The admin dashboard allows adding new schedules to users, with background checks to avoid time conflicts.
 
-## Directory Structure
-
-event-scheduling-app/ ├── backend/ │ ├── api/ │ ├── config/ │ ├── models/ │ ├── node_modules/ │ ├── .env │ ├── package-lock.json │ ├── package.json │ └── server.js ├── frontend/ │ ├── config/ │ ├── dist/ │ ├── node_modules/ │ ├── public/ │ │ ├── static/ │ │ ├── index.html │ ├── src/ │ │ ├── components/ │ │ ├── App.js │ │ ├── constants.js │ │ ├── utils/ │ ├── .env │ ├── .gitignore │ ├── package-lock.json │ └── package.json
 
 ## Installation
 
