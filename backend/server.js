@@ -6,6 +6,7 @@ import AdminRouter from './api/Admin_route.js';
 import cors from 'cors';
 import AvailableRoute from './api/Available_route.js';
 import AllotmentRoute from './api/Allottment_route.js';
+import { BASE_URL } from './config/constants.js'
 
 // using express
 const app = express();
@@ -14,7 +15,7 @@ const port = 3000; //default port
 
 // Use CORS middleware
 app.use(cors({
-    origin: 'http://localhost:1234', // Your frontend's origin //need to be updated
+    origin: BASE_URL, // Your frontend's origin //need to be updated
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
