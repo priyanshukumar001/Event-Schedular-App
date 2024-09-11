@@ -1,5 +1,5 @@
-export const admin = "https://event-schedular-app.vercel.app/api/admin"; //for admin's route to backend
-export const user = "https://event-schedular-app.vercel.app/api/user"; // for user's route to backend
+export const admin = "https://event-schedular-app-backend.vercel.app/admin"; //for admin's route to backend
+export const user = "https://event-schedular-app-backend.vercel.app/user"; // for user's route to backend
 
 //sample data
 export const sampleData = {
