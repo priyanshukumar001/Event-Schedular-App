@@ -34826,7 +34826,39 @@ $RefreshReg$(_c3, "SelectedDate");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../src/constants":"3huJa"}],"km3Ru":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../src/constants":"3huJa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3huJa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "admin", ()=>admin);
+parcelHelpers.export(exports, "user", ()=>user);
+parcelHelpers.export(exports, "sampleData", ()=>sampleData);
+const admin = "https://event-schedular-app.vercel.app/request/admin"; //for admin's route to backend
+const user = "https://event-schedular-app.vercel.app/request/user"; // for user's route to backend
+const sampleData = {
+    user: "user_A@gmail.com",
+    name: "user A",
+    availableSlots: [
+        {
+            start: "2024-08-30T03:30:00.000Z",
+            end: "2024-08-30T04:00:00.000Z",
+            duration: 30
+        }
+    ],
+    scheduledSlots: [
+        {
+            "start": "2024-08-30T03:30:00.000Z",
+            "end": "2024-08-30T04:00:00.000Z",
+            "attendees": [
+                {
+                    "name": "siri",
+                    "email": "siri@myparticipants.com"
+                }
+            ]
+        }
+    ]
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("7422ead32dcc1e6b");
 function debounce(func, delay) {
@@ -34964,39 +34996,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"3huJa":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "admin", ()=>admin);
-parcelHelpers.export(exports, "user", ()=>user);
-parcelHelpers.export(exports, "sampleData", ()=>sampleData);
-const admin = "http://localhost:3000/admin"; //for admin's route to backend
-const user = "http://localhost:3000/user"; // for user's route to backend
-const sampleData = {
-    user: "user_A@gmail.com",
-    name: "user A",
-    availableSlots: [
-        {
-            start: "2024-08-30T03:30:00.000Z",
-            end: "2024-08-30T04:00:00.000Z",
-            duration: 30
-        }
-    ],
-    scheduledSlots: [
-        {
-            "start": "2024-08-30T03:30:00.000Z",
-            "end": "2024-08-30T04:00:00.000Z",
-            "attendees": [
-                {
-                    "name": "siri",
-                    "email": "siri@myparticipants.com"
-                }
-            ]
-        }
-    ]
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dwH9f":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"dwH9f":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$de01 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36213,7 +36213,7 @@ $RefreshReg$(_c, "AdminDashboard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","../../config/globalVariables.js":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","./admin/AdminProfile.js":"gkpkN","./admin/UserList.js":"VGF7j","./admin/UpcomingSessions.js":"lEblu"}],"gkpkN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","../../config/globalVariables.js":"coWye","react":"21dqq","./admin/AdminProfile.js":"gkpkN","./admin/UpcomingSessions.js":"lEblu","./admin/UserList.js":"VGF7j","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkpkN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a5c6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36266,7 +36266,174 @@ $RefreshReg$(_c, "AdminProfile");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"VGF7j":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lEblu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$325d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$325d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _globalVariables = require("../../../config/globalVariables");
+var _constants = require("../../constants");
+var _s = $RefreshSig$();
+// for rendering upcoming sessions on admin dashboard 
+const UpcomingSessions = ()=>{
+    _s();
+    const [userData, setUserData] = (0, _globalVariables.useUserData)();
+    //handles deletion of any predefined schedules also from database using specific id of that slot
+    const handleDelete = async (slotId)=>{
+        try {
+            const response = await fetch(`${(0, _constants.admin)}/sessions/deleteAllotment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ScheduledSlotId: slotId
+                })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                if (result.status === "SUCCESS") setUserData(result?.userData);
+                else console.error(result.message);
+            } else console.error("Error: " + response.status);
+        } catch (e) {
+            console.error("UnAvailable!", e);
+        }
+        // Update the UserData context with the new scheduledSlots array
+        const updatedUserData = userData.map((user)=>({
+                ...user,
+                scheduledSlots: user.scheduledSlots.filter((slot)=>slot._id !== slotId)
+            }));
+        setUserData(updatedUserData);
+    };
+    // Group slots by date for all users
+    const groupedSlots = userData.reduce((acc, user)=>{
+        user.scheduledSlots.forEach((slot)=>{
+            const date = new Date(slot.start).toLocaleDateString();
+            if (!acc[date]) acc[date] = [];
+            acc[date].push({
+                ...slot,
+                userName: user.name
+            });
+        });
+        return acc;
+    }, {});
+    // Sort dates
+    const sortedDates = Object.keys(groupedSlots).sort((a, b)=>new Date(a) - new Date(b));
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "upcomingSessions",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: "Upcoming Sessions:"
+            }, void 0, false, {
+                fileName: "src/components/admin/UpcomingSessions.js",
+                lineNumber: 59,
+                columnNumber: 13
+            }, undefined),
+            sortedDates.map((date)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "upcomingSchedules",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                            children: date
+                        }, void 0, false, {
+                            fileName: "src/components/admin/UpcomingSessions.js",
+                            lineNumber: 62,
+                            columnNumber: 21
+                        }, undefined),
+                        groupedSlots[date].map((slot)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "meetings",
+                                id: slot._id,
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        style: {
+                                            marginRight: "0.6em"
+                                        },
+                                        children: [
+                                            new Date(slot.start).toLocaleTimeString(),
+                                            " - ",
+                                            new Date(slot.end).toLocaleTimeString()
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/admin/UpcomingSessions.js",
+                                        lineNumber: 65,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        style: {
+                                            marginRight: "0.6em"
+                                        },
+                                        children: [
+                                            "Attendees:  ",
+                                            slot.attendees.map((attendee)=>attendee.name).join(", ")
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/admin/UpcomingSessions.js",
+                                        lineNumber: 68,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        style: {
+                                            marginRight: "0.6em"
+                                        },
+                                        children: [
+                                            "User: ",
+                                            slot.userName
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/admin/UpcomingSessions.js",
+                                        lineNumber: 71,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                        className: "click",
+                                        onClick: ()=>handleDelete(slot._id),
+                                        children: "Delete"
+                                    }, void 0, false, {
+                                        fileName: "src/components/admin/UpcomingSessions.js",
+                                        lineNumber: 74,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, slot._id, true, {
+                                fileName: "src/components/admin/UpcomingSessions.js",
+                                lineNumber: 64,
+                                columnNumber: 25
+                            }, undefined))
+                    ]
+                }, date, true, {
+                    fileName: "src/components/admin/UpcomingSessions.js",
+                    lineNumber: 61,
+                    columnNumber: 17
+                }, undefined))
+        ]
+    }, void 0, true, {
+        fileName: "src/components/admin/UpcomingSessions.js",
+        lineNumber: 58,
+        columnNumber: 9
+    }, undefined);
+};
+_s(UpcomingSessions, "Y1QCkcgHSZRPE6T/qDS9+FZjUIE=", false, function() {
+    return [
+        (0, _globalVariables.useUserData)
+    ];
+});
+_c = UpcomingSessions;
+exports.default = UpcomingSessions;
+var _c;
+$RefreshReg$(_c, "UpcomingSessions");
+
+  $parcel$ReactRefreshHelpers$325d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../config/globalVariables":"coWye","../../constants":"3huJa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"VGF7j":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e35d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36619,7 +36786,7 @@ $RefreshReg$(_c, "UserDetail");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../utils/checkTimeCollision":"lAJW6","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../constants":"3huJa"}],"lAJW6":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../utils/checkTimeCollision":"lAJW6","../../../config/globalVariables":"coWye","../../constants":"3huJa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lAJW6":[function(require,module,exports) {
 // function to check collision of schedules
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -36637,174 +36804,7 @@ const checkTimeCollision = (startDateTime, endDateTime, users)=>{
 };
 exports.default = checkTimeCollision;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lEblu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$325d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$325d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _globalVariables = require("../../../config/globalVariables");
-var _constants = require("../../constants");
-var _s = $RefreshSig$();
-// for rendering upcoming sessions on admin dashboard 
-const UpcomingSessions = ()=>{
-    _s();
-    const [userData, setUserData] = (0, _globalVariables.useUserData)();
-    //handles deletion of any predefined schedules also from database using specific id of that slot
-    const handleDelete = async (slotId)=>{
-        try {
-            const response = await fetch(`${(0, _constants.admin)}/sessions/deleteAllotment`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    ScheduledSlotId: slotId
-                })
-            });
-            const result = await response.json();
-            if (response.ok) {
-                if (result.status === "SUCCESS") setUserData(result?.userData);
-                else console.error(result.message);
-            } else console.error("Error: " + response.status);
-        } catch (e) {
-            console.error("UnAvailable!", e);
-        }
-        // Update the UserData context with the new scheduledSlots array
-        const updatedUserData = userData.map((user)=>({
-                ...user,
-                scheduledSlots: user.scheduledSlots.filter((slot)=>slot._id !== slotId)
-            }));
-        setUserData(updatedUserData);
-    };
-    // Group slots by date for all users
-    const groupedSlots = userData.reduce((acc, user)=>{
-        user.scheduledSlots.forEach((slot)=>{
-            const date = new Date(slot.start).toLocaleDateString();
-            if (!acc[date]) acc[date] = [];
-            acc[date].push({
-                ...slot,
-                userName: user.name
-            });
-        });
-        return acc;
-    }, {});
-    // Sort dates
-    const sortedDates = Object.keys(groupedSlots).sort((a, b)=>new Date(a) - new Date(b));
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "upcomingSessions",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Upcoming Sessions:"
-            }, void 0, false, {
-                fileName: "src/components/admin/UpcomingSessions.js",
-                lineNumber: 59,
-                columnNumber: 13
-            }, undefined),
-            sortedDates.map((date)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "upcomingSchedules",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                            children: date
-                        }, void 0, false, {
-                            fileName: "src/components/admin/UpcomingSessions.js",
-                            lineNumber: 62,
-                            columnNumber: 21
-                        }, undefined),
-                        groupedSlots[date].map((slot)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "meetings",
-                                id: slot._id,
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        style: {
-                                            marginRight: "0.6em"
-                                        },
-                                        children: [
-                                            new Date(slot.start).toLocaleTimeString(),
-                                            " - ",
-                                            new Date(slot.end).toLocaleTimeString()
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 65,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        style: {
-                                            marginRight: "0.6em"
-                                        },
-                                        children: [
-                                            "Attendees:  ",
-                                            slot.attendees.map((attendee)=>attendee.name).join(", ")
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 68,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        style: {
-                                            marginRight: "0.6em"
-                                        },
-                                        children: [
-                                            "User: ",
-                                            slot.userName
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 71,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                        className: "click",
-                                        onClick: ()=>handleDelete(slot._id),
-                                        children: "Delete"
-                                    }, void 0, false, {
-                                        fileName: "src/components/admin/UpcomingSessions.js",
-                                        lineNumber: 74,
-                                        columnNumber: 29
-                                    }, undefined)
-                                ]
-                            }, slot._id, true, {
-                                fileName: "src/components/admin/UpcomingSessions.js",
-                                lineNumber: 64,
-                                columnNumber: 25
-                            }, undefined))
-                    ]
-                }, date, true, {
-                    fileName: "src/components/admin/UpcomingSessions.js",
-                    lineNumber: 61,
-                    columnNumber: 17
-                }, undefined))
-        ]
-    }, void 0, true, {
-        fileName: "src/components/admin/UpcomingSessions.js",
-        lineNumber: 58,
-        columnNumber: 9
-    }, undefined);
-};
-_s(UpcomingSessions, "Y1QCkcgHSZRPE6T/qDS9+FZjUIE=", false, function() {
-    return [
-        (0, _globalVariables.useUserData)
-    ];
-});
-_c = UpcomingSessions;
-exports.default = UpcomingSessions;
-var _c;
-$RefreshReg$(_c, "UpcomingSessions");
-
-  $parcel$ReactRefreshHelpers$325d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../constants":"3huJa"}],"7yDpT":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7yDpT":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$d393 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36915,7 +36915,7 @@ $RefreshReg$(_c, "UserDashboard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","../../config/globalVariables.js":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","./user/UserProfile.js":"aUdSh","./user/AvailableSlots.js":"pStVs","./user/ScheduledSlots.js":"h97bi","./user/TimeScheduler.js":"bsTm1","./user/Calendar.js":"5FQdB"}],"aUdSh":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","react":"21dqq","../../config/globalVariables.js":"coWye","./user/UserProfile.js":"aUdSh","./user/AvailableSlots.js":"pStVs","./user/ScheduledSlots.js":"h97bi","./user/TimeScheduler.js":"bsTm1","./user/Calendar.js":"5FQdB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aUdSh":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$86ae = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -37132,7 +37132,7 @@ $RefreshReg$(_c, "AvailableSlots");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../constants":"3huJa"}],"h97bi":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","../../constants":"3huJa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"h97bi":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7a03 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -37554,7 +37554,7 @@ $RefreshReg$(_c, "TimeScheduler");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","../../constants":"3huJa"}],"5FQdB":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../../../config/globalVariables":"coWye","react":"21dqq","../../constants":"3huJa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5FQdB":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ab62 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -37714,6 +37714,6 @@ $RefreshReg$(_c, "Calendar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../../config/globalVariables":"coWye"}]},["e73Eh","1xC6H","7SwCM"], "7SwCM", "parcelRequire01f6")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../config/globalVariables":"coWye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["e73Eh","1xC6H","7SwCM"], "7SwCM", "parcelRequire01f6")
 
 //# sourceMappingURL=index.f18de3a7.js.map
