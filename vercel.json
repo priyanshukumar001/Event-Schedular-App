@@ -12,8 +12,7 @@
     }
   ],
   "routes": [
-    { "src": "/user/(.*)", "dest": "/backend/$1" },
-    { "src": "/admin/(.*)", "dest": "/backend/$1" },
+    { "src": "/request/(.*)", "dest": "/backend/$1" },
     { "src": "/(.*)", "dest": "/frontend/$1" }
   ]
 }
