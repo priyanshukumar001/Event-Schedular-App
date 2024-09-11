@@ -49,6 +49,7 @@ event-scheduling-app/
    ```bash
    cd backend
    npm install
+   replace BASE_URL in constants.js with your frontend url
    ```
 
 3. **Frontend Setup**:
