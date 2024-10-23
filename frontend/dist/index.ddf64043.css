@@ -1,0 +1,2 @@
+.container{color:var(--highlights-2);max-width:300px;margin:2em auto;padding:.5em}form{flex-direction:column;display:flex}input{border:1px solid #ccc;border-radius:4px;outline:none;margin-bottom:10px;padding:10px}input:hover{box-shadow:0 0 5px 2px #ccc}input[type=submit]{background-color:var(--font-color-2);color:var(--bg-color-2);cursor:pointer;border:none;border-radius:1.6em;padding:.8em;font-weight:bolder}input[type=submit]:hover{background-color:var(--font-color-1)}
+/*# sourceMappingURL=index.ddf64043.css.map */
