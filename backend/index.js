@@ -15,7 +15,7 @@ const port = 3000; //default port
 
 // Use CORS middleware
 app.use(cors({
-    origin: BASE_URL, // Your frontend's origin //need to be updated
+    origin: 'https://event-schedular-app.vercel.app', // Your frontend's origin //need to be updated
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
