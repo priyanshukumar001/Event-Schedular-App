@@ -38,7 +38,7 @@ const UserSignup = () => {
                             setUserName('');
                             setEmail('');
                         } else {
-                            console.log(result.message);
+                            // console.log(result.message);
                             error.innerText = result.message;
                         }
 

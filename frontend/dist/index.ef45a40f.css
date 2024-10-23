@@ -68,7 +68,7 @@ header {
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 10vh;
+  top: 5vh;
   left: 0%;
 }
 
@@ -109,23 +109,6 @@ nav ul li:hover {
   transform: skew(15deg);
 }
 
-.logo {
-  float: left;
-  background: #efeef5;
-  width: 35px;
-  height: 35px;
-  margin: 40px 63px;
-  transform: rotate(-30deg);
-}
-
-.logo span {
-  color: #591bc5;
-  padding-left: 5px;
-  font-size: 2em;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
 .header-content {
   text-align: center;
   color: #efeef5;
@@ -142,6 +125,13 @@ nav ul li:hover {
   margin: 20px auto;
   font-size: 20px;
   line-height: 1.5;
+}
+
+.user-type-button {
+  justify-content: center;
+  width: 100%;
+  padding: auto;
+  display: flex;
 }
 
 .header-content button {
@@ -185,6 +175,12 @@ nav ul li:hover {
   to {
     opacity: 0;
     transform: scale(20)rotate(960deg)translate(-50%, -50%);
+  }
+}
+
+@media screen and (width <= 850px) {
+  header {
+    top: 10vh;
   }
 }
 /*# sourceMappingURL=index.ef45a40f.css.map */

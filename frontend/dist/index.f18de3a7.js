@@ -34578,7 +34578,7 @@ const UserLogin = ()=>{
                     user: email
                 })
             });
-            console.log(response);
+            // console.log(response);
             const result = await response.json();
             //removing error message if any
             error.innerText = "";
@@ -34720,7 +34720,7 @@ var _s = $RefreshSig$(), _s1 = $RefreshSig$(), _s2 = $RefreshSig$(), _s3 = $Refr
 const VerifyContext = /*#__PURE__*/ (0, _react.createContext)();
 const Authorization = ({ children })=>{
     _s();
-    const [isVerified, setIsVerified] = (0, _react.useState)(false);
+    const [isVerified, setIsVerified] = (0, _react.useState)(true);
     const [isAdmin, setIsAdmin] = (0, _react.useState)(false);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(VerifyContext.Provider, {
         value: {
@@ -34736,7 +34736,7 @@ const Authorization = ({ children })=>{
         columnNumber: 9
     }, undefined);
 };
-_s(Authorization, "v/r6iSaVUhm0epgl2TtB5mKvoJo=");
+_s(Authorization, "LvoOPETzJZvLitxXJ50YgnMx0BA=");
 _c = Authorization;
 const useVerify = ()=>{
     _s1();
@@ -35044,10 +35044,8 @@ const UserSignup = ()=>{
                         setIsAdmin(false);
                         setUserName("");
                         setEmail("");
-                    } else {
-                        console.log(result.message);
-                        error.innerText = result.message;
-                    }
+                    } else // console.log(result.message);
+                    error.innerText = result.message;
                 } else // console.log('Error: ' + response.status);
                 error.innerText = response.status;
             } catch (e) {
@@ -35979,7 +35977,7 @@ const Homepage = ()=>{
     }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            class: "container-fluid",
+            className: "container-fluid",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     class: "background",
@@ -36038,6 +36036,7 @@ const Homepage = ()=>{
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 id: "UserType",
+                                className: "user-type-button",
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                         className: "users",
@@ -36917,6 +36916,13 @@ const UserDashboard = ()=>{
                         fileName: "src/components/UserDashboard.js",
                         lineNumber: 27,
                         columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _timeSchedulerJsDefault.default), {
+                        date: selDate
+                    }, void 0, false, {
+                        fileName: "src/components/UserDashboard.js",
+                        lineNumber: 28,
+                        columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
@@ -36924,21 +36930,23 @@ const UserDashboard = ()=>{
                 lineNumber: 25,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _timeSchedulerJsDefault.default), {
-                date: selDate
-            }, void 0, false, {
-                fileName: "src/components/UserDashboard.js",
-                lineNumber: 29,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _availableSlotsJsDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "book-slots",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _availableSlotsJsDefault.default), {}, void 0, false, {
+                        fileName: "src/components/UserDashboard.js",
+                        lineNumber: 31,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _scheduledSlotsJsDefault.default), {}, void 0, false, {
+                        fileName: "src/components/UserDashboard.js",
+                        lineNumber: 32,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/UserDashboard.js",
                 lineNumber: 30,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _scheduledSlotsJsDefault.default), {}, void 0, false, {
-                fileName: "src/components/UserDashboard.js",
-                lineNumber: 31,
                 columnNumber: 13
             }, undefined)
         ]

@@ -68,7 +68,7 @@
 /* ================= Header ============ */
 header {
     position: absolute;
-    top: 10vh;
+    top: 5vh;
     left: 0%;
     width: 100%;
     margin: 0;
@@ -114,23 +114,6 @@ nav ul li:hover {
     transform: skew(15deg);
 }
 
-/* Logo */
-.logo {
-    width: 35px;
-    height: 35px;
-    background: #EFEEF5;
-    margin: 40px 63px;
-    float: left;
-    transform: rotate(-30deg);
-}
-
-.logo span {
-    color: #591BC5;
-    font-size: 2em;
-    line-height: 1.4;
-    padding-left: 5px;
-    font-weight: bold;
-}
 
 /* Header content & title & button*/
 .header-content {
@@ -149,6 +132,13 @@ nav ul li:hover {
     font-size: 20px;
     line-height: 1.5;
     margin: 20px auto;
+}
+
+.user-type-button {
+    width: 100%;
+    padding: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .header-content button {
@@ -193,5 +183,12 @@ nav ul li:hover {
     to {
         transform: scale(20) rotate(960deg) translate(-50%, -50%);
         opacity: 0;
+    }
+}
+
+
+@media screen and (max-width:850px) {
+    header {
+        top: 10vh;
     }
 }

@@ -25,11 +25,12 @@ const UserDashboard = () => {
             <div className="profile-calendar-group">
                 <UserProfile />
                 <Calendar />
+                <TimeScheduler date={selDate} />
             </div>
-            <TimeScheduler date={selDate} />
-            <AvailableSlots />
-            <ScheduledSlots />
-
+            <div className="book-slots">
+                <AvailableSlots />
+                <ScheduledSlots />
+            </div>
         </>))
     );
 }

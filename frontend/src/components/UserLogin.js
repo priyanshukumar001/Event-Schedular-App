@@ -24,7 +24,7 @@ const UserLogin = () => {
                     body: JSON.stringify({ user: email })
                 })
 
-                console.log(response);
+                // console.log(response);
                 const result = await response.json();
                 //removing error message if any
 

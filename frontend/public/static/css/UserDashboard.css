@@ -10,6 +10,12 @@
     flex-wrap: wrap;
 }
 
+.book-slots {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .availableSlots {
     max-width: 600px;
     margin: 1em auto;

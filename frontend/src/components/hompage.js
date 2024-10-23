@@ -21,7 +21,7 @@ const Homepage = () => {
 
     return (
         <>
-            <div class="container-fluid">
+            <div className="container-fluid">
                 <div class="background">
                     <div class="cube"></div>
                     <div class="cube"></div>
@@ -32,7 +32,7 @@ const Homepage = () => {
                 <header>
                     <section className="header-content">
                         <h1 id="welcome" ></h1>
-                        <div id='UserType'>
+                        <div id='UserType' className="user-type-button">
                             <button className="users"
                                 onClick={e => {
                                     navigate('/admin/login');
