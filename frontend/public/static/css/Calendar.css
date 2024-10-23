@@ -5,7 +5,7 @@
     border: 1.5px solid #420147;
     border-radius: 10px;
     overflow: hidden;
-    padding: 10px;
+    padding: 0.5em;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: sans-serif;
 }
@@ -91,4 +91,18 @@
     color: white;
     border-radius: 5px;
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .day-name {
+        font-size: .6em;
+        font-weight: 600;
+        padding: 0.8em 0.1em;
+    }
+
+    .day {
+        font-size: 0.8em;
+        font-weight: 800;
+    }
 }

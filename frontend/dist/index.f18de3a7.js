@@ -34720,7 +34720,7 @@ var _s = $RefreshSig$(), _s1 = $RefreshSig$(), _s2 = $RefreshSig$(), _s3 = $Refr
 const VerifyContext = /*#__PURE__*/ (0, _react.createContext)();
 const Authorization = ({ children })=>{
     _s();
-    const [isVerified, setIsVerified] = (0, _react.useState)(true);
+    const [isVerified, setIsVerified] = (0, _react.useState)(false);
     const [isAdmin, setIsAdmin] = (0, _react.useState)(false);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(VerifyContext.Provider, {
         value: {
@@ -34736,7 +34736,7 @@ const Authorization = ({ children })=>{
         columnNumber: 9
     }, undefined);
 };
-_s(Authorization, "LvoOPETzJZvLitxXJ50YgnMx0BA=");
+_s(Authorization, "v/r6iSaVUhm0epgl2TtB5mKvoJo=");
 _c = Authorization;
 const useVerify = ()=>{
     _s1();

@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 400px;
   margin: 20px auto;
-  padding: 10px;
+  padding: .5em;
   font-family: sans-serif;
   overflow: hidden;
   box-shadow: 0 4px 12px #0000001a;
@@ -77,5 +77,18 @@
   text-align: center;
   background-color: #07a0dc;
   border-radius: 5px;
+}
+
+@media screen and (width <= 768px) {
+  .day-name {
+    padding: .8em .1em;
+    font-size: .6em;
+    font-weight: 600;
+  }
+
+  .day {
+    font-size: .8em;
+    font-weight: 800;
+  }
 }
 /*# sourceMappingURL=index.8f20e6e0.css.map */
