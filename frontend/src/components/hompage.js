@@ -21,23 +21,36 @@ const Homepage = () => {
 
     return (
         <>
+            <div class="container-fluid">
+                <div class="background">
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                </div>
+                <header>
+                    <section className="header-content">
+                        <h1 id="welcome" ></h1>
+                        <div id='UserType'>
+                            <button className="users"
+                                onClick={e => {
+                                    navigate('/admin/login');
+                                }}
+                            >Login as Admin</button>
 
-            <h2 id="welcome" className="main_heading"></h2>
-            <div id='UserType' className="usersType">
-                <button className="users"
-                    onClick={e => {
-                        navigate('/admin/login');
-                    }}
-                >Login as Admin</button>
-
-                <button className="users"
-                    onClick={(e) => {
-                        navigate('/user/login');
-                    }}
-                >Login as User</button>
+                            <button className="users"
+                                onClick={(e) => {
+                                    navigate('/user/login');
+                                }}
+                            >Login as User</button>
+                        </div>
+                    </section>
+                </header>
             </div>
-            <div className="animated2" ></div>
-            <div className="animated2 " style={{ animationDuration: "20s", translate: "transformY(50%)" }}></div>
+
+            {/* <div className="animated2" ></div>
+            <div className="animated2 " style={{ animationDuration: "20s", translate: "transformY(50%)" }}></div> */}
         </>
     )
 }

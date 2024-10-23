@@ -34832,8 +34832,8 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "admin", ()=>admin);
 parcelHelpers.export(exports, "user", ()=>user);
 parcelHelpers.export(exports, "sampleData", ()=>sampleData);
-const admin = "https://event-schedular-app.vercel.app/request/admin"; //for admin's route to backend
-const user = "https://event-schedular-app.vercel.app/request/user"; // for user's route to backend
+const admin = "https://event-schedular-app-backend.vercel.app/admin"; //for admin's route to backend
+const user = "https://event-schedular-app-backend.vercel.app/user"; // for user's route to backend
 const sampleData = {
     user: "user_A@gmail.com",
     name: "user A",
@@ -35978,67 +35978,113 @@ const Homepage = ()=>{
         apiBox.style.display = "flex";
     }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                id: "welcome",
-                className: "main_heading"
-            }, void 0, false, {
-                fileName: "src/components/hompage.js",
-                lineNumber: 25,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                id: "UserType",
-                className: "usersType",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "users",
-                        onClick: (e)=>{
-                            navigate("/admin/login");
-                        },
-                        children: "Login as Admin"
-                    }, void 0, false, {
-                        fileName: "src/components/hompage.js",
-                        lineNumber: 27,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "users",
-                        onClick: (e)=>{
-                            navigate("/user/login");
-                        },
-                        children: "Login as User"
-                    }, void 0, false, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            class: "container-fluid",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    class: "background",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            class: "cube"
+                        }, void 0, false, {
+                            fileName: "src/components/hompage.js",
+                            lineNumber: 26,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            class: "cube"
+                        }, void 0, false, {
+                            fileName: "src/components/hompage.js",
+                            lineNumber: 27,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            class: "cube"
+                        }, void 0, false, {
+                            fileName: "src/components/hompage.js",
+                            lineNumber: 28,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            class: "cube"
+                        }, void 0, false, {
+                            fileName: "src/components/hompage.js",
+                            lineNumber: 29,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            class: "cube"
+                        }, void 0, false, {
+                            fileName: "src/components/hompage.js",
+                            lineNumber: 30,
+                            columnNumber: 21
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/hompage.js",
+                    lineNumber: 25,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                        className: "header-content",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                id: "welcome"
+                            }, void 0, false, {
+                                fileName: "src/components/hompage.js",
+                                lineNumber: 34,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                id: "UserType",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                        className: "users",
+                                        onClick: (e)=>{
+                                            navigate("/admin/login");
+                                        },
+                                        children: "Login as Admin"
+                                    }, void 0, false, {
+                                        fileName: "src/components/hompage.js",
+                                        lineNumber: 36,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                        className: "users",
+                                        onClick: (e)=>{
+                                            navigate("/user/login");
+                                        },
+                                        children: "Login as User"
+                                    }, void 0, false, {
+                                        fileName: "src/components/hompage.js",
+                                        lineNumber: 42,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/hompage.js",
+                                lineNumber: 35,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/hompage.js",
                         lineNumber: 33,
-                        columnNumber: 17
+                        columnNumber: 21
                     }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/hompage.js",
-                lineNumber: 26,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "animated2"
-            }, void 0, false, {
-                fileName: "src/components/hompage.js",
-                lineNumber: 39,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "animated2 ",
-                style: {
-                    animationDuration: "20s",
-                    translate: "transformY(50%)"
-                }
-            }, void 0, false, {
-                fileName: "src/components/hompage.js",
-                lineNumber: 40,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true);
+                }, void 0, false, {
+                    fileName: "src/components/hompage.js",
+                    lineNumber: 32,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/hompage.js",
+            lineNumber: 24,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false);
 };
 _s(Homepage, "0pNeyzXk/ByIxyERsdaIrG6js9s=", false, function() {
     return [

@@ -1,17 +1,24 @@
 * {
     box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 
 :root {
-    --font-color-1: #66fcf1;
-    --font-color-2: #45a29e;
-    --bg-color-1: #1f2833;
-    --bg-color-2: #0b0c10;
+    /* --font-color-1: #66fcf1;
+    --font-color-2: #45a29e; */
+    --font-color-1: whitesmoke;
+    --font-color-2: white;
+    /* --bg-color-1: #1f2833;
+    --bg-color-2: #0b0c10; */
+    --bg-color-1: rgba(221, 6, 250, 0.8);
+    --bg-color-2: rgba(8, 36, 242, 0.8);
     --highlights: #c5c6c7;
     --highlights-2: #eff3f6;
-    --chat-icon-color: #215855;
-    --shadows: #428a86;
+    /* --chat-icon-color: #215855;
+    --shadows: #428a86; */
+    --chat-icon-color: #970790;
+    --shadows: #0c21d7;
 }
 
 body {

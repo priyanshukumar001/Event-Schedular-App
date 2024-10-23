@@ -1,6 +1,6 @@
 .nav {
+  background: linear-gradient(to left, var(--key-gradient-left), var(--key-gradient-right));
   z-index: 15;
-  background: none;
   border-bottom: 1px solid #fff;
   border-radius: 0 0 1em 1em;
   flex-wrap: wrap;

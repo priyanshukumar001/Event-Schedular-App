@@ -3,7 +3,7 @@
     height: auto;
     /* max-height: ; */
     /* padding: 1em; */
-    background: transparent;
+    background: linear-gradient(to left, var(--key-gradient-left), var(--key-gradient-right));
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: row; */

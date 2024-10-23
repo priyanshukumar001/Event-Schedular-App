@@ -1,5 +1,5 @@
 .calendar {
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #420147;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
@@ -11,8 +11,9 @@
 }
 
 .header {
-  background-color: var(--font-color-2);
-  color: #fff;
+  color: #01010b;
+  background-color: #f5f5f5;
+  border-radius: .5em;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
@@ -25,9 +26,10 @@
   color: #fff;
   opacity: .7;
   cursor: pointer;
-  background: none;
+  background: #017c9b;
   border: none;
-  font-size: 15px;
+  border-radius: 50%;
+  font-size: 1em;
 }
 
 .day-names, .days {
@@ -43,12 +45,12 @@
   border-radius: 2.5px;
   width: 14.28%;
   padding: 10px;
-  font-size: 12px;
+  font-size: .8em;
 }
 
 .day-name {
   opacity: .8;
-  background-color: #6cc6f3;
+  background-color: #eeefef;
   margin-bottom: 8px;
   font-weight: bold;
 }
@@ -57,6 +59,7 @@
   color: #fff;
   cursor: pointer;
   border: 2px solid #fff;
+  font-size: 1em;
   transition: background-color .3s;
 }
 
@@ -72,7 +75,7 @@
 .today, .selected {
   color: #fff;
   text-align: center;
-  background-color: #87ceeb;
+  background-color: #07a0dc;
   border-radius: 5px;
 }
 /*# sourceMappingURL=index.8f20e6e0.css.map */
