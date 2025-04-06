@@ -22,12 +22,12 @@ const Homepage = () => {
     return (
         <>
             <div className="container-fluid">
-                <div class="background">
-                    <div class="cube"></div>
-                    <div class="cube"></div>
-                    <div class="cube"></div>
-                    <div class="cube"></div>
-                    <div class="cube"></div>
+                <div className="background">
+                    <div className="cube"></div>
+                    <div className="cube"></div>
+                    <div className="cube"></div>
+                    <div className="cube"></div>
+                    <div className="cube"></div>
                 </div>
                 <header>
                     <section className="header-content">

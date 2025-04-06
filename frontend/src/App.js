@@ -22,7 +22,7 @@ const Page = () => {
                 <SelectedDate>
                     <UserData>
                         <AdminData>
-                            <div id="animationBody"  >
+                            <div className="min-h-[100vh] bg-gradient-to-b from-slate-50 to-slate-400"   >
                                 <Nav ></Nav>
                                 <Outlet />
                             </div>

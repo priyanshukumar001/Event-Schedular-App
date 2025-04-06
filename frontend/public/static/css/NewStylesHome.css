@@ -1,4 +1,6 @@
 .container-fluid {
+    position: absolute;
+    top: 0;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -8,7 +10,8 @@
 
 /* ============= Animation background ========= */
 .background {
-    background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+    /* background: linear-gradient(132deg, #FC415A, #591BC5, #212335); */
+    background: linear-gradient(132deg, #fadfe5, #D8BFD8, #A9A9C9);
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
     position: relative;
@@ -25,14 +28,14 @@
     left: 45vw;
     width: 10px;
     height: 10px;
-    border: solid 1px #D7D4E4;
+    border: solid 1px #0820f7;
     transform-origin: top left;
     transform: scale(0) rotate(0deg) translate(-50%, -50%);
     animation: cube 12s ease-in forwards infinite;
 }
 
 .cube:nth-child(2n) {
-    border-color: #FFF;
+    border-color: var(--accent);
 }
 
 .cube:nth-child(2) {
