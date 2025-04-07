@@ -16,14 +16,13 @@ const Header = () => {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b">
-            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="sticky top-0 z-50 w-full bg-white shadow-sm border-b">
+            <div className="container mx-auto px-4 py-2 flex items-center justify-between">
                 <div className="flex items-center">
                     <CalendarClock className="h-8 w-8 text-blue-brand mr-2" />
-                    <span className="text-xl font-bold text-blue-brand">Events Scheduler</span>
+                    <span className="text-xl font-bold text-blue-brand">Event Scheduler</span>
                 </div>
 
-                {/* Desktop Navigation */}
                 <nav className="hidden md:flex space-x-6">
                     <a href="#" className="text-gray-700 hover:text-blue-brand font-medium">Home</a>
                     <a href="#" className="text-gray-700 hover:text-blue-brand font-medium">Features</a>
@@ -50,7 +49,6 @@ const Header = () => {
                     }
                 </div>
 
-                {/* Mobile menu button */}
                 <div className="md:hidden">
                     <Button
                         variant="ghost"
@@ -67,7 +65,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Mobile Navigation */}
             {isMenuOpen && (
                 <div className="md:hidden bg-white absolute w-full shadow-md animate-fade-in">
                     <div className="flex flex-col px-4 py-4 space-y-3">
@@ -97,7 +94,7 @@ const Header = () => {
                     </div>
                 </div>
             )}
-        </header>
+        </div>
     );
 };
 
