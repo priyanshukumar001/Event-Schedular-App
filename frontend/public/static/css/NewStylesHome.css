@@ -1,6 +1,6 @@
 .container-fluid {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: -20;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -11,7 +11,8 @@
 /* ============= Animation background ========= */
 .background {
     /* background: linear-gradient(132deg, #FC415A, #591BC5, #212335); */
-    background: linear-gradient(132deg, #fadfe5, #D8BFD8, #A9A9C9);
+    /* background: linear-gradient(132deg, #fadfe5, #D8BFD8, #A9A9C9); */
+    background: linear-gradient(132deg, #4b96f8 10%, #81D4FA, #e3effd);
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
     position: relative;

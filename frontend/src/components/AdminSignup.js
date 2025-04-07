@@ -77,7 +77,7 @@ const AdminSignup = () => {
     //if user is verified navigate to dashboard
     return ((isVerified) ? <Navigate to='/admin' /> :
         (<>
-            <div className="container">
+            <div className="container-box bg-gradient-to-b from-blue-700 to-blue-300 rounded-xl">
                 <h2>Sign Up</h2>
                 <form >
                     <input type="text" placeholder="Name" name="name" required value={userName} onChange={(e) => setUserName(e.target.value)} />
@@ -87,7 +87,7 @@ const AdminSignup = () => {
                     <input type="password" placeholder="Re-enter password" name="passcheck" required value={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} />
                     <input type="submit" value="Sign Up" onClick={handleSubmit} />
                 </form>
-                <div>
+                <div className='flex flex-col gap-2 justify-center items-center'>
                     <div id='sign_error'></div>
                     <div id='sign_success' style={{ color: "green" }}></div>
                     <h3>Already a User !</h3>

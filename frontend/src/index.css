@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 * {
     box-sizing: border-box;
@@ -51,7 +52,7 @@ body {
 }
 
 a {
-    color: var(--font-color-1);
+    /* color: var(--font-color-1); */
     text-decoration: none;
 }
 

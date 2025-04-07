@@ -11,6 +11,7 @@ import Dashboard from "./components/dashboard";
 import { Authorization, UserData, AdminData, SelectedDate } from "../config/globalVariables";
 import AdminDashboard from "./components/AdminDashboard.js";
 import UserDashboard from "./components/UserDashboard.js";
+import Header from "./components/home-details/Header";
 
 
 // main page
@@ -22,8 +23,9 @@ const Page = () => {
                 <SelectedDate>
                     <UserData>
                         <AdminData>
-                            <div className="min-h-[100vh] bg-gradient-to-b from-slate-50 to-slate-400"   >
-                                <Nav ></Nav>
+                            <div className="min-h-[100vh] bg-gradient-to-b from-blue-50 to-blue-200"   >
+                                {/* <Nav ></Nav> */}
+                                <Header />
                                 <Outlet />
                             </div>
                         </AdminData>

@@ -64,14 +64,14 @@ const UserSignup = () => {
     //if user already verified navigate to the user dashboard
     return ((isVerified) ? <Navigate to='/user' /> :
         (<>
-            <div className="container">
+            <div className="container-box bg-gradient-to-b from-blue-700 to-blue-300 rounded-xl">
                 <h2>Sign Up</h2>
                 <form >
                     <input type="text" placeholder="Name" name="name" required value={userName} onChange={(e) => setUserName(e.target.value)} />
                     <input type="email" placeholder="Email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input type="submit" value="Sign Up" onClick={handleSubmit} />
                 </form>
-                <div>
+                <div className='flex flex-col gap-2 justify-center items-center'>
                     <div id='sign_error'></div>
                     <div id='sign_success' style={{ color: "green" }}></div>
                     <h3>Already a User !</h3>

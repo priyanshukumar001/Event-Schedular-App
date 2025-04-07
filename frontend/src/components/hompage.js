@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { typeAnimation } from "../../config/typeAnimation";
+import HomeDetailed from "./HomeDetailed";
+import Details from "./home-details/Details";
 
 
 
@@ -48,7 +50,8 @@ const Homepage = () => {
                     </section>
                 </header>
             </div>
-
+            {/* <HomeDetailed /> */}
+            <Details />
             {/* <div className="animated2" ></div>
             <div className="animated2 " style={{ animationDuration: "20s", translate: "transformY(50%)" }}></div> */}
         </>

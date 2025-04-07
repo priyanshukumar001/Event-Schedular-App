@@ -1,8 +1,8 @@
-.container {
+.container-box {
     max-width: 300px;
     margin: 2em auto;
     color: var(--highlights-2);
-    padding: 0.5em;
+    padding: 1em;
     /* border: 2px solid white; */
 }
 

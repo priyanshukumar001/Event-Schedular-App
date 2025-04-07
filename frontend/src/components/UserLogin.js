@@ -55,14 +55,14 @@ const UserLogin = () => {
 
     return ((isVerified) ? <Navigate to='/dashboard' /> :
         (<>
-            <div className="container">
+            <div className="container-box bg-gradient-to-b from-blue-700 to-blue-300 rounded-xl">
                 <h2>Login</h2>
                 <form >
 
                     <input type="email" placeholder="Email" name="user" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     <input type="submit" value="Login" onClick={handleSubmit} />
                 </form>
-                <div>
+                <div className='flex flex-col gap-2 justify-center items-center'>
                     <div id='login_error'></div>
                     <h3>Have you Sign-Up!</h3>
                     <Link to="/user/signup">Signup</Link>
