@@ -54,11 +54,11 @@ const appRouter = createBrowserRouter([
                 children: [
                     {
                         path: 'login',
-                        element: <AdminLogin />,
+                        element: <div className="border-2 h-[100vh] py-[30vh]"><AdminLogin /></div>,
                     },
                     {
                         path: 'signup',
-                        element: <AdminSignup />
+                        element: <div className="border-2 h-[100vh] py-[30vh]"><AdminSignup /></div>
                     },
                 ]
             },
@@ -68,11 +68,11 @@ const appRouter = createBrowserRouter([
                 children: [
                     {
                         path: 'login',
-                        element: <UserLogin />,
+                        element: <div className="border-2 h-[100vh] py-[30vh]"><UserLogin /></div>,
                     },
                     {
                         path: 'signup',
-                        element: <UserSignup />
+                        element: <div className="border-2 h-[100vh] py-[30vh]"><UserSignup /></div>
                     },
                 ]
             },
