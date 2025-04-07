@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import img2 from '../../public/static/img/2.jpg';
+import img2 from '@/../public/static/img/2.jpg';
 import DropMenu from './dropmenu';
 
 
@@ -16,7 +16,7 @@ const Profile = (props) => {
 
     return (
         <div className='profile'>
-            <img className='profile_img' src={img2} style={{ cursor: "pointer" }} onClick={handleClick} />
+            <img className='profile_img' src={"https://static.vecteezy.com/system/resources/thumbnails/035/857/779/small/people-face-avatar-icon-cartoon-character-png.png"} style={{ cursor: "pointer" }} onClick={handleClick} />
 
             <DropMenu></DropMenu>
         </div>
