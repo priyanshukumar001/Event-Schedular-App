@@ -7,13 +7,8 @@
 }
 
 
-:root {
-    /* --font-color-1: #66fcf1;
-    --font-color-2: #45a29e; */
-    /* --bg-color-1: #1f2833;
-    --bg-color-2: #0b0c10; */
-    /* --chat-icon-color: #215855;
-    --shadows: #428a86; */
+/* :root {
+
     --font-color-1: whitesmoke;
     --font-color-2: white;
     --bg-color-1: rgba(221, 6, 250, 0.8);
@@ -35,7 +30,70 @@
     --accent: #0073e6;
     --primaryBg: #c4c4c4;
     --secondaryBg: #fff;
+} */
+
+:root {
+    /* Tailwind-compatible HSL variables */
+    --color-border: 240 10% 85%;
+    --color-input: 240 10% 97%;
+    --color-ring: 266 85% 62%;
+    --color-background: 264 60% 98%;
+    --color-foreground: 260 80% 12%;
+
+    --color-primary: 282 100% 50%;
+    --color-primary-foreground: 0 0% 100%;
+
+    --color-secondary: 224 100% 50%;
+    --color-secondary-foreground: 0 0% 100%;
+
+    --color-destructive: 350 85% 55%;
+    --color-destructive-foreground: 0 0% 100%;
+
+    --color-muted: 240 10% 90%;
+    --color-muted-foreground: 240 5% 30%;
+
+    --color-accent: 200 100% 50%;
+    --color-accent-foreground: 0 0% 100%;
+
+    --color-popover: 0 0% 100%;
+    --color-popover-foreground: 260 80% 12%;
+
+    --color-card: 264 60% 98%;
+    --color-card-foreground: 260 80% 12%;
+
+    --color-sidebar-background: 260 80% 10%;
+    --color-sidebar-foreground: 0 0% 100%;
+    --color-sidebar-primary: 282 100% 50%;
+    --color-sidebar-primary-foreground: 0 0% 100%;
+    --color-sidebar-accent: 200 100% 50%;
+    --color-sidebar-accent-foreground: 0 0% 100%;
+    --color-sidebar-border: 240 10% 30%;
+    --color-sidebar-ring: 266 85% 62%;
+
+    /* Custom design tokens (non-Tailwind) */
+    --custom-font-color-1: whitesmoke;
+    --custom-font-color-2: white;
+    --custom-bg-color-1: rgba(221, 6, 250, 0.8);
+    --custom-bg-color-2: rgba(8, 36, 242, 0.8);
+    --custom-highlight-1: #c5c6c7;
+    --custom-highlight-2: #eff3f6;
+    --custom-chat-icon-color: #970790;
+    --custom-shadows: #0c21d7;
+
+    --custom-animation-body-left: var(--custom-bg-color-2);
+    --custom-animation-body-right: #29323c;
+    --custom-moving-animation-left: #1b3647;
+    --custom-moving-animation-right: #354961;
+    --custom-moving-highlights: rgba(255, 255, 255, 0.532);
+    --custom-key-gradient-left: rgba(221, 6, 250, 0.8);
+    --custom-key-gradient-right: rgba(8, 36, 242, 0.8);
+
+    --custom-primary-bg: #c4c4c4;
+    --custom-secondary-bg: #fff;
+    --custom-blue-brand: #0073e6;
 }
+
+
 
 body {
     margin: 0px;
