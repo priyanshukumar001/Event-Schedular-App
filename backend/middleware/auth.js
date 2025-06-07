@@ -16,11 +16,15 @@ const auth = async (req, res, next) => {
             return res.status(401).json({ success: false, error: 'Organization not found' });
         }
 
-        if (organization.status !== 'confirmed') {
-            return res.status(403).json({ success: false, error: 'Organization not approved yet' });
+        if (organization.status !== 'active') {
+            return res.status(403).json({ success: false, error: 'Organization not active, please wait for approval' });
         }
 
-        req.user = decoded;
+        // Set both user and organization in the request
+        req.user = {
+            id: organization._id,
+            type: 'organization'
+        };
         req.organization = organization;
         next();
     } catch (error) {
@@ -28,4 +32,4 @@ const auth = async (req, res, next) => {
     }
 };
 
-export default auth; 
+export { auth }; 

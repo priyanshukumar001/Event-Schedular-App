@@ -42,7 +42,7 @@ const organizationSchema = new mongoose.Schema({
     password: { type: String, required: true },
     status: {
         type: String,
-        enum: ['pending', 'approved', 'rejected'],
+        enum: ['pending', 'active', 'inactive', 'rejected'],
         default: 'pending'
     },
     locations: [locationSchema],

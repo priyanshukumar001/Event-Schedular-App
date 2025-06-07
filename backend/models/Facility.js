@@ -13,6 +13,23 @@ const facilitySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    priceUnit: {
+        type: String,
+        enum: ['hour', 'day', 'event'],
+        required: true
+    },
+    category: {
+        type: String,
+        enum: ['seating', 'catering', 'decoration', 'av', 'hospitality', 'medical'],
+        required: true
+    },
+    isAvailable: {
+        type: Boolean,
+        default: true
+    },
+    imageUrl: {
+        type: String
+    },
     organization: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Organization',
