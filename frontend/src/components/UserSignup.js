@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useVerify } from '../../config/globalVariables.js';
-import { user } from '../constants.js';
+import { user } from '../constants';
 import { useUserData } from '../../config/globalVariables.js';
 
 

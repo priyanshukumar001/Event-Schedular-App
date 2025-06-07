@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useVerify, useUserData } from '../../config/globalVariables.js';
-import { admin } from '../constants.js';
+import { admin } from '../constants';
 import { useAdminData } from '../../config/globalVariables.js';
 
 const AdminLogin = () => {

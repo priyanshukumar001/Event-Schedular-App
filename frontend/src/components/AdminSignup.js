@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAdminData, useUserData, useVerify } from '../../config/globalVariables.js';
-import { admin } from '../constants.js';
+import { admin } from '../constants';
 
 
 const AdminSignup = () => {

@@ -1,3 +1,10 @@
+export const API_BASE_URL = 'http://localhost:3000/api';
+
+export const eventTypesRoute = `${API_BASE_URL}/event-types`;
+export const facilitiesRoute = `${API_BASE_URL}/facilities`;
+export const bookingsRoute = `${API_BASE_URL}/bookings`;
+// export const auth = `${API_BASE_URL}/auth`; 
+
 // export const admin = "https://event-schedular-app-backend.vercel.app/admin"; //for admin's route to backend
 // export const user = "https://event-schedular-app-backend.vercel.app/user"; // for user's route to backend
 // export const organization = "https://event-schedular-app-backend.vercel.app/organization"; // for organization's route to backend

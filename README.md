@@ -29,7 +29,7 @@ event-scheduling-app/
 │ ├── src/
 │ │ ├── components/
 │ │ ├── App.js
-│ │ ├── constants.js
+│ │ ├── constants
 │ │ ├── utils/
 │ ├── .gitignore
 │ ├── package-lock.json
@@ -49,7 +49,7 @@ event-scheduling-app/
    ```bash
    cd backend
    npm install
-   replace BASE_URL in constants.js with your frontend url
+   replace BASE_URL in constants with your frontend url
    ```
 
 3. **Frontend Setup**:
