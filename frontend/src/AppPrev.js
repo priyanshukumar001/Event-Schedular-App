@@ -4,15 +4,17 @@ import UserLogin from "./components/UserLogin.js";
 import UserSignup from "./components/UserSignup.js";
 import AdminLogin from "./components/AdminLogin.js";
 import AdminSignup from "./components/AdminSignup.js";
-import Nav from './components/nav';
-import Error from "./components/error";
-import Homepage from "./components/hompage";
-import Dashboard from "./components/dashboard";
-import { Authorization, UserData, AdminData, SelectedDate } from "../config/globalVariables";
+import Nav from './components/nav.js';
+import Error from "./components/error.js";
+import Homepage from "./components/hompage.js";
+import Dashboard from "./components/dashboard.js";
+import { Authorization, UserData, AdminData, SelectedDate } from "../config/globalVariables.js";
 import AdminDashboard from "./components/AdminDashboard.js";
 import UserDashboard from "./components/UserDashboard.js";
-import Header from "./components/home-details/Header";
-
+import Header from "./components/home-details/Header.js";
+import OrganizationSignup from "./components/organization/OrganizationSignup.js";
+import OrganizationDashboard from "./components/organization/OrganizationDashboard.js";
+import EventTypeForm from "./components/organization/EventTypeForm.js";
 
 // main page
 const Page = () => {
@@ -32,11 +34,9 @@ const Page = () => {
                     </UserData>
                 </SelectedDate>
             </Authorization>
-
         </>
     );
 }
-
 
 // used createBrowserRouter for routing to different components
 const appRouter = createBrowserRouter([
@@ -76,7 +76,27 @@ const appRouter = createBrowserRouter([
                     },
                 ]
             },
-
+            {
+                path: 'organization',
+                children: [
+                    {
+                        path: 'signup',
+                        element: <OrganizationSignup />
+                    },
+                    {
+                        path: 'dashboard',
+                        element: <OrganizationDashboard />
+                    },
+                    {
+                        path: 'event-types/new',
+                        element: <EventTypeForm />
+                    },
+                    {
+                        path: 'event-types/:id',
+                        element: <EventTypeForm />
+                    }
+                ]
+            }
         ],
         errorElement: <Error />,
     }
