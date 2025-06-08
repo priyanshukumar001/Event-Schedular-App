@@ -7,9 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Badge } from '../ui/badge';
 import { Alert } from '../ui/alert';
 import LoadingSpinner from '../ui/loadingSpinner';
-import { Users, UserCircle, Building2, Calendar, Settings, Package, IndianRupee, Clock, Edit2, Plus, Mail, Phone, MapPin, BadgeCheck, XCircle } from 'lucide-react';
+import { Users, UserCircle, Building2, Calendar, Settings, Package, IndianRupee, Clock, Edit2, Plus, Mail, Phone, MapPin, BadgeCheck, XCircle, ImageIcon } from 'lucide-react';
 import { organization as BASE_URL, eventTypesRoute, facilitiesRoute, bookingsRoute } from '../../constants';
 import { Carousel } from '../ui/carousel';
+import { Image } from '@/components/ui/image';
 
 interface Address {
     street: string;
@@ -286,12 +287,12 @@ const OrganizationDashboard: React.FC = () => {
                                 <div className="relative">
                                     <Carousel className="w-full">
                                         {eventType.galleryImages.map((image, index) => (
-                                            <img
+                                            <Image
                                                 src={image}
                                                 key={index}
                                                 alt={`Gallery ${index + 1}`}
                                                 className="w-full h-48 md:h-72 lg:h-96 object-cover rounded-lg"
-                                                onError={e => { e.currentTarget.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found'; }}
+                                                fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
                                             />
                                         ))}
                                     </Carousel>
@@ -299,20 +300,25 @@ const OrganizationDashboard: React.FC = () => {
                                         {getCategoryIcon(eventType.category)} {eventType.category}
                                     </Badge>
                                 </div>
+                            ) : eventType.imageUrl ? (
+                                <div className="relative">
+                                    <Image
+                                        src={eventType.imageUrl}
+                                        alt={eventType.type}
+                                        className="w-full h-48 md:h-72 lg:h-96 object-cover rounded-lg"
+                                        fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
+                                    />
+                                    <Badge className={`absolute top-4 right-4 ${getCategoryColor(eventType.category)}`}>
+                                        {getCategoryIcon(eventType.category)} {eventType.category}
+                                    </Badge>
+                                </div>
                             ) : (
-                                eventType.imageUrl && (
-                                    <div className="relative">
-                                        <img
-                                            src={eventType.imageUrl}
-                                            alt={eventType.type}
-                                            className="w-full h-48 md:h-72 lg:h-96 object-cover rounded-lg"
-                                            onError={e => { e.currentTarget.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found'; }}
-                                        />
-                                        <Badge className={`absolute top-4 right-4 ${getCategoryColor(eventType.category)}`}>
-                                            {getCategoryIcon(eventType.category)} {eventType.category}
-                                        </Badge>
-                                    </div>
-                                )
+                                <div className="relative h-48 md:h-72 lg:h-96 bg-gray-100 flex items-center justify-center">
+                                    <ImageIcon className="h-12 w-12 text-gray-400" />
+                                    <Badge className={`absolute top-4 right-4 ${getCategoryColor(eventType.category)}`}>
+                                        {getCategoryIcon(eventType.category)} {eventType.category}
+                                    </Badge>
+                                </div>
                             )}
                             <div className="p-6 space-y-4">
                                 <div>
@@ -387,24 +393,26 @@ const OrganizationDashboard: React.FC = () => {
                                 {(booking.eventType.galleryImages && booking.eventType.galleryImages.length > 0) ? (
                                     <Carousel className="w-full">
                                         {booking.eventType.galleryImages.map((image, index) => (
-                                            <img
+                                            <Image
                                                 src={image}
                                                 key={index}
                                                 alt={`Gallery ${index + 1}`}
                                                 className="w-full h-32 md:h-40 lg:h-48 object-cover rounded-lg"
-                                                onError={e => { e.currentTarget.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found'; }}
+                                                fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
                                             />
                                         ))}
                                     </Carousel>
+                                ) : booking.eventType.imageUrl ? (
+                                    <Image
+                                        src={booking.eventType.imageUrl}
+                                        alt={booking.eventType.type}
+                                        className="w-full h-32 md:h-40 lg:h-48 object-cover rounded-lg"
+                                        fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
+                                    />
                                 ) : (
-                                    booking.eventType.imageUrl && (
-                                        <img
-                                            src={booking.eventType.imageUrl}
-                                            alt={booking.eventType.type}
-                                            className="w-full h-32 md:h-40 lg:h-48 object-cover rounded-lg"
-                                            onError={e => { e.currentTarget.src = 'https://via.placeholder.com/600x400?text=Image+Not+Found'; }}
-                                        />
-                                    )
+                                    <div className="w-full h-32 md:h-40 lg:h-48 bg-gray-100 flex items-center justify-center rounded-lg">
+                                        <ImageIcon className="h-12 w-12 text-gray-400" />
+                                    </div>
                                 )}
                             </div>
                             {/* Booking Details */}

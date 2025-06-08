@@ -1,5 +1,39 @@
 import mongoose from 'mongoose';
 
+const packageSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    duration: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    includedFacilities: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Facility'
+    }],
+    maxCapacity: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    imageUrl: {
+        type: String,
+        required: false
+    }
+});
+
 const customFieldSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -35,36 +69,6 @@ const addOnFeatureSchema = new mongoose.Schema({
     }
 });
 
-const packageSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    duration: {
-        type: Number,
-        required: true
-    },
-    includedFacilities: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Facility'
-    }],
-    maxCapacity: {
-        type: Number,
-        required: true
-    },
-    imageUrl: {
-        type: String
-    }
-});
-
 const eventTypeSchema = new mongoose.Schema({
     category: {
         type: String,
@@ -85,7 +89,7 @@ const eventTypeSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-        required: true
+        required: false
     },
     galleryImages: [{
         type: String
@@ -110,7 +114,7 @@ const eventTypeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+}, { timestamps: true });
 
 // Update the updatedAt timestamp before saving
 eventTypeSchema.pre('save', function (next) {
@@ -118,4 +122,6 @@ eventTypeSchema.pre('save', function (next) {
     next();
 });
 
-export default mongoose.model('EventType', eventTypeSchema); 
+const EventType = mongoose.model('EventType', eventTypeSchema);
+
+export default EventType; 

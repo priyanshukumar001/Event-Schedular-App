@@ -26,6 +26,7 @@ import {
     getSubSubCategories,
     isValidEventCategoryForOrganization
 } from '../../constants/eventCategories';
+import { Image } from '@/components/ui/image';
 
 const EventTypeManagement: React.FC = () => {
     const navigate = useNavigate();
@@ -278,11 +279,18 @@ const EventTypeManagement: React.FC = () => {
                 {filteredEventTypes.map(eventType => (
                     <Card key={eventType._id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
                         <div className="relative h-48">
-                            <img
-                                src={eventType.imageUrl}
-                                alt={eventType.type}
-                                className="w-full h-full object-cover"
-                            />
+                            {eventType.imageUrl ? (
+                                <Image
+                                    src={eventType.imageUrl}
+                                    alt={eventType.type}
+                                    className="w-full h-full object-cover"
+                                    fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                    <ImageIcon className="h-12 w-12 text-gray-400" />
+                                </div>
+                            )}
                             <Badge
                                 className={`absolute top-4 right-4 ${getCategoryColor(eventType.category)}`}
                             >
@@ -302,14 +310,13 @@ const EventTypeManagement: React.FC = () => {
                                 <div className="relative">
                                     <Carousel className="w-full">
                                         {eventType.galleryImages.map((image, index) => (
-                                            // <div key={index} className="relative h-32">
-                                            <img
+                                            <Image
                                                 src={image}
                                                 key={index}
                                                 alt={`Gallery ${index + 1}`}
                                                 className="w-full h-48 md:h-72 lg:h-96 object-cover rounded-lg"
+                                                fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
                                             />
-                                            // </div>
                                         ))}
                                     </Carousel>
                                 </div>

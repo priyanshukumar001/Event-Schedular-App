@@ -33,7 +33,7 @@ export const validateEventType = (data) => {
         imageUrl: Joi.string().uri().required(),
         galleryImages: Joi.array().items(Joi.string().uri()),
         requiredFacilities: Joi.array().items(Joi.string()),
-        packages: Joi.array().items(packageSchema).min(1).required(),
+        packages: Joi.array().items(packageSchema).min(0),
         customFields: Joi.array().items(customFieldSchema),
         addOnFeatures: Joi.array().items(addOnFeatureSchema)
     });

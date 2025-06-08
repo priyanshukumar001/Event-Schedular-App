@@ -15,6 +15,7 @@ import OrganizationDashboard from './components/organization/OrganizationDashboa
 import EventTypeManagement from './components/organization/EventTypeManagement';
 import EventTypeForm from './components/organization/EventTypeForm';
 import FacilityManagement from './components/organization/FacilityManagement';
+import AvailableSlotsRoute from './components/organization/AvailableSlotsRoute';
 
 // Main page component with global context providers
 const Page = () => {
@@ -35,7 +36,7 @@ const Page = () => {
 };
 
 // Create router configuration
-const appRouter = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: '/',
         element: <Page />,
@@ -75,15 +76,24 @@ const appRouter = createBrowserRouter([
                     },
                     {
                         path: 'event-types',
-                        element: <EventTypeManagement />
-                    },
-                    {
-                        path: 'event-types/new',
-                        element: <EventTypeForm />
-                    },
-                    {
-                        path: 'event-types/:id',
-                        element: <EventTypeForm />
+                        children: [
+                            {
+                                index: true,
+                                element: <EventTypeManagement />
+                            },
+                            {
+                                path: 'new',
+                                element: <EventTypeForm />
+                            },
+                            {
+                                path: ':id',
+                                element: <EventTypeForm />
+                            },
+                            {
+                                path: ':eventTypeId/slots',
+                                element: <AvailableSlotsRoute />
+                            }
+                        ]
                     },
                     {
                         path: 'facilities',
@@ -96,4 +106,4 @@ const appRouter = createBrowserRouter([
     }
 ]);
 
-export default appRouter; 
+export default router; 

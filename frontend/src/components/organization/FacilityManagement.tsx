@@ -25,6 +25,7 @@ import {
     DialogTrigger,
 } from '../ui/dialog';
 import { getFacilityCategories, FacilityCategory } from '../../constants/facilityCategories';
+import { Image } from '@/components/ui/image';
 
 interface FacilityFormData {
     name: string;
@@ -340,14 +341,12 @@ const FacilityManagement: React.FC = () => {
                                         />
                                         {formData.imageUrl && (
                                             <div className="mt-2">
-                                                <img
+                                                <Image
                                                     src={formData.imageUrl}
                                                     alt="Facility preview"
                                                     className="h-32 w-32 object-cover rounded-lg"
-                                                    onError={(e) => {
-                                                        e.currentTarget.src = ''; // Clear invalid image
-                                                        setFormData(prev => ({ ...prev, imageUrl: '' }));
-                                                    }}
+                                                    fallbackIcon={<ImageIcon className="h-8 w-8 text-gray-400" />}
+                                                    onError={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}
                                                 />
                                             </div>
                                         )}
@@ -398,10 +397,11 @@ const FacilityManagement: React.FC = () => {
                     <Card key={facility._id} className="overflow-hidden">
                         <div className="relative h-48 w-full">
                             {facility.imageUrl ? (
-                                <img
+                                <Image
                                     src={facility.imageUrl}
                                     alt={facility.name}
                                     className="w-full h-full object-cover"
+                                    fallbackIcon={<ImageIcon className="h-12 w-12 text-gray-400" />}
                                 />
                             ) : (
                                 <div className="w-full h-full bg-gray-100 flex items-center justify-center">

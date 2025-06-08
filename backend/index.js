@@ -13,6 +13,8 @@ import UserRouter from './api/User_route.js';
 import AdminRouter from './api/Admin_route.js';
 import AvailableRoute from './api/Available_route.js';
 import AllotmentRoute from './api/Allottment_route.js';
+// import userRoutes from './api/userRoutes.js';
+import slotRoutes from './api/slotRoutes.js';
 
 dotenv.config();
 
@@ -44,10 +46,12 @@ app.use('/user', AvailableRoute);
 app.use('/admin', AdminRouter);
 app.use('/admin', AllotmentRoute);
 
+// app.use('/api/users', userRoutes);
 app.use('/api/organization', organizationRoutes);
 app.use('/api/event-types', auth, eventTypeRoutes);
 app.use('/api/facilities', auth, facilityRoutes);
 app.use('/api/bookings', auth, bookingRoutes);
+app.use('/api/slots', slotRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

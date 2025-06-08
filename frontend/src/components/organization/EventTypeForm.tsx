@@ -26,6 +26,10 @@ import {
     getSubSubCategories,
     isValidEventCategoryForOrganization
 } from '../../constants/eventCategories';
+import AvailableSlots from './AvailableSlots';
+import { Image } from '@/components/ui/image';
+import { ImageIcon } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const defaultPackage = {
     name: '',
@@ -53,10 +57,13 @@ const EventTypeForm: React.FC = () => {
         imageUrl: '',
         galleryImages: [],
         requiredFacilities: [],
-        packages: [{ ...defaultPackage }],
+        packages: [],
         customFields: [],
         addOnFeatures: []
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [createdEventTypeId, setCreatedEventTypeId] = useState<string | null>(null);
 
     // Get allowed categories based on organization type
     const getAllowedCategories = () => {
@@ -110,7 +117,7 @@ const EventTypeForm: React.FC = () => {
                             imageUrl: data.imageUrl || '',
                             galleryImages: data.galleryImages || [],
                             requiredFacilities: data.requiredFacilities || [],
-                            packages: data.packages?.length ? data.packages : [{ ...defaultPackage }],
+                            packages: data.packages?.length ? data.packages : [],
                             customFields: data.customFields || [],
                             addOnFeatures: data.addOnFeatures || []
                         });
@@ -194,25 +201,22 @@ const EventTypeForm: React.FC = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!formData.category || !formData.type || !formData.subType || !formData.description || !formData.imageUrl) {
+        if (!formData.category || !formData.type || !formData.subType || !formData.description) {
             setError('Please fill in all required fields');
             return;
         }
 
-        // Validate packages
-        if (formData.packages.length === 0) {
-            setError('At least one package is required');
-            return;
-        }
-
-        for (const pkg of formData.packages) {
-            if (!pkg.name || !pkg.description || pkg.price <= 0 || pkg.duration <= 0 || pkg.maxCapacity <= 0) {
-                setError('Please fill in all required package fields');
-                return;
+        // Validate packages (if any)
+        if (formData.packages.length > 0) {
+            for (const pkg of formData.packages) {
+                if (!pkg.name || !pkg.description || pkg.duration <= 0 || pkg.maxCapacity <= 0) {
+                    setError('Please fill in all required package fields');
+                    return;
+                }
             }
         }
 
-        setSaving(true);
+        setIsSubmitting(true);
         setError(null);
 
         try {
@@ -236,7 +240,8 @@ const EventTypeForm: React.FC = () => {
             }
 
             if (response.data.success) {
-                navigate('/organization/event-types');
+                setSuccess(true);
+                setCreatedEventTypeId(response.data.data._id);
             } else {
                 setError(response.data.error || 'Failed to save event type');
             }
@@ -247,9 +252,52 @@ const EventTypeForm: React.FC = () => {
             }
             setError(error.response?.data?.error || 'Failed to save event type');
         } finally {
-            setSaving(false);
+            setIsSubmitting(false);
         }
     };
+
+    if (success && createdEventTypeId) {
+        return (
+            <div className="space-y-6">
+                <Alert className="bg-green-50 border-green-200 text-green-800">
+                    <CheckCircle className="h-4 w-4" />
+                    <span>Event type created successfully! Now add available time slots.</span>
+                </Alert>
+                <AvailableSlots eventTypeId={createdEventTypeId} />
+                <div className="flex justify-end">
+                    <Button
+                        onClick={() => {
+                            setSuccess(false);
+                            setCreatedEventTypeId(null);
+                            setFormData({
+                                type: '',
+                                subType: '',
+                                description: '',
+                                category: '',
+                                imageUrl: '',
+                                galleryImages: [],
+                                packages: [{
+                                    name: '',
+                                    description: '',
+                                    price: 0,
+                                    duration: 60,
+                                    includedFacilities: [],
+                                    maxCapacity: 1,
+                                    imageUrl: ''
+                                }],
+                                requiredFacilities: [],
+                                customFields: [],
+                                addOnFeatures: []
+                            });
+                        }}
+                        variant="outline"
+                    >
+                        Create Another Event Type
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 
     if (loading) {
         return <LoadingSpinner />;
@@ -369,10 +417,11 @@ const EventTypeForm: React.FC = () => {
                             />
                             {formData.imageUrl && (
                                 <div className="mt-2">
-                                    <img
+                                    <Image
                                         src={formData.imageUrl}
                                         alt="Event type preview"
                                         className="w-32 h-32 object-cover rounded-lg"
+                                        fallbackIcon={<ImageIcon className="h-8 w-8 text-gray-400" />}
                                     />
                                 </div>
                             )}
@@ -400,10 +449,11 @@ const EventTypeForm: React.FC = () => {
                                             />
                                             {url && (
                                                 <div className="mt-2">
-                                                    <img
+                                                    <Image
                                                         src={url}
                                                         alt={`Gallery image ${index + 1}`}
                                                         className="w-32 h-32 object-cover rounded-lg"
+                                                        fallbackIcon={<ImageIcon className="h-8 w-8 text-gray-400" />}
                                                     />
                                                 </div>
                                             )}
@@ -518,10 +568,11 @@ const EventTypeForm: React.FC = () => {
                                                 />
                                                 {pkg.imageUrl && (
                                                     <div className="mt-2">
-                                                        <img
+                                                        <Image
                                                             src={pkg.imageUrl}
                                                             alt={`Package ${index + 1} preview`}
                                                             className="w-32 h-32 object-cover rounded-lg"
+                                                            fallbackIcon={<ImageIcon className="h-8 w-8 text-gray-400" />}
                                                         />
                                                     </div>
                                                 )}
@@ -578,12 +629,18 @@ const EventTypeForm: React.FC = () => {
                             >
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={saving}>
-                                {saving ? <LoadingSpinner /> : (id ? 'Update' : 'Create')}
+                            <Button type="submit" disabled={isSubmitting}>
+                                {isSubmitting ? <LoadingSpinner /> : (id ? 'Update' : 'Create')}
                             </Button>
                         </div>
                     </div>
                 </form>
+
+                {id && (
+                    <div className="mt-4">
+                        <AvailableSlots eventTypeId={id} />
+                    </div>
+                )}
             </Card>
         </div>
     );

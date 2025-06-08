@@ -50,7 +50,7 @@ router.post('/', auth, async (req, res) => {
         const { type, subType, category, description, imageUrl, galleryImages, requiredFacilities, packages, customFields, addOnFeatures } = req.body;
 
         // Validate required fields
-        if (!type || !subType || !category || !description || !imageUrl || !packages || !Array.isArray(packages)) {
+        if (!type || !subType || !category || !description) {
             return res.status(400).json({
                 success: false,
                 error: 'Missing required fields'
@@ -77,13 +77,13 @@ router.post('/', auth, async (req, res) => {
             subType,
             category,
             description,
-            imageUrl,
+            imageUrl: imageUrl || '',
             galleryImages: galleryImages || [],
             requiredFacilities: requiredFacilities || [],
-            packages: packages.map(pkg => ({
+            packages: packages ? packages.map(pkg => ({
                 ...pkg,
                 includedFacilities: pkg.includedFacilities || []
-            })),
+            })) : [],
             customFields: customFields || [],
             addOnFeatures: addOnFeatures || [],
             organization: req.user.id
