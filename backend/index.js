@@ -9,6 +9,7 @@ import organizationRoutes from './api/organization.js';
 import eventTypeRoutes from './api/eventTypeRoutes.js';
 import facilityRoutes from './api/facilityRoutes.js';
 import bookingRoutes from './api/bookingRoutes.js';
+import authRoutes from './api/auth.js';
 // import UserRouter from './api/User_route.js';
 // import AdminRouter from './api/Admin_route.js';
 // import AvailableRoute from './api/Available_route.js';
@@ -47,6 +48,7 @@ app.use(express.json());
 // app.use('/admin', AllotmentRoute);
 
 // app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/organization', organizationRoutes);
 app.use('/api/event-types', auth, eventTypeRoutes);
 app.use('/api/facilities', auth, facilityRoutes);
