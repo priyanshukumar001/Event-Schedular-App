@@ -9,10 +9,10 @@ import organizationRoutes from './api/organization.js';
 import eventTypeRoutes from './api/eventTypeRoutes.js';
 import facilityRoutes from './api/facilityRoutes.js';
 import bookingRoutes from './api/bookingRoutes.js';
-import UserRouter from './api/User_route.js';
-import AdminRouter from './api/Admin_route.js';
-import AvailableRoute from './api/Available_route.js';
-import AllotmentRoute from './api/Allottment_route.js';
+// import UserRouter from './api/User_route.js';
+// import AdminRouter from './api/Admin_route.js';
+// import AvailableRoute from './api/Available_route.js';
+// import AllotmentRoute from './api/Allottment_route.js';
 // import userRoutes from './api/userRoutes.js';
 import slotRoutes from './api/slotRoutes.js';
 
@@ -39,12 +39,12 @@ app.use(express.json());
 
 // Routes
 // User routes
-app.use('/user', UserRouter);
-app.use('/user', AvailableRoute);
+// app.use('/user', UserRouter);
+// app.use('/user', AvailableRoute);
 
 // Admin routes
-app.use('/admin', AdminRouter);
-app.use('/admin', AllotmentRoute);
+// app.use('/admin', AdminRouter);
+// app.use('/admin', AllotmentRoute);
 
 // app.use('/api/users', userRoutes);
 app.use('/api/organization', organizationRoutes);
