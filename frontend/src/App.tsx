@@ -14,6 +14,7 @@ import OrganizationLogin from './components/organization/OrganizationLogin';
 import OrganizationDashboard from './components/organization/OrganizationDashboard';
 import EventTypeManagement from './components/organization/EventTypeManagement';
 import EventTypeForm from './components/organization/EventTypeForm';
+import FacilityManagement from './components/organization/FacilityManagement';
 
 // Main page component with global context providers
 const Page = () => {
@@ -83,6 +84,10 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'event-types/:id',
                         element: <EventTypeForm />
+                    },
+                    {
+                        path: 'facilities',
+                        element: <FacilityManagement />
                     }
                 ]
             }

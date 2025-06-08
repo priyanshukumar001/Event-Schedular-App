@@ -26,7 +26,7 @@ const packageSchema = Joi.object({
 
 export const validateEventType = (data) => {
     const schema = Joi.object({
-        category: Joi.string().valid('medical', 'social', 'corporate').required(),
+        category: Joi.string().required(),
         type: Joi.string().required(),
         subType: Joi.string().required(),
         description: Joi.string().required(),

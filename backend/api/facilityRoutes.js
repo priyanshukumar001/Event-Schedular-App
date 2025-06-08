@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { auth } from '../middleware/auth.js';
 import Facility from '../models/Facility.js';
 import Organization from '../models/Organization.js';
+import { validateFacility } from '../validators/facilityValidator.js';
 
 const router = express.Router();
 
@@ -41,25 +42,16 @@ router.get('/:facilityId', auth, async (req, res) => {
 // Create facility
 router.post('/', auth, async (req, res) => {
     try {
-        const { name, type, description, capacity, images, amenities, pricing } = req.body;
-
-        // Validate required fields
-        if (!name || !type || !description || !capacity) {
+        const { error } = validateFacility(req.body);
+        if (error) {
             return res.status(400).json({
                 success: false,
-                error: 'Missing required fields'
+                error: error.details[0].message
             });
         }
 
-        // Create facility
         const facility = new Facility({
-            name,
-            type,
-            description,
-            capacity,
-            images: images || [],
-            amenities: amenities || [],
-            pricing: pricing || {},
+            ...req.body,
             organization: req.user.id
         });
 
@@ -91,27 +83,17 @@ router.put('/:facilityId', auth, async (req, res) => {
             return res.status(400).json({ success: false, error: 'Invalid facility ID' });
         }
 
-        const { name, type, description, capacity, images, amenities, pricing } = req.body;
-
-        // Validate required fields
-        if (!name || !type || !description || !capacity) {
+        const { error } = validateFacility(req.body);
+        if (error) {
             return res.status(400).json({
                 success: false,
-                error: 'Missing required fields'
+                error: error.details[0].message
             });
         }
 
         const facility = await Facility.findOneAndUpdate(
             { _id: req.params.facilityId, organization: req.user.id },
-            {
-                name,
-                type,
-                description,
-                capacity,
-                images: images || [],
-                amenities: amenities || [],
-                pricing: pricing || {}
-            },
+            req.body,
             { new: true, runValidators: true }
         );
 

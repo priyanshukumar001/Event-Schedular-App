@@ -1,9 +1,8 @@
 import express from 'express';
 import Organization from '../models/Organization.js';
-import { auth } from '../middleware/auth.js';
+import { auth, authProfile } from '../middleware/auth.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
 
 const router = express.Router();
 
@@ -150,8 +149,8 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Get organization profile
-router.get('/profile', auth, async (req, res) => {
+// Get organization profile - using authProfile instead of auth
+router.get('/profile', authProfile, async (req, res) => {
     try {
         const organization = await Organization.findById(req.user.id)
             .populate('facilities')
@@ -162,14 +161,18 @@ router.get('/profile', auth, async (req, res) => {
             return res.status(404).json({ success: false, error: 'Organization not found' });
         }
 
-        res.json({ success: true, data: organization });
+        res.json({
+            success: true,
+            data: organization,
+            status: organization.status
+        });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
 });
 
 // Update organization profile
-router.put('/profile', auth, async (req, res) => {
+router.put('/profile', authProfile, async (req, res) => {
     try {
         const { name, email, phone, address, description, logo } = req.body;
 
@@ -208,7 +211,7 @@ router.put('/profile', auth, async (req, res) => {
 });
 
 // Delete organization account
-router.delete('/profile', auth, async (req, res) => {
+router.delete('/profile', authProfile, async (req, res) => {
     try {
         const organization = await Organization.findByIdAndDelete(req.user.id);
 

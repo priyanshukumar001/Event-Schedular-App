@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { eventTypesRoute, facilitiesRoute } from '../../constants';
+import { eventTypesRoute, facilitiesRoute, organization } from '../../constants';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
+
 import { Alert } from '../ui/alert';
 import { Badge } from '../ui/badge';
 import LoadingSpinner from '../ui/loadingSpinner';
 import { EventType, Facility } from '../../types/event';
+import { ORGANIZATION_EVENT_MAPPING } from '../../constants/organizationEventMapping';
 import {
     Select,
     SelectContent,
@@ -17,16 +17,15 @@ import {
     SelectTrigger,
     SelectValue,
 } from '../ui/select';
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from '../ui/dialog';
+
 import { Calendar, Users, Clock, IndianRupee, Image as ImageIcon, Package, Trash2, Edit2, Plus } from 'lucide-react';
 import { Carousel } from '../ui/carousel';
-import { format } from 'date-fns';
+import {
+    getEventCategories,
+    getSubCategories,
+    getSubSubCategories,
+    isValidEventCategoryForOrganization
+} from '../../constants/eventCategories';
 
 const EventTypeManagement: React.FC = () => {
     const navigate = useNavigate();
@@ -35,7 +34,9 @@ const EventTypeManagement: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
-    const [selectedEventType, setSelectedEventType] = useState<EventType | null>(null);
+    const [selectedType, setSelectedType] = useState<string>('all');
+    const [selectedSubType, setSelectedSubType] = useState<string>('all');
+    const [organizationType, setOrganizationType] = useState<string>('');
 
     useEffect(() => {
         fetchData();
@@ -56,6 +57,12 @@ const EventTypeManagement: React.FC = () => {
                 }
             };
 
+            // Fetch organization data to get type
+            const orgResponse = await axios.get(`${organization}/profile`, config);
+            if (orgResponse.data.success) {
+                setOrganizationType(orgResponse.data.data.type);
+            }
+
             const [eventTypesResponse, facilitiesResponse] = await Promise.all([
                 axios.get(eventTypesRoute, config),
                 axios.get(facilitiesRoute, config)
@@ -74,7 +81,6 @@ const EventTypeManagement: React.FC = () => {
             }
         } catch (error: any) {
             if (error.response?.status === 401) {
-                // Token expired or invalid
                 localStorage.removeItem('token');
                 navigate('/organization/login');
             }
@@ -82,6 +88,31 @@ const EventTypeManagement: React.FC = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Get allowed categories based on organization type
+    const getAllowedCategories = () => {
+        return ORGANIZATION_EVENT_MAPPING[organizationType] || [];
+    };
+
+    // Filter event types based on selected filters
+    const filteredEventTypes = eventTypes.filter(type => {
+        const categoryMatch = selectedCategory === 'all' || type.category === selectedCategory;
+        const typeMatch = selectedType === 'all' || type.type === selectedType;
+        const subTypeMatch = selectedSubType === 'all' || type.subType === selectedSubType;
+        return categoryMatch && typeMatch && subTypeMatch;
+    });
+
+    // Get unique types for the selected category
+    const getTypesForCategory = (category: string): string[] => {
+        if (category === 'all') return [];
+        return getSubCategories(category).map(type => type.value);
+    };
+
+    // Get unique subtypes for the selected type
+    const getSubTypesForType = (type: string): string[] => {
+        if (type === 'all') return [];
+        return getSubSubCategories(selectedCategory, type).map(subType => subType.value);
     };
 
     const handleDelete = async (id: string) => {
@@ -124,10 +155,6 @@ const EventTypeManagement: React.FC = () => {
         }
     };
 
-    const filteredEventTypes = selectedCategory === 'all'
-        ? eventTypes
-        : eventTypes.filter(type => type.category === selectedCategory);
-
     const getCategoryIcon = (category: string) => {
         switch (category) {
             case 'medical':
@@ -165,21 +192,72 @@ const EventTypeManagement: React.FC = () => {
                     <h1 className="text-3xl font-bold mb-2">Event Types</h1>
                     <p className="text-gray-600">Manage your event types and packages</p>
                 </div>
+
                 <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                     <Select
                         value={selectedCategory}
-                        onValueChange={setSelectedCategory}
+                        onValueChange={(value) => {
+                            setSelectedCategory(value);
+                            setSelectedType('all');
+                            setSelectedSubType('all');
+                        }}
                     >
                         <SelectTrigger className="w-full md:w-[200px]">
                             <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">All Categories</SelectItem>
-                            <SelectItem value="medical">Medical Events</SelectItem>
-                            <SelectItem value="social">Social Events</SelectItem>
-                            <SelectItem value="corporate">Corporate Events</SelectItem>
+                            {getEventCategories()
+                                .filter(cat => isValidEventCategoryForOrganization(organizationType, cat.value))
+                                .map((category) => (
+                                    <SelectItem key={category.value} value={category.value}>
+                                        {category.label}
+                                    </SelectItem>
+                                ))}
                         </SelectContent>
                     </Select>
+
+                    {selectedCategory !== 'all' && (
+                        <Select
+                            value={selectedType}
+                            onValueChange={(value) => {
+                                setSelectedType(value);
+                                setSelectedSubType('all');
+                            }}
+                        >
+                            <SelectTrigger className="w-full md:w-[200px]">
+                                <SelectValue placeholder="Select type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Types</SelectItem>
+                                {getSubCategories(selectedCategory).map((type) => (
+                                    <SelectItem key={type.value} value={type.value}>
+                                        {type.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    )}
+
+                    {selectedType !== 'all' && (
+                        <Select
+                            value={selectedSubType}
+                            onValueChange={setSelectedSubType}
+                        >
+                            <SelectTrigger className="w-full md:w-[200px]">
+                                <SelectValue placeholder="Select subtype" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Subtypes</SelectItem>
+                                {getSubSubCategories(selectedCategory, selectedType).map((subType) => (
+                                    <SelectItem key={subType.value} value={subType.value}>
+                                        {subType.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    )}
+
                     <Button
                         onClick={() => navigate('/organization/event-types/new')}
                         className="w-full md:w-auto"

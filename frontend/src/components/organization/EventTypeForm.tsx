@@ -7,8 +7,12 @@ import { Label } from '../ui/label';
 import { Button } from '../ui/button';
 import { Alert } from '../ui/alert';
 import LoadingSpinner from '../ui/loadingSpinner';
-import { eventTypesRoute, facilitiesRoute } from '../../constants';
+import { eventTypesRoute, facilitiesRoute, organization } from '../../constants';
 import { EventType, Facility } from '../../types/event';
+import { EVENT_TYPE_OPTIONS, EVENT_SUBTYPE_OPTIONS } from '../../constants/eventOptions';
+import { Textarea } from '../ui/textarea';
+import { ORGANIZATION_EVENT_MAPPING } from '../../constants/organizationEventMapping';
+import { EventTypeFormData } from '../../types/event';
 import {
     Select,
     SelectContent,
@@ -16,39 +20,22 @@ import {
     SelectTrigger,
     SelectValue,
 } from '../ui/select';
-import { Checkbox } from '../ui/checkbox';
-import { Textarea } from '../ui/textarea';
+import {
+    getEventCategories,
+    getSubCategories,
+    getSubSubCategories,
+    isValidEventCategoryForOrganization
+} from '../../constants/eventCategories';
 
-interface EventTypeFormData {
-    category: 'medical' | 'social' | 'corporate';
-    type: string;
-    subType: string;
-    description: string;
-    imageUrl: string;
-    galleryImages: string[];
-    requiredFacilities: string[];
-    packages: {
-        name: string;
-        description: string;
-        price: number;
-        duration: number;
-        includedFacilities: string[];
-        maxCapacity: number;
-        imageUrl?: string;
-    }[];
-    customFields: {
-        name: string;
-        type: 'text' | 'number' | 'boolean' | 'select';
-        required: boolean;
-        options?: string[];
-    }[];
-    addOnFeatures?: {
-        name: string;
-        description: string;
-        enabled: boolean;
-        config?: Record<string, any>;
-    }[];
-}
+const defaultPackage = {
+    name: '',
+    description: '',
+    price: 0,
+    duration: 1,
+    includedFacilities: [],
+    maxCapacity: 1,
+    imageUrl: ''
+};
 
 const EventTypeForm: React.FC = () => {
     const navigate = useNavigate();
@@ -57,26 +44,24 @@ const EventTypeForm: React.FC = () => {
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [facilities, setFacilities] = useState<Facility[]>([]);
+    const [organizationType, setOrganizationType] = useState<string>('');
     const [formData, setFormData] = useState<EventTypeFormData>({
-        category: 'social',
+        category: '',
         type: '',
         subType: '',
         description: '',
         imageUrl: '',
         galleryImages: [],
         requiredFacilities: [],
-        packages: [{
-            name: '',
-            description: '',
-            price: 0,
-            duration: 1,
-            includedFacilities: [],
-            maxCapacity: 50,
-            imageUrl: ''
-        }],
+        packages: [{ ...defaultPackage }],
         customFields: [],
         addOnFeatures: []
     });
+
+    // Get allowed categories based on organization type
+    const getAllowedCategories = () => {
+        return ORGANIZATION_EVENT_MAPPING[organizationType] || [];
+    };
 
     useEffect(() => {
         if (id && !/^[0-9a-fA-F]{24}$/.test(id)) {
@@ -89,7 +74,6 @@ const EventTypeForm: React.FC = () => {
 
     const fetchData = async () => {
         try {
-            setLoading(true);
             const token = localStorage.getItem('token');
             if (!token) {
                 navigate('/organization/login');
@@ -102,84 +86,85 @@ const EventTypeForm: React.FC = () => {
                 }
             };
 
-            const [facilitiesResponse, eventTypeResponse] = await Promise.all([
-                axios.get(facilitiesRoute, config),
-                id ? axios.get(`${eventTypesRoute}/${id}`, config) : Promise.resolve(null)
-            ]);
+            // Fetch organization data to get type
+            const orgResponse = await axios.get(`${organization}/profile`, config);
+            if (orgResponse.data.success) {
+                setOrganizationType(orgResponse.data.data.type);
+                // If editing, check if the event type category is allowed for this organization
+                if (id) {
+                    const eventTypeResponse = await axios.get(`${eventTypesRoute}/${id}`, config);
+                    if (eventTypeResponse.data.success) {
+                        const data = eventTypeResponse.data.data;
+                        const allowedCategories = ORGANIZATION_EVENT_MAPPING[orgResponse.data.data.type] || [];
+                        if (!allowedCategories.includes(data.category)) {
+                            setError('You are not authorized to edit this event type');
+                            setLoading(false);
+                            return;
+                        }
+                        // Ensure all required fields are present
+                        setFormData({
+                            category: data.category || '',
+                            type: data.type || '',
+                            subType: data.subType || '',
+                            description: data.description || '',
+                            imageUrl: data.imageUrl || '',
+                            galleryImages: data.galleryImages || [],
+                            requiredFacilities: data.requiredFacilities || [],
+                            packages: data.packages?.length ? data.packages : [{ ...defaultPackage }],
+                            customFields: data.customFields || [],
+                            addOnFeatures: data.addOnFeatures || []
+                        });
+                    }
+                }
+            }
 
+            // Fetch facilities
+            const facilitiesResponse = await axios.get(facilitiesRoute, config);
             if (facilitiesResponse.data.success) {
                 setFacilities(facilitiesResponse.data.data);
             }
 
-            if (eventTypeResponse?.data.success) {
-                setFormData(eventTypeResponse.data.data);
-            } else if (id) {
-                setError('Event type not found');
-            }
+            setLoading(false);
         } catch (error: any) {
-            if (error.response?.status === 404) {
-                setError('Event type not found');
-            } else if (error.response?.status === 401) {
+            if (error.response?.status === 401) {
                 localStorage.removeItem('token');
                 navigate('/organization/login');
-            } else {
-                setError(error.response?.data?.error || 'Failed to fetch data');
             }
-        } finally {
+            setError(error.response?.data?.error || 'Failed to fetch data');
             setLoading(false);
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleCategoryChange = (value: 'medical' | 'social' | 'corporate') => {
-        setFormData(prev => ({
-            ...prev,
-            category: value,
-            addOnFeatures: getDefaultAddOnFeatures(value)
-        }));
-    };
-
-    const getDefaultAddOnFeatures = (category: 'medical' | 'social' | 'corporate') => {
-        switch (category) {
-            case 'medical':
-                return [{
-                    name: 'doctorSelection',
-                    description: 'Select doctor for the meeting',
-                    enabled: true,
-                    config: {
-                        doctors: []
-                    }
-                }];
-            case 'social':
-                return [{
-                    name: 'guestManagement',
-                    description: 'Manage wedding guests',
-                    enabled: true,
-                    config: {
-                        maxGuests: 100,
-                        guestCategories: ['Family', 'Friends', 'Colleagues']
-                    }
-                }];
-            case 'corporate':
-                return [{
-                    name: 'rsvpManagement',
-                    description: 'Manage RSVPs for the event',
-                    enabled: true,
-                    config: {
-                        maxAttendees: 50,
-                        requireApproval: true
-                    }
-                }];
-            default:
-                return [];
+    const handleCategoryChange = (category: string) => {
+        // Check if the category is allowed for this organization
+        if (!isValidEventCategoryForOrganization(organizationType, category)) {
+            setError('This category is not allowed for your organization type');
+            return;
         }
+        setFormData(prev => ({
+            ...prev,
+            category,
+            type: '',
+            subType: '',
+            addOnFeatures: []
+        }));
+    };
+
+    const handleTypeChange = (type: string) => {
+        setFormData(prev => ({
+            ...prev,
+            type,
+            subType: '',
+            addOnFeatures: []
+        }));
+    };
+
+    const handleSubTypeChange = (subType: string) => {
+        setFormData(prev => ({
+            ...prev,
+            subType,
+            addOnFeatures: []
+        }));
     };
 
     const handlePackageChange = (index: number, field: string, value: any) => {
@@ -194,15 +179,7 @@ const EventTypeForm: React.FC = () => {
     const addPackage = () => {
         setFormData(prev => ({
             ...prev,
-            packages: [...prev.packages, {
-                name: '',
-                description: '',
-                price: 0,
-                duration: 1,
-                includedFacilities: [],
-                maxCapacity: 50,
-                imageUrl: ''
-            }]
+            packages: [...prev.packages, { ...defaultPackage }]
         }));
     };
 
@@ -213,29 +190,28 @@ const EventTypeForm: React.FC = () => {
         }));
     };
 
-    const addGalleryImage = () => {
-        setFormData(prev => ({
-            ...prev,
-            galleryImages: [...prev.galleryImages, '']
-        }));
-    };
-
-    const removeGalleryImage = (index: number) => {
-        setFormData(prev => ({
-            ...prev,
-            galleryImages: prev.galleryImages.filter((_, i) => i !== index)
-        }));
-    };
-
-    const updateGalleryImage = (index: number, url: string) => {
-        setFormData(prev => ({
-            ...prev,
-            galleryImages: prev.galleryImages.map((img, i) => i === index ? url : img)
-        }));
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validate required fields
+        if (!formData.category || !formData.type || !formData.subType || !formData.description || !formData.imageUrl) {
+            setError('Please fill in all required fields');
+            return;
+        }
+
+        // Validate packages
+        if (formData.packages.length === 0) {
+            setError('At least one package is required');
+            return;
+        }
+
+        for (const pkg of formData.packages) {
+            if (!pkg.name || !pkg.description || pkg.price <= 0 || pkg.duration <= 0 || pkg.maxCapacity <= 0) {
+                setError('Please fill in all required package fields');
+                return;
+            }
+        }
+
         setSaving(true);
         setError(null);
 
@@ -266,7 +242,6 @@ const EventTypeForm: React.FC = () => {
             }
         } catch (error: any) {
             if (error.response?.status === 401) {
-                // Token expired or invalid
                 localStorage.removeItem('token');
                 navigate('/organization/login');
             }
@@ -286,49 +261,91 @@ const EventTypeForm: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-6">
                     {id ? 'Edit Event Type' : 'Create Event Type'}
                 </h2>
-
                 {error && <Alert variant="destructive" className="mb-4">{error}</Alert>}
-
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Category Selection */}
                         <div>
-                            <Label htmlFor="category">Category</Label>
+                            <Label>Event Category</Label>
                             <Select
                                 value={formData.category}
                                 onValueChange={handleCategoryChange}
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select category" />
+                                    <SelectValue placeholder="Select a category" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="medical">Medical Events</SelectItem>
-                                    <SelectItem value="social">Social Events</SelectItem>
-                                    <SelectItem value="corporate">Corporate Events</SelectItem>
+                                    {getEventCategories()
+                                        .filter(cat => isValidEventCategoryForOrganization(organizationType, cat.value))
+                                        .map((category) => (
+                                            <SelectItem key={category.value} value={category.value}>
+                                                {category.label}
+                                            </SelectItem>
+                                        ))}
                                 </SelectContent>
                             </Select>
+                            {formData.category && (
+                                <p className="text-sm text-gray-500 mt-1">
+                                    {getEventCategories().find(cat => cat.value === formData.category)?.description}
+                                </p>
+                            )}
                         </div>
 
-                        <div>
-                            <Label htmlFor="type">Event Type</Label>
-                            <Input
-                                id="type"
-                                name="type"
-                                value={formData.type}
-                                onChange={handleChange}
-                                placeholder="e.g., Wedding, Conference"
-                            />
-                        </div>
+                        {/* Type Selection */}
+                        {formData.category && (
+                            <div>
+                                <Label>Event Type</Label>
+                                <Select
+                                    value={formData.type}
+                                    onValueChange={handleTypeChange}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {getSubCategories(formData.category).map((type) => (
+                                            <SelectItem key={type.value} value={type.value}>
+                                                {type.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {formData.type && (
+                                    <p className="text-sm text-gray-500 mt-1">
+                                        {getSubCategories(formData.category)
+                                            .find(type => type.value === formData.type)?.description}
+                                    </p>
+                                )}
+                            </div>
+                        )}
 
-                        <div>
-                            <Label htmlFor="subType">Sub Type</Label>
-                            <Input
-                                id="subType"
-                                name="subType"
-                                value={formData.subType}
-                                onChange={handleChange}
-                                placeholder="e.g., Traditional Wedding, Tech Conference"
-                            />
-                        </div>
+                        {/* Subtype Selection */}
+                        {formData.type && (
+                            <div>
+                                <Label>Event Subtype</Label>
+                                <Select
+                                    value={formData.subType}
+                                    onValueChange={handleSubTypeChange}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a subtype" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {getSubSubCategories(formData.category, formData.type).map((subType) => (
+                                            <SelectItem key={subType.value} value={subType.value}>
+                                                {subType.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {formData.subType && (
+                                    <p className="text-sm text-gray-500 mt-1">
+                                        {getSubSubCategories(formData.category, formData.type)
+                                            .find(subType => subType.value === formData.subType)?.description}
+                                    </p>
+                                )}
+                            </div>
+                        )}
 
                         <div className="md:col-span-2">
                             <Label htmlFor="description">Description</Label>
@@ -336,18 +353,18 @@ const EventTypeForm: React.FC = () => {
                                 id="description"
                                 name="description"
                                 value={formData.description}
-                                onChange={handleChange}
+                                onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                                 placeholder="Describe this event type..."
                             />
                         </div>
 
-                        <div className="md:col-span-2">
+                        <div>
                             <Label htmlFor="imageUrl">Main Image URL</Label>
                             <Input
                                 id="imageUrl"
                                 name="imageUrl"
                                 value={formData.imageUrl}
-                                onChange={handleChange}
+                                onChange={(e) => setFormData(prev => ({ ...prev, imageUrl: e.target.value }))}
                                 placeholder="Enter image URL"
                             />
                             {formData.imageUrl && (
@@ -364,7 +381,7 @@ const EventTypeForm: React.FC = () => {
                         <div className="md:col-span-2">
                             <div className="flex justify-between items-center mb-2">
                                 <Label>Gallery Images</Label>
-                                <Button type="button" onClick={addGalleryImage}>
+                                <Button type="button" onClick={() => setFormData(prev => ({ ...prev, galleryImages: [...prev.galleryImages, ''] }))}>
                                     Add Image
                                 </Button>
                             </div>
@@ -374,7 +391,11 @@ const EventTypeForm: React.FC = () => {
                                         <div className="flex-1">
                                             <Input
                                                 value={url}
-                                                onChange={(e) => updateGalleryImage(index, e.target.value)}
+                                                onChange={(e) => {
+                                                    const newImages = [...formData.galleryImages];
+                                                    newImages[index] = e.target.value;
+                                                    setFormData(prev => ({ ...prev, galleryImages: newImages }));
+                                                }}
                                                 placeholder="Enter image URL"
                                             />
                                             {url && (
@@ -390,7 +411,10 @@ const EventTypeForm: React.FC = () => {
                                         <Button
                                             type="button"
                                             variant="destructive"
-                                            onClick={() => removeGalleryImage(index)}
+                                            onClick={() => {
+                                                const newImages = formData.galleryImages.filter((_, i) => i !== index);
+                                                setFormData(prev => ({ ...prev, galleryImages: newImages }));
+                                            }}
                                         >
                                             Remove
                                         </Button>
@@ -398,164 +422,166 @@ const EventTypeForm: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <Label>Required Facilities</Label>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                            {facilities.map(facility => (
-                                <div key={facility._id} className="flex items-center space-x-2">
-                                    <Checkbox
-                                        id={`facility-${facility._id}`}
-                                        checked={formData.requiredFacilities.includes(facility._id)}
-                                        onCheckedChange={(checked) => {
-                                            setFormData(prev => ({
-                                                ...prev,
-                                                requiredFacilities: checked
-                                                    ? [...prev.requiredFacilities, facility._id]
-                                                    : prev.requiredFacilities.filter(id => id !== facility._id)
-                                            }));
-                                        }}
-                                    />
-                                    <Label htmlFor={`facility-${facility._id}`}>
-                                        {facility.name}
-                                    </Label>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div className="flex justify-between items-center mb-4">
-                            <Label>Packages</Label>
-                            <Button type="button" onClick={addPackage}>
-                                Add Package
-                            </Button>
+                        <div className="md:col-span-2">
+                            <Label>Required Facilities</Label>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                                {facilities.map(facility => (
+                                    <div key={facility._id} className="flex items-center space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            id={`facility-${facility._id}`}
+                                            checked={formData.requiredFacilities.includes(facility._id)}
+                                            onChange={(e) => {
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    requiredFacilities: e.target.checked
+                                                        ? [...prev.requiredFacilities, facility._id]
+                                                        : prev.requiredFacilities.filter(id => id !== facility._id)
+                                                }));
+                                            }}
+                                        />
+                                        <Label htmlFor={`facility-${facility._id}`}>
+                                            {facility.name}
+                                        </Label>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="space-y-4">
-                            {formData.packages.map((pkg, index) => (
-                                <Card key={index} className="p-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <Label>Package Name</Label>
-                                            <Input
-                                                value={pkg.name}
-                                                onChange={(e) => handlePackageChange(index, 'name', e.target.value)}
-                                                placeholder="e.g., Basic Package"
-                                            />
-                                        </div>
+                        <div className="md:col-span-2">
+                            <div className="flex justify-between items-center mb-4">
+                                <Label>Packages</Label>
+                                <Button type="button" onClick={addPackage}>
+                                    Add Package
+                                </Button>
+                            </div>
 
-                                        <div>
-                                            <Label>Price (₹)</Label>
-                                            <Input
-                                                type="number"
-                                                value={pkg.price}
-                                                onChange={(e) => handlePackageChange(index, 'price', Number(e.target.value))}
-                                                min="0"
-                                            />
-                                        </div>
+                            <div className="space-y-4">
+                                {formData.packages.map((pkg, index) => (
+                                    <Card key={index} className="p-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <Label>Package Name</Label>
+                                                <Input
+                                                    value={pkg.name}
+                                                    onChange={(e) => handlePackageChange(index, 'name', e.target.value)}
+                                                    placeholder="e.g., Basic Package"
+                                                />
+                                            </div>
 
-                                        <div>
-                                            <Label>Duration (hours)</Label>
-                                            <Input
-                                                type="number"
-                                                value={pkg.duration}
-                                                onChange={(e) => handlePackageChange(index, 'duration', Number(e.target.value))}
-                                                min="1"
-                                            />
-                                        </div>
+                                            <div>
+                                                <Label>Price (₹)</Label>
+                                                <Input
+                                                    type="number"
+                                                    value={pkg.price}
+                                                    onChange={(e) => handlePackageChange(index, 'price', Number(e.target.value))}
+                                                    min="0"
+                                                />
+                                            </div>
 
-                                        <div>
-                                            <Label>Max Capacity</Label>
-                                            <Input
-                                                type="number"
-                                                value={pkg.maxCapacity}
-                                                onChange={(e) => handlePackageChange(index, 'maxCapacity', Number(e.target.value))}
-                                                min="1"
-                                            />
-                                        </div>
+                                            <div>
+                                                <Label>Duration (hours)</Label>
+                                                <Input
+                                                    type="number"
+                                                    value={pkg.duration}
+                                                    onChange={(e) => handlePackageChange(index, 'duration', Number(e.target.value))}
+                                                    min="1"
+                                                />
+                                            </div>
 
-                                        <div className="md:col-span-2">
-                                            <Label>Description</Label>
-                                            <Textarea
-                                                value={pkg.description}
-                                                onChange={(e) => handlePackageChange(index, 'description', e.target.value)}
-                                                placeholder="Describe this package..."
-                                            />
-                                        </div>
+                                            <div>
+                                                <Label>Max Capacity</Label>
+                                                <Input
+                                                    type="number"
+                                                    value={pkg.maxCapacity}
+                                                    onChange={(e) => handlePackageChange(index, 'maxCapacity', Number(e.target.value))}
+                                                    min="1"
+                                                />
+                                            </div>
 
-                                        <div className="md:col-span-2">
-                                            <Label>Package Image URL</Label>
-                                            <Input
-                                                value={pkg.imageUrl}
-                                                onChange={(e) => handlePackageChange(index, 'imageUrl', e.target.value)}
-                                                placeholder="Enter package image URL"
-                                            />
-                                            {pkg.imageUrl && (
-                                                <div className="mt-2">
-                                                    <img
-                                                        src={pkg.imageUrl}
-                                                        alt={`Package ${index + 1} preview`}
-                                                        className="w-32 h-32 object-cover rounded-lg"
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
+                                            <div className="md:col-span-2">
+                                                <Label>Description</Label>
+                                                <Textarea
+                                                    value={pkg.description}
+                                                    onChange={(e) => handlePackageChange(index, 'description', e.target.value)}
+                                                    placeholder="Describe this package..."
+                                                />
+                                            </div>
 
-                                        <div className="md:col-span-2">
-                                            <Label>Included Facilities</Label>
-                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                                                {facilities.map(facility => (
-                                                    <div key={facility._id} className="flex items-center space-x-2">
-                                                        <Checkbox
-                                                            id={`package-${index}-facility-${facility._id}`}
-                                                            checked={pkg.includedFacilities.includes(facility._id)}
-                                                            onCheckedChange={(checked) => {
-                                                                handlePackageChange(
-                                                                    index,
-                                                                    'includedFacilities',
-                                                                    checked
-                                                                        ? [...pkg.includedFacilities, facility._id]
-                                                                        : pkg.includedFacilities.filter(id => id !== facility._id)
-                                                                );
-                                                            }}
+                                            <div>
+                                                <Label>Package Image URL</Label>
+                                                <Input
+                                                    value={pkg.imageUrl}
+                                                    onChange={(e) => handlePackageChange(index, 'imageUrl', e.target.value)}
+                                                    placeholder="Enter package image URL"
+                                                />
+                                                {pkg.imageUrl && (
+                                                    <div className="mt-2">
+                                                        <img
+                                                            src={pkg.imageUrl}
+                                                            alt={`Package ${index + 1} preview`}
+                                                            className="w-32 h-32 object-cover rounded-lg"
                                                         />
-                                                        <Label htmlFor={`package-${index}-facility-${facility._id}`}>
-                                                            {facility.name}
-                                                        </Label>
                                                     </div>
-                                                ))}
+                                                )}
+                                            </div>
+
+                                            <div>
+                                                <Label>Included Facilities</Label>
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                                                    {facilities.map(facility => (
+                                                        <div key={facility._id} className="flex items-center space-x-2">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`package-${index}-facility-${facility._id}`}
+                                                                checked={pkg.includedFacilities.includes(facility._id)}
+                                                                onChange={(e) => {
+                                                                    handlePackageChange(
+                                                                        index,
+                                                                        'includedFacilities',
+                                                                        e.target.checked
+                                                                            ? [...pkg.includedFacilities, facility._id]
+                                                                            : pkg.includedFacilities.filter(id => id !== facility._id)
+                                                                    );
+                                                                }}
+                                                            />
+                                                            <Label htmlFor={`package-${index}-facility-${facility._id}`}>
+                                                                {facility.name}
+                                                            </Label>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {formData.packages.length > 1 && (
-                                        <Button
-                                            type="button"
-                                            variant="destructive"
-                                            className="mt-4"
-                                            onClick={() => removePackage(index)}
-                                        >
-                                            Remove Package
-                                        </Button>
-                                    )}
-                                </Card>
-                            ))}
+                                        {formData.packages.length > 1 && (
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                className="mt-4"
+                                                onClick={() => removePackage(index)}
+                                            >
+                                                Remove Package
+                                            </Button>
+                                        )}
+                                    </Card>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="flex justify-end gap-4">
-                        <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => navigate('/organization/event-types')}
-                        >
-                            Cancel
-                        </Button>
-                        <Button type="submit" disabled={saving}>
-                            {saving ? <LoadingSpinner /> : (id ? 'Update' : 'Create')}
-                        </Button>
+                        <div className="flex justify-end gap-4">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => navigate('/organization/event-types')}
+                            >
+                                Cancel
+                            </Button>
+                            <Button type="submit" disabled={saving}>
+                                {saving ? <LoadingSpinner /> : (id ? 'Update' : 'Create')}
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </Card>

@@ -20,7 +20,6 @@ const facilitySchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['seating', 'catering', 'decoration', 'av', 'hospitality', 'medical'],
         required: true
     },
     isAvailable: {

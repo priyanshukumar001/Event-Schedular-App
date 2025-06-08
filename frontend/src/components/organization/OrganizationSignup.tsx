@@ -40,6 +40,9 @@ const organizationTypes = [
     'Conference Center',
     'Wedding Venue',
     'Event Space',
+    'Hospital',
+    'Clinic',
+    'Medical Center',
     'Other'
 ];
 
@@ -155,6 +158,12 @@ const OrganizationSignup: React.FC = () => {
             return;
         }
 
+        if (!organizationTypes.includes(formData.type)) {
+            setError('Please select a valid organization type');
+            setLoading(false);
+            return;
+        }
+
         try {
             const { confirmPassword, ...dataToSubmit } = formData;
             const response = await axios.post(`${organization}/register`, dataToSubmit);
@@ -206,7 +215,7 @@ const OrganizationSignup: React.FC = () => {
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select organization type" />
                                 </SelectTrigger>
-                                <SelectContent className='bg-amber-50'>
+                                <SelectContent>
                                     {organizationTypes.map((type) => (
                                         <SelectItem key={type} value={type}>
                                             {type}
@@ -214,6 +223,9 @@ const OrganizationSignup: React.FC = () => {
                                     ))}
                                 </SelectContent>
                             </Select>
+                            <p className="text-sm text-gray-500 mt-1">
+                                Select the type that best describes your organization. This will determine what types of events you can host.
+                            </p>
                         </div>
 
                         <div>

@@ -6,7 +6,7 @@ export const validateFacility = (data) => {
         description: Joi.string().required(),
         price: Joi.number().min(0).required(),
         priceUnit: Joi.string().valid('hour', 'day', 'event').required(),
-        category: Joi.string().valid('seating', 'catering', 'decoration', 'av', 'hospitality', 'medical').required(),
+        category: Joi.string().required(),
         isAvailable: Joi.boolean().default(true),
         imageUrl: Joi.string().uri()
     });

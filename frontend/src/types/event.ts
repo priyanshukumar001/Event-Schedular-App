@@ -117,4 +117,41 @@ export interface Booking {
         email: string;
         phone: string;
     };
+}
+
+export interface EventTypeFormData {
+    category: string;
+    type: string;
+    subType: string;
+    description: string;
+    imageUrl: string;
+    galleryImages: string[];
+    requiredFacilities: string[];
+    packages: EventPackage[];
+    customFields: CustomField[];
+    addOnFeatures: AddOnFeature[];
+}
+
+export interface EventPackage {
+    name: string;
+    description: string;
+    price: number;
+    duration: number;
+    includedFacilities: string[];
+    maxCapacity: number;
+    imageUrl?: string;
+}
+
+export interface CustomField {
+    name: string;
+    type: 'text' | 'number' | 'boolean' | 'select';
+    required: boolean;
+    options?: string[];
+}
+
+export interface AddOnFeature {
+    name: string;
+    description: string;
+    enabled: boolean;
+    config?: Record<string, any>;
 } 

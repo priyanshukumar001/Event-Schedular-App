@@ -32,4 +32,32 @@ const auth = async (req, res, next) => {
     }
 };
 
-export { auth }; 
+// New middleware for profile routes that doesn't check status
+const authProfile = async (req, res, next) => {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+
+        if (!token) {
+            return res.status(401).json({ success: false, error: 'No authentication token, access denied' });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const organization = await Organization.findById(decoded.id).select('-password');
+
+        if (!organization) {
+            return res.status(401).json({ success: false, error: 'Organization not found' });
+        }
+
+        // Set both user and organization in the request without checking status
+        req.user = {
+            id: organization._id,
+            type: 'organization'
+        };
+        req.organization = organization;
+        next();
+    } catch (error) {
+        res.status(401).json({ success: false, error: 'Token is not valid' });
+    }
+};
+
+export { auth, authProfile }; 

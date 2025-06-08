@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { auth } from '../middleware/auth.js';
 import EventType from '../models/EventType.js';
 import Organization from '../models/Organization.js';
+import { isValidEventCategoryForOrganization } from '../constants/organizationEventMapping.js';
 
 const router = express.Router();
 
@@ -56,6 +57,20 @@ router.post('/', auth, async (req, res) => {
             });
         }
 
+        // Get organization and validate event category
+        const organization = await Organization.findById(req.user.id);
+        if (!organization) {
+            return res.status(404).json({ success: false, error: 'Organization not found' });
+        }
+
+        // Check if organization is allowed to create this type of event
+        if (!isValidEventCategoryForOrganization(organization.type, category)) {
+            return res.status(403).json({
+                success: false,
+                error: `Your organization type (${organization.type}) is not authorized to create ${category} events`
+            });
+        }
+
         // Create event type
         const eventType = new EventType({
             type,
@@ -77,12 +92,6 @@ router.post('/', auth, async (req, res) => {
         await eventType.save();
 
         // Update organization's event types
-        const organization = await Organization.findById(req.user.id);
-        if (!organization) {
-            // If organization not found, rollback event type creation
-            await EventType.findByIdAndDelete(eventType._id);
-            return res.status(404).json({ success: false, error: 'Organization not found' });
-        }
         organization.eventTypes.push(eventType._id);
         await organization.save();
 

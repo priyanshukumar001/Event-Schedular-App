@@ -35,7 +35,7 @@ const organizationSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true,
-        enum: ['Hotel', 'Restaurant', 'Conference Center', 'Wedding Venue', 'Event Space', 'Other']
+        enum: ['Hotel', 'Restaurant', 'Conference Center', 'Wedding Venue', 'Event Space', 'Hospital', 'Clinic', 'Medical Center', 'Other']
     },
     contact: { type: contactSchema, required: true },
     gstNumber: { type: String, unique: true },
