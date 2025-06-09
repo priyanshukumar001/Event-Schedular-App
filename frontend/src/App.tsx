@@ -90,11 +90,19 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: <EventDiscoveryPage />
+                                element: (
+                                    <ProtectedRoute>
+                                        <EventDiscoveryPage />
+                                    </ProtectedRoute>
+                                )
                             },
                             {
                                 path: ':id',
-                                element: <EventDetailsPage />
+                                element: (
+                                    <ProtectedRoute>
+                                        <EventDetailsPage />
+                                    </ProtectedRoute>
+                                )
                             }
                         ]
                     }
