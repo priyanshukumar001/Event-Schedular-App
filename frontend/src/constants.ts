@@ -58,12 +58,12 @@ export const SLOT_ROUTES = {
 };
 
 // Organization routes
-export const organization = `${API_BASE_URL}/organization`;
+export const organization = `${API_BASE_URL}/api/organization`;
 
 // Event management routes (under organization)
-export const eventTypesRoute = `${API_BASE_URL}/event-types`;
-export const facilitiesRoute = `${API_BASE_URL}/facilities`;
-export const bookingsRoute = `${API_BASE_URL}/bookings`;
+export const eventTypesRoute = `${API_BASE_URL}/api/event-types`;
+export const facilitiesRoute = `${API_BASE_URL}/api/facilities`;
+export const bookingsRoute = `${API_BASE_URL}/api/bookings`;
 
 // Admin routes
 export const admin = `${API_BASE_URL}/admin`;

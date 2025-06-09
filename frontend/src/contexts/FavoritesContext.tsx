@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
+import { API_BASE_URL } from '../constants';
 
 interface Favorite {
     type: string;
@@ -48,10 +49,16 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const fetchFavorites = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('api/favorites');
-            setFavorites(response.data);
+            const response = await axios.get(`${API_BASE_URL}/api/favorites`);
+            if (response.data.success) {
+                setFavorites(response.data.data || []);
+            } else {
+                setFavorites([]);
+                setError(response.data.message || 'Failed to fetch favorites');
+            }
         } catch (error) {
             console.error('Error fetching favorites:', error);
+            setFavorites([]);
             setError('Failed to fetch favorites');
         } finally {
             setLoading(false);
@@ -62,11 +69,13 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         try {
             const isFavorite = favorites.some(fav => fav.type === type && fav.data._id === itemId);
             if (isFavorite) {
-                await axios.delete(`/favorites/${type}/${itemId}`);
+                await axios.delete(`${API_BASE_URL}/api/favorites/${type}/${itemId}`);
                 setFavorites(prev => prev.filter(fav => !(fav.type === type && fav.data._id === itemId)));
             } else {
-                const response = await axios.post('api/favorites', { type, itemId });
-                setFavorites(prev => [...prev, response.data]);
+                const response = await axios.post(`${API_BASE_URL}/api/favorites`, { type, itemId });
+                if (response.data.success) {
+                    setFavorites(prev => [...prev, response.data.data]);
+                }
             }
             return { success: true };
         } catch (error) {
@@ -76,6 +85,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     };
 
     const isFavorite = (type: string, itemId: string) => {
+        if (!Array.isArray(favorites)) return false;
         return favorites.some(fav => fav.type === type && fav.data._id === itemId);
     };
 
