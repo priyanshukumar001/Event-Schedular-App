@@ -5,11 +5,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { auth } from './middleware/auth.js';
+import { userAuth } from './middleware/userAuth.js';
 import organizationRoutes from './api/organization.js';
 import eventTypeRoutes from './api/eventTypeRoutes.js';
 import facilityRoutes from './api/facilityRoutes.js';
 import bookingRoutes from './api/bookingRoutes.js';
 import authRoutes from './api/auth.js';
+import favoriteRoutes from './api/favoriteRoutes.js';
 // import UserRouter from './api/User_route.js';
 // import AdminRouter from './api/Admin_route.js';
 // import AvailableRoute from './api/Available_route.js';
@@ -54,6 +56,7 @@ app.use('/api/event-types', auth, eventTypeRoutes);
 app.use('/api/facilities', auth, facilityRoutes);
 app.use('/api/bookings', auth, bookingRoutes);
 app.use('/api/slots', slotRoutes);
+app.use('/api/favorites', userAuth, favoriteRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

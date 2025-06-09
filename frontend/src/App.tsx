@@ -15,8 +15,10 @@ import EventTypeForm from './components/organization/EventTypeForm';
 import FacilityManagement from './components/organization/FacilityManagement';
 import AvailableSlotsRoute from './components/organization/AvailableSlotsRoute';
 import Profile from './components/user/Profile';
+import FavoritesPage from './components/favorites/FavoritesPage';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { FavoritesProvider } from './contexts/FavoritesContext';
 
 // Main page component with global context providers
 const Page = () => {
@@ -26,10 +28,12 @@ const Page = () => {
                 <SelectedDate>
                     <UserData>
                         <AdminData>
-                            <div className="min-h-[100vh] bg-gradient-to-b from-blue-50 to-blue-200">
-                                <Header />
-                                <Outlet />
-                            </div>
+                            <FavoritesProvider>
+                                <div className="min-h-[100vh] bg-gradient-to-b from-blue-50 to-blue-200">
+                                    <Header />
+                                    <Outlet />
+                                </div>
+                            </FavoritesProvider>
                         </AdminData>
                     </UserData>
                 </SelectedDate>
@@ -65,6 +69,14 @@ const router = createBrowserRouter([
                         element: (
                             <ProtectedRoute>
                                 <Profile />
+                            </ProtectedRoute>
+                        )
+                    },
+                    {
+                        path: 'favorites',
+                        element: (
+                            <ProtectedRoute>
+                                <FavoritesPage />
                             </ProtectedRoute>
                         )
                     }
