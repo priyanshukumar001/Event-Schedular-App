@@ -1,5 +1,5 @@
 // API Configuration
-export const API_BASE_URL = 'http://localhost:5000';
+export const API_BASE_URL = 'https://event-schedular-app-backend.vercel.app';
 
 // Auth Routes
 export const AUTH_ROUTES = {
