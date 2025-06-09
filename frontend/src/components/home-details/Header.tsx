@@ -12,19 +12,19 @@ const Header = () => {
     const [hasToken, setHasToken] = useState(false);
 
     useEffect(() => {
-        // Determine user type based on current route path
         const path = location.pathname;
+        const userToken = localStorage.getItem('userToken');
+        const orgToken = localStorage.getItem('token');
+
+        // Set user type based on path
         if (path.startsWith('/user/')) {
             setUserType('user');
-            // Check for user token
-            const userToken = localStorage.getItem('userToken');
             setHasToken(!!userToken);
         } else if (path.startsWith('/organization/')) {
             setUserType('organization');
-            // Check for organization token
-            const orgToken = localStorage.getItem('token');
             setHasToken(!!orgToken);
         } else {
+            // For root path or other paths
             setUserType(null);
             setHasToken(false);
         }
@@ -46,9 +46,10 @@ const Header = () => {
     };
 
     const renderNavLinks = () => {
-        if (!userType || !hasToken) return null;
+        const path = location.pathname;
 
-        if (userType === 'user') {
+        // Only show navigation if we're in user or organization section
+        if (path.startsWith('/user/')) {
             return (
                 <>
                     <Link to="/user/events" className="text-gray-700 hover:text-blue-brand font-medium">Events</Link>
@@ -58,7 +59,7 @@ const Header = () => {
             );
         }
 
-        if (userType === 'organization') {
+        if (path.startsWith('/organization/')) {
             return (
                 <>
                     <Link to="/organization/dashboard" className="text-gray-700 hover:text-blue-brand font-medium">Dashboard</Link>
@@ -68,13 +69,15 @@ const Header = () => {
             );
         }
 
+        // No navigation for root path or other paths
         return null;
     };
 
     const renderMobileNavLinks = () => {
-        if (!userType || !hasToken) return null;
+        const path = location.pathname;
 
-        if (userType === 'user') {
+        // Only show navigation if we're in user or organization section
+        if (path.startsWith('/user/')) {
             return (
                 <>
                     <Link to="/user/events" className="text-gray-700 hover:text-blue-brand font-medium py-2">Events</Link>
@@ -84,13 +87,82 @@ const Header = () => {
             );
         }
 
-        if (userType === 'organization') {
+        if (path.startsWith('/organization/')) {
             return (
                 <>
                     <Link to="/organization/dashboard" className="text-gray-700 hover:text-blue-brand font-medium py-2">Dashboard</Link>
                     <Link to="/organization/event-types" className="text-gray-700 hover:text-blue-brand font-medium py-2">Event Types</Link>
                     <Link to="/organization/facilities" className="text-gray-700 hover:text-blue-brand font-medium py-2">Facilities</Link>
                 </>
+            );
+        }
+
+        // No navigation for root path or other paths
+        return null;
+    };
+
+    const renderAuthButtons = () => {
+        const path = location.pathname;
+        const userToken = localStorage.getItem('userToken');
+        const orgToken = localStorage.getItem('token');
+
+        // Show login buttons only on root path
+        if (path === '/') {
+            if (userToken || orgToken) {
+                return (
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleLogout}
+                        className="text-gray-700 hover:text-blue-brand"
+                        title="Logout"
+                    >
+                        <LogOut className="h-5 w-5" />
+                    </Button>
+                );
+            }
+            return (
+                <div className='flex flex-row gap-4'>
+                    <Link to='/user/login'>
+                        <Button variant="outline" className="border-blue-brand text-blue-brand hover:bg-blue-brand hover:text-white w-full">
+                            User
+                        </Button>
+                    </Link>
+                    <Link to="/organization/login">
+                        <Button className="bg-blue-brand hover:bg-blue-700 text-white w-full">
+                            Organization
+                        </Button>
+                    </Link>
+                </div>
+            );
+        }
+
+        // For other paths, show logout only if corresponding token exists
+        if (path.startsWith('/user/') && userToken) {
+            return (
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleLogout}
+                    className="text-gray-700 hover:text-blue-brand"
+                    title="Logout"
+                >
+                    <LogOut className="h-5 w-5" />
+                </Button>
+            );
+        }
+
+        if (path.startsWith('/organization/') && orgToken) {
+            return (
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleLogout}
+                    className="text-gray-700 hover:text-blue-brand"
+                    title="Logout"
+                >
+                    <LogOut className="h-5 w-5" />
+                </Button>
             );
         }
 
@@ -112,30 +184,7 @@ const Header = () => {
                 </nav>
 
                 <div className="hidden md:flex space-x-4">
-                    {userType && hasToken ? (
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={handleLogout}
-                            className="text-gray-700 hover:text-blue-brand"
-                            title="Logout"
-                        >
-                            <LogOut className="h-5 w-5" />
-                        </Button>
-                    ) : (
-                        <div className='flex flex-row gap-4'>
-                            <Link to='/user/login'>
-                                <Button variant="outline" className="border-blue-brand text-blue-brand hover:bg-blue-brand hover:text-white w-full">
-                                    User
-                                </Button>
-                            </Link>
-                            <Link to="/organization/login">
-                                <Button className="bg-blue-brand hover:bg-blue-700 text-white w-full">
-                                    Organization
-                                </Button>
-                            </Link>
-                        </div>
-                    )}
+                    {renderAuthButtons()}
                 </div>
 
                 <div className="md:hidden">
@@ -159,29 +208,7 @@ const Header = () => {
                     <div className="flex flex-col px-4 py-4 space-y-3">
                         {renderMobileNavLinks()}
                         <div className="flex flex-col space-y-2 pt-2">
-                            {userType && hasToken ? (
-                                <Button
-                                    variant="ghost"
-                                    onClick={handleLogout}
-                                    className="text-gray-700 hover:text-blue-brand justify-start"
-                                >
-                                    <LogOut className="h-5 w-5 mr-2" />
-                                    Logout
-                                </Button>
-                            ) : (
-                                <div className='flex flex-row gap-4'>
-                                    <Link to='/user/login'>
-                                        <Button variant="outline" className="border-blue-brand text-blue-brand hover:bg-blue-brand hover:text-white w-full">
-                                            User
-                                        </Button>
-                                    </Link>
-                                    <Link to="/organization/login">
-                                        <Button className="bg-blue-brand hover:bg-blue-700 text-white w-full">
-                                            Organization
-                                        </Button>
-                                    </Link>
-                                </div>
-                            )}
+                            {renderAuthButtons()}
                         </div>
                     </div>
                 </div>

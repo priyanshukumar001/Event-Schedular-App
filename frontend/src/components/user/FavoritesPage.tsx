@@ -145,14 +145,14 @@ const FavoritesPage: React.FC = () => {
                                         <p className="text-sm text-gray-500 mb-2">{event.date}</p>
                                         <div className="flex items-center gap-2">
                                             <span className="text-yellow-500">★</span>
-                                            <span>{event.rating.toFixed(1)}</span>
-                                            <span className="text-gray-500">({event.reviews} reviews)</span>
+                                            <span>{(event.rating || 0).toFixed(1)}</span>
+                                            <span className="text-gray-500">({event.reviews || 0} reviews)</span>
                                         </div>
                                     </CardContent>
                                     <CardFooter className="flex justify-between">
                                         <Button
                                             variant="outline"
-                                            onClick={() => navigate(`/events/${event._id}`)}
+                                            onClick={() => navigate(`/user/events/${event._id}`)}
                                         >
                                             View Details
                                         </Button>

@@ -284,13 +284,13 @@ const EventDiscoveryPage: React.FC = () => {
                             <div>
                                 <Label htmlFor="search">Search</Label>
                                 <div className="relative">
-                                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                                    <Search className="absolute right-2 top-2.5 h-4 w-4 text-gray-500" />
                                     <Input
                                         id="search"
                                         placeholder="Search events or organizations..."
                                         value={filters.search}
                                         onChange={handleSearch}
-                                        className="pl-8"
+                                        className="pl-16"
                                     />
                                 </div>
                             </div>
@@ -298,13 +298,13 @@ const EventDiscoveryPage: React.FC = () => {
                             <div>
                                 <Label htmlFor="location">Location</Label>
                                 <div className="relative">
-                                    <MapPin className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                                    <MapPin className="absolute right-2 top-2.5 h-4 w-4 text-gray-500" />
                                     <Input
                                         id="location"
                                         placeholder="Enter city or state..."
                                         value={filters.location}
                                         onChange={handleLocationChange}
-                                        className="pl-8"
+                                        className="pl-16"
                                     />
                                 </div>
                             </div>
