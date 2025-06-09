@@ -558,7 +558,11 @@ const EventDiscoveryPage: React.FC = () => {
                                             <div>
                                                 <span className="text-sm text-gray-500">Starting from</span>
                                                 <p className="font-semibold">
-                                                    ${Math.min(...event.packages.map(pkg => pkg.price))}
+                                                    <IndianRupee className="h-4 w-4" /> {
+                                                        event.packages.length > 0
+                                                            ? Math.min(...event.packages.map(pkg => pkg.price))
+                                                            : 'N/A'
+                                                    }
                                                 </p>
                                             </div>
                                             <Button
