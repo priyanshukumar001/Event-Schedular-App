@@ -15,10 +15,13 @@ import EventTypeForm from './components/organization/EventTypeForm';
 import FacilityManagement from './components/organization/FacilityManagement';
 import AvailableSlotsRoute from './components/organization/AvailableSlotsRoute';
 import Profile from './components/user/Profile';
-import FavoritesPage from './components/favorites/FavoritesPage';
+import FavoritesPage from './components/user/FavoritesPage';
+import EventDiscoveryPage from './components/user/EventDiscoveryPage';
+import EventDetailsPage from './components/user/EventDetailsPage';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { FavoritesProvider } from './contexts/FavoritesContext';
+import { CartProvider } from './contexts/CartContext';
 
 // Main page component with global context providers
 const Page = () => {
@@ -29,10 +32,12 @@ const Page = () => {
                     <UserData>
                         <AdminData>
                             <FavoritesProvider>
-                                <div className="min-h-[100vh] bg-gradient-to-b from-blue-50 to-blue-200">
-                                    <Header />
-                                    <Outlet />
-                                </div>
+                                <CartProvider>
+                                    <div className="min-h-[100vh] bg-gradient-to-b from-blue-50 to-blue-200">
+                                        <Header />
+                                        <Outlet />
+                                    </div>
+                                </CartProvider>
                             </FavoritesProvider>
                         </AdminData>
                     </UserData>
@@ -79,6 +84,19 @@ const router = createBrowserRouter([
                                 <FavoritesPage />
                             </ProtectedRoute>
                         )
+                    },
+                    {
+                        path: 'events',
+                        children: [
+                            {
+                                index: true,
+                                element: <EventDiscoveryPage />
+                            },
+                            {
+                                path: ':id',
+                                element: <EventDetailsPage />
+                            }
+                        ]
                     }
                 ]
             },

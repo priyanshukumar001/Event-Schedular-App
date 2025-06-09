@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
@@ -11,7 +11,8 @@ import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const location = useLocation();
+    const { login, error: authError } = useAuth();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -25,6 +26,8 @@ const Login = () => {
             ...formData,
             [e.target.name]: e.target.value
         });
+        // Clear error when user starts typing
+        if (error) setError('');
     };
 
     const handleSubmit = async (e) => {
@@ -39,7 +42,7 @@ const Login = () => {
                 const from = location.state?.from?.pathname || '/user/profile';
                 navigate(from, { replace: true });
             } else {
-                setError(result.message || 'Login failed. Please try again.');
+                setError(result.error || 'Login failed. Please try again.');
             }
         } catch (err) {
             setError('An unexpected error occurred. Please try again.');
@@ -57,9 +60,9 @@ const Login = () => {
         <div className="flex items-center justify-center min-h-screen bg-background">
             <Card className="w-full max-w-md p-6">
                 <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-                {error && (
+                {(error || authError) && (
                     <Alert variant="destructive" className="mb-4">
-                        {error}
+                        {error || authError}
                     </Alert>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,6 +76,7 @@ const Login = () => {
                             onChange={handleChange}
                             required
                             placeholder="Enter your email"
+                            disabled={loading}
                         />
                     </div>
                     <div className="space-y-2">
@@ -86,13 +90,14 @@ const Login = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter your password"
+                                disabled={loading}
                             />
                             <button
                                 type="button"
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2"
                                 onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2"
                             >
-                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                             </button>
                         </div>
                     </div>
@@ -104,17 +109,13 @@ const Login = () => {
                         {loading ? 'Logging in...' : 'Login'}
                     </Button>
                 </form>
-                <Separator className="my-6" />
+                <Separator className="my-4" />
                 <div className="text-center">
                     <p className="text-sm text-muted-foreground">
                         Don't have an account?{' '}
-                        <Button
-                            variant="link"
-                            className="p-0"
-                            onClick={() => navigate('/user/register')}
-                        >
-                            Register here
-                        </Button>
+                        <a href="/register" className="text-primary hover:underline">
+                            Register
+                        </a>
                     </p>
                 </div>
             </Card>

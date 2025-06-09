@@ -77,7 +77,7 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({ eventTypeId }) => {
                 setError('Authentication required');
                 return;
             }
-            const response = await axios.get(`${API_BASE_URL}/slots/event-type/${eventTypeId}`, {
+            const response = await axios.get(`${API_BASE_URL}/api/slots/event-type/${eventTypeId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -204,9 +204,9 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({ eventTypeId }) => {
             };
 
             if (editingSlot) {
-                await axios.put(`${API_BASE_URL}/slots/${editingSlot._id}`, slotsToSubmit[0], config);
+                await axios.put(`${API_BASE_URL}/api/slots/${editingSlot._id}`, slotsToSubmit[0], config);
             } else {
-                await axios.post(`${API_BASE_URL}/slots/event-type/${eventTypeId}`, { slots: slotsToSubmit }, config);
+                await axios.post(`${API_BASE_URL}/api/slots/event-type/${eventTypeId}`, { slots: slotsToSubmit }, config);
             }
 
             handleCloseDialog();
@@ -250,7 +250,7 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({ eventTypeId }) => {
                 }
             };
 
-            await axios.delete(`${API_BASE_URL}/slots/${slotId}`, config);
+            await axios.delete(`${API_BASE_URL}/api/slots/${slotId}`, config);
             fetchSlots();
         } catch (err: any) {
             if (err.response?.data?.error === 'Cannot delete a booked slot') {

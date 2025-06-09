@@ -1,14 +1,14 @@
 // API Configuration
-export const API_BASE_URL = 'http://localhost:3000/api';
+export const API_BASE_URL = 'http://localhost:5000';
 
 // Auth Routes
 export const AUTH_ROUTES = {
-    login: '/auth/login',
-    register: '/auth/register',
-    profile: '/auth/profile',
-    changePassword: '/auth/change-password',
-    checkAuth: '/auth/check-auth',
-    logout: '/auth/logout'
+    login: '/api/auth/login',
+    register: '/api/auth/register',
+    profile: '/api/auth/profile',
+    changePassword: '/api/auth/change-password',
+    checkAuth: '/api/auth/check-auth',
+    logout: '/api/auth/logout'
 };
 
 // Organization Routes

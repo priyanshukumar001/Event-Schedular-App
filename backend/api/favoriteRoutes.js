@@ -1,7 +1,7 @@
 import express from 'express';
 import { userAuth } from '../middleware/userAuth.js';
 import Favorite from '../models/Favorite.js';
-import Event from '../models/EventType.js';
+import EventType from '../models/EventType.js';
 import Organization from '../models/Organization.js';
 
 const router = express.Router();
@@ -15,9 +15,13 @@ router.get('/', userAuth, async (req, res) => {
         const populatedFavorites = await Promise.all(favorites.map(async (fav) => {
             let data;
             if (fav.type === 'event') {
-                data = await Event.findById(fav.itemId);
+                data = await EventType.findById(fav.itemId)
+                    .populate('organization')
+                    .populate('packages.includedFacilities');
             } else if (fav.type === 'organization') {
-                data = await Organization.findById(fav.itemId);
+                data = await Organization.findById(fav.itemId)
+                    .populate('facilities')
+                    .populate('eventTypes');
             }
             return {
                 _id: fav._id,
@@ -26,10 +30,10 @@ router.get('/', userAuth, async (req, res) => {
             };
         }));
 
-        res.json(populatedFavorites);
+        res.json({ success: true, data: populatedFavorites });
     } catch (error) {
         console.error('Error fetching favorites:', error);
-        res.status(500).json({ message: 'Error fetching favorites' });
+        res.status(500).json({ success: false, error: 'Error fetching favorites' });
     }
 });
 
@@ -40,19 +44,19 @@ router.post('/', userAuth, async (req, res) => {
 
         // Validate type
         if (!['event', 'organization'].includes(type)) {
-            return res.status(400).json({ message: 'Invalid favorite type' });
+            return res.status(400).json({ success: false, error: 'Invalid favorite type' });
         }
 
         // Check if item exists
         let itemExists;
         if (type === 'event') {
-            itemExists = await Event.findById(itemId);
+            itemExists = await EventType.findById(itemId);
         } else {
             itemExists = await Organization.findById(itemId);
         }
 
         if (!itemExists) {
-            return res.status(404).json({ message: `${type} not found` });
+            return res.status(404).json({ success: false, error: `${type} not found` });
         }
 
         // Create new favorite
@@ -71,13 +75,13 @@ router.post('/', userAuth, async (req, res) => {
             data: itemExists
         };
 
-        res.status(201).json(populatedFavorite);
+        res.status(201).json({ success: true, data: populatedFavorite });
     } catch (error) {
         if (error.code === 11000) {
-            return res.status(400).json({ message: 'Item is already favorited' });
+            return res.status(400).json({ success: false, error: 'Item is already favorited' });
         }
         console.error('Error adding favorite:', error);
-        res.status(500).json({ message: 'Error adding favorite' });
+        res.status(500).json({ success: false, error: 'Error adding favorite' });
     }
 });
 
@@ -88,23 +92,23 @@ router.delete('/:type/:itemId', userAuth, async (req, res) => {
 
         // Validate type
         if (!['event', 'organization'].includes(type)) {
-            return res.status(400).json({ message: 'Invalid favorite type' });
+            return res.status(400).json({ success: false, error: 'Invalid favorite type' });
         }
 
-        const result = await Favorite.findOneAndDelete({
+        const favorite = await Favorite.findOneAndDelete({
             userId: req.user.userId,
             type,
             itemId
         });
 
-        if (!result) {
-            return res.status(404).json({ message: 'Favorite not found' });
+        if (!favorite) {
+            return res.status(404).json({ success: false, error: 'Favorite not found' });
         }
 
-        res.json({ message: 'Favorite removed successfully' });
+        res.json({ success: true, message: 'Favorite removed successfully' });
     } catch (error) {
         console.error('Error removing favorite:', error);
-        res.status(500).json({ message: 'Error removing favorite' });
+        res.status(500).json({ success: false, error: 'Error removing favorite' });
     }
 });
 
@@ -115,7 +119,7 @@ router.get('/check/:type/:itemId', userAuth, async (req, res) => {
 
         // Validate type
         if (!['event', 'organization'].includes(type)) {
-            return res.status(400).json({ message: 'Invalid favorite type' });
+            return res.status(400).json({ success: false, error: 'Invalid favorite type' });
         }
 
         const favorite = await Favorite.findOne({
@@ -124,10 +128,10 @@ router.get('/check/:type/:itemId', userAuth, async (req, res) => {
             itemId
         });
 
-        res.json({ isFavorited: !!favorite });
+        res.json({ success: true, isFavorited: !!favorite });
     } catch (error) {
         console.error('Error checking favorite:', error);
-        res.status(500).json({ message: 'Error checking favorite status' });
+        res.status(500).json({ success: false, error: 'Error checking favorite status' });
     }
 });
 

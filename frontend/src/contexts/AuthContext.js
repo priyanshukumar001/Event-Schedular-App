@@ -1,15 +1,15 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../constants';
 
 // Auth-specific routes
 const AUTH_ROUTES = {
-    login: `${API_BASE_URL}/auth/login`,
-    register: `${API_BASE_URL}/auth/register`,
-    profile: `${API_BASE_URL}/auth/profile`,
-    checkAuth: `${API_BASE_URL}/auth/check-auth`,
-    logout: `${API_BASE_URL}/auth/logout`,
-    changePassword: `${API_BASE_URL}/auth/change-password`
+    login: `${API_BASE_URL}/api/auth/login`,
+    register: `${API_BASE_URL}/api/auth/register`,
+    profile: `${API_BASE_URL}/api/auth/profile`,
+    checkAuth: `${API_BASE_URL}/api/auth/check-auth`,
+    logout: `${API_BASE_URL}/api/auth/logout`,
+    changePassword: `${API_BASE_URL}/api/auth/change-password`
 };
 
 const AuthContext = createContext(null);
@@ -26,134 +26,156 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    // Configure axios defaults
-    axios.defaults.baseURL = API_BASE_URL;
-
-    // Add token to requests if it exists
-    const setAuthToken = (userToken) => {
-        if (userToken) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
-            localStorage.setItem('userToken', userToken);
-        } else {
-            delete axios.defaults.headers.common['Authorization'];
-            localStorage.removeItem('userToken');
-        }
-    };
-
-    // Check authentication status on mount and token expiration
     useEffect(() => {
-        const checkAuth = async () => {
-            const userToken = localStorage.getItem('userToken');
-            if (userToken) {
-                setAuthToken(userToken);
-                try {
-                    const response = await axios.get(AUTH_ROUTES.checkAuth);
-                    if (response.data.isAuthenticated) {
-                        setUser(response.data.user);
-                    } else {
-                        setAuthToken(null);
-                        setUser(null);
-                    }
-                } catch (error) {
-                    console.error('Auth check failed:', error);
-                    setAuthToken(null);
-                    setUser(null);
+        // Set up axios defaults
+        axios.defaults.baseURL = API_BASE_URL;
+        axios.defaults.withCredentials = true;
+
+        // Add request interceptor to add auth token
+        axios.interceptors.request.use(
+            (config) => {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
                 }
+                // Only modify URLs that don't already include the base URL
+                if (!config.url.startsWith('http') && !config.url.startsWith(API_BASE_URL)) {
+                    config.url = `${API_BASE_URL}/${config.url}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
             }
-            setLoading(false);
-        };
+        );
 
-        checkAuth();
-
-        // Set up axios interceptor for token expiration
-        const interceptor = axios.interceptors.response.use(
+        // Add response interceptor to handle 401 errors
+        axios.interceptors.response.use(
             (response) => response,
-            async (error) => {
+            (error) => {
                 if (error.response?.status === 401) {
-                    setAuthToken(null);
+                    // Clear user data and token
                     setUser(null);
+                    setIsAuthenticated(false);
+                    localStorage.removeItem('token');
                 }
                 return Promise.reject(error);
             }
         );
 
-        return () => {
-            axios.interceptors.response.eject(interceptor);
-        };
+        // Check if user is already logged in
+        const token = localStorage.getItem('token');
+        if (token) {
+            checkAuthStatus();
+        } else {
+            setLoading(false);
+        }
     }, []);
 
-    // Login function
+    const checkAuthStatus = async () => {
+        try {
+            const response = await axios.get(AUTH_ROUTES.checkAuth);
+            if (response.data.success) {
+                setUser(response.data.user);
+                setIsAuthenticated(true);
+            } else {
+                setUser(null);
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+            }
+        } catch (error) {
+            console.error('Auth check failed:', error);
+            setUser(null);
+            setIsAuthenticated(false);
+            localStorage.removeItem('token');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const login = async (email, password) => {
         try {
             setError(null);
             const response = await axios.post(AUTH_ROUTES.login, { email, password });
-            const { userToken, user } = response.data;
-            setAuthToken(userToken);
-            setUser(user);
-            return { success: true };
+            if (response.data.success) {
+                const { userToken, user } = response.data;
+                localStorage.setItem('token', userToken);
+                setUser(user);
+                setIsAuthenticated(true);
+                return { success: true };
+            }
+            return { success: false, error: response.data.message || 'Login failed' };
         } catch (error) {
-            const message = error.response?.data?.message || 'Login failed';
-            setError(message);
-            return { success: false, message };
+            const errorMessage = error.response?.data?.message || 'Login failed';
+            setError(errorMessage);
+            return { success: false, error: errorMessage };
         }
     };
 
-    // Register function
     const register = async (userData) => {
         try {
             setError(null);
             const response = await axios.post(AUTH_ROUTES.register, userData);
-            const { userToken, user } = response.data;
-            setAuthToken(userToken);
-            setUser(user);
-            return { success: true };
+            if (response.data.success) {
+                const { userToken, user } = response.data;
+                localStorage.setItem('token', userToken);
+                setUser(user);
+                setIsAuthenticated(true);
+                return { success: true };
+            }
+            return { success: false, error: response.data.message || 'Registration failed' };
         } catch (error) {
-            const message = error.response?.data?.message || 'Registration failed';
-            setError(message);
-            return { success: false, message };
+            const errorMessage = error.response?.data?.message || 'Registration failed';
+            setError(errorMessage);
+            return { success: false, error: errorMessage };
         }
     };
 
-    // Logout function
     const logout = async () => {
         try {
             await axios.post(AUTH_ROUTES.logout);
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
-            setAuthToken(null);
             setUser(null);
+            setIsAuthenticated(false);
+            localStorage.removeItem('token');
         }
     };
 
-    // Update profile function
     const updateProfile = async (profileData) => {
         try {
             setError(null);
             const response = await axios.put(AUTH_ROUTES.profile, profileData);
-            setUser(response.data.user);
-            return { success: true };
+            if (response.data.success) {
+                setUser(response.data.user);
+                return { success: true };
+            }
+            return { success: false, error: response.data.message || 'Profile update failed' };
         } catch (error) {
-            const message = error.response?.data?.message || 'Profile update failed';
-            setError(message);
-            return { success: false, message };
+            const errorMessage = error.response?.data?.message || 'Profile update failed';
+            setError(errorMessage);
+            return { success: false, error: errorMessage };
         }
     };
 
-    // Change password function
     const changePassword = async (currentPassword, newPassword) => {
         try {
             setError(null);
-            await axios.put(AUTH_ROUTES.changePassword, {
+            const response = await axios.put(AUTH_ROUTES.changePassword, {
                 currentPassword,
                 newPassword
             });
-            return { success: true };
+            if (response.data.success) {
+                return { success: true };
+            }
+            return { success: false, error: response.data.message || 'Password change failed' };
         } catch (error) {
-            const message = error.response?.data?.message || 'Password change failed';
-            setError(message);
-            return { success: false, message };
+            const errorMessage = error.response?.data?.message || 'Password change failed';
+            setError(errorMessage);
+            return { success: false, error: errorMessage };
         }
     };
 
@@ -161,17 +183,18 @@ export const AuthProvider = ({ children }) => {
         user,
         loading,
         error,
+        isAuthenticated,
         login,
         register,
         logout,
         updateProfile,
         changePassword,
-        isAuthenticated: !!user
+        checkAuthStatus
     };
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 }; 
