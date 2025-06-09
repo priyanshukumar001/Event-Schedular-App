@@ -37,9 +37,9 @@ const Homepage = () => {
                         <div id='UserType' className="user-type-button">
                             <button className="users"
                                 onClick={e => {
-                                    navigate('/admin/login');
+                                    navigate('/organization/login');
                                 }}
-                            >Login as Admin</button>
+                            >Login as Organization</button>
 
                             <button className="users"
                                 onClick={(e) => {
